@@ -8,7 +8,7 @@ Wee.js is an open source utility library written in TypeScript.
 
 ## Motivation
 
-The main purpose of this library is to provide the usual basic tools for strings, numbers and DOM manipulation..
+The main purpose of this library is to provide the usual basic tools for strings, numbers and DOM manipulation.
 
 ## Installation
 
