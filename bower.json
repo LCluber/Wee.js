@@ -1,0 +1,13 @@
+{
+  "author": "Ludovic Cluber",
+  "name": "weejs",
+  "license": "MIT",
+  "main": [
+    "dist/wee.js"
+  ],
+  "description": "Utility library written in TypeScript.",
+  "version": "0.1.0",
+  "dependencies": {
+
+  }
+}
