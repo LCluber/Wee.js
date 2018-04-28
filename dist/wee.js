@@ -29,18 +29,6 @@
     (factory((global.WEE = {})));
 }(this, (function (exports) { 'use strict';
 
-    var Ascii = (function () {
-        function Ascii() {
-        }
-        Ascii.isASCII = function (code, extended) {
-            return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
-        };
-        Ascii.stringToASCII = function (code) {
-            return code.charCodeAt(0);
-        };
-        return Ascii;
-    }());
-
     var Check = (function () {
         function Check() {
         }
@@ -60,6 +48,12 @@
         };
         Check.isObject = function (object) {
             return (object !== null && (this.isFunction(object) || typeof object === 'object'));
+        };
+        Check.isASCII = function (code, extended) {
+            return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
+        };
+        Check.isInteger = function (value) {
+            return (value === parseInt(value, 10));
         };
         return Check;
     }());
@@ -88,20 +82,14 @@
         return Dom;
     }());
 
-    var Number = (function () {
-        function Number() {
-        }
-        Number.isInteger = function (value) {
-            return (value === parseInt(value, 10));
-        };
-        return Number;
-    }());
-
     var String = (function () {
         function String() {
         }
         String.ucfirst = function (string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
+        };
+        String.toASCII = function (code) {
+            return code.charCodeAt(0);
         };
         return String;
     }());
@@ -115,10 +103,8 @@
         return Ajax;
     }());
 
-    exports.Ascii = Ascii;
     exports.Check = Check;
     exports.Dom = Dom;
-    exports.Number = Number;
     exports.String = String;
     exports.Ajax = Ajax;
 

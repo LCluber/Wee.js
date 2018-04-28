@@ -10,4 +10,9 @@ export class String {
 
   }
 
+  static toASCII(code: string): number {
+    return code.charCodeAt(0);
+  }
+
+
 }

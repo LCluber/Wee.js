@@ -18,6 +18,12 @@ var Check = (function () {
     Check.isObject = function (object) {
         return (object !== null && (this.isFunction(object) || typeof object === 'object'));
     };
+    Check.isASCII = function (code, extended) {
+        return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
+    };
+    Check.isInteger = function (value) {
+        return (value === parseInt(value, 10));
+    };
     return Check;
 }());
 export { Check };

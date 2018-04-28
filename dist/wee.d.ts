@@ -28,13 +28,13 @@ export declare class Ajax {
     static noCache: boolean;
 }
 export declare class Ascii {
-    static isASCII(code: string | number, extended: boolean): boolean;
-    static stringToASCII(code: string): number;
 }
 export declare class Check {
     static isJSON(str: string): any;
     static isFunction(func: Function): boolean;
     static isObject(object: Function): boolean;
+    static isASCII(code: string | number, extended: boolean): boolean;
+    static isInteger(value: string | number): boolean;
 }
 export declare class Dom {
     static scrollToBottom(HtmlElement: HTMLElement): void;
@@ -45,13 +45,11 @@ export declare class Dom {
     static hideOverflow(): void;
 }
 export declare class Number {
-    static isInteger(value: string | number): boolean;
 }
 export declare class String {
     static ucfirst(string: string): string;
+    static toASCII(code: string): number;
 }
-
-
 
 
 
