@@ -12,7 +12,6 @@
         "suppressImplicitAnyIndexErrors":true
     },
     "exclude": [
-      "node_modules",
-      "config/typings"
+      "node_modules"
     ]
 }

@@ -187,7 +187,6 @@ module.exports = function(grunt){
             hoist_funs:true,
             if_return:true,
             join_vars:true,
-            cascade:true,
             warnings: true,
             drop_console: true,
             keep_fargs: false,
@@ -218,7 +217,6 @@ module.exports = function(grunt){
             hoist_funs:true,
             if_return:true,
             join_vars:true,
-            cascade:true,
             warnings: true,
             drop_console: false,
             keep_fargs: false,
@@ -228,6 +226,7 @@ module.exports = function(grunt){
         files: [{
           src  : [
             nodeDir + 'jquery-easing/jquery.easing.1.3.js',
+            distDir + projectNameLC + '.js',
             webDir + 'js/*.js'
           ],
           dest : publicDir + 'js/main.min.js'

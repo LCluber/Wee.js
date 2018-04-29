@@ -1,3 +1,6 @@
+Version 0.1.2 (April 29th 2018)
+-----------------------------
+ * New ajax class with promises.
 
 Version 0.1.1 (April 28th 2018)
 -----------------------------
