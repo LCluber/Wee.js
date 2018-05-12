@@ -13,18 +13,16 @@ var Ajax = (function () {
             http.onreadystatechange = function () {
                 if (http.readyState == 4) {
                     if (http.status == 200) {
-                        console.log("xhr done successfully");
+                        console.log('xhr done successfully (' + url + ')');
                         resolve(http.responseText);
                     }
                     else {
-                        console.log("xhr failed");
+                        console.log('error', 'xhr failed (' + url + ')');
                         reject(http.status);
                     }
                 }
-                else {
-                    console.log("xhr processing going on");
-                }
             };
+            console.log('xhr processing starting (' + url + ')');
             http.send();
         });
     };

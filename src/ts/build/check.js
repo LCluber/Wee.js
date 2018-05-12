@@ -7,7 +7,8 @@ var Check = (function () {
             json = JSON.parse(str);
         }
         catch (e) {
-            return e;
+            console.log(e);
+            return false;
         }
         return json;
     };

@@ -14,5 +14,4 @@ export class String {
     return code.charCodeAt(0);
   }
 
-
 }

@@ -1,11 +1,11 @@
 
 export class Dom {
 
-  static scrollToBottom(HtmlElement: HTMLElement): void{
+  static scrollToBottom(HtmlElement: HTMLElement): void {
     HtmlElement.scrollTop = HtmlElement.scrollHeight;
   }
 
-  static findById(id: string): HTMLElement | HTMLInputElement | HTMLCanvasElement  {
+  static findById(id: string): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement  {
     return document.getElementById(id);
   }
 

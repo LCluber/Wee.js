@@ -38,7 +38,8 @@
                 json = JSON.parse(str);
             }
             catch (e) {
-                return e;
+                console.log(e);
+                return false;
             }
             return json;
         };
@@ -82,6 +83,25 @@
         return Dom;
     }());
 
+    var Bind = (function () {
+        function Bind(element, data) {
+            this.data = data;
+            this.element = element;
+            this.element.value = data;
+            this.element.addEventListener('change', this, false);
+        }
+        Bind.prototype.handleEvent = function (event) {
+            switch (event.type) {
+                case 'change': this.change(this.element.value);
+            }
+        };
+        Bind.prototype.change = function (value) {
+            this.data = value;
+            this.element.value = value;
+        };
+        return Bind;
+    }());
+
     var String = (function () {
         function String() {
         }
@@ -109,18 +129,16 @@
                 http.onreadystatechange = function () {
                     if (http.readyState == 4) {
                         if (http.status == 200) {
-                            console.log("xhr done successfully");
+                            console.log('xhr done successfully (' + url + ')');
                             resolve(http.responseText);
                         }
                         else {
-                            console.log("xhr failed");
+                            console.log('error', 'xhr failed (' + url + ')');
                             reject(http.status);
                         }
                     }
-                    else {
-                        console.log("xhr processing going on");
-                    }
                 };
+                console.log('xhr processing starting (' + url + ')');
                 http.send();
             });
         };
@@ -130,10 +148,91 @@
         return Ajax;
     }());
 
+    var File = (function () {
+        function File() {
+        }
+        File.load = function (path) {
+            return Ajax.call(path);
+        };
+        File.removeTrailingSlash = function (path) {
+            return path.replace(/\/+$/, '');
+        };
+        File.getName = function (path) {
+            return path.replace(/^.*[\\\/]/, '');
+        };
+        File.getExtension = function (path) {
+            return path.split('.').pop();
+        };
+        File.getDirectory = function (path) {
+            return path.replace(/[^\\\/]*$/, '');
+        };
+        File.checkExtension = function (extension, validExtensions) {
+            for (var _i = 0, validExtensions_1 = validExtensions; _i < validExtensions_1.length; _i++) {
+                var validExtension = validExtensions_1[_i];
+                if (extension === validExtension) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        return File;
+    }());
+
+    var Img = (function () {
+        function Img() {
+        }
+        Img.load = function (path) {
+            return new Promise(function (resolve, reject) {
+                var img = new Image();
+                img.src = path;
+                img.name = File.getName(path);
+                console.log('xhr processing starting (' + path + ')');
+                img.addEventListener('load', function () {
+                    console.log('xhr done successfully (' + path + ')');
+                    resolve(img);
+                });
+                img.addEventListener('error', function () {
+                    console.log('error', 'xhr failed (' + path + ')');
+                    reject(new Error('xhr failed (' + path + ')'));
+                });
+            });
+        };
+        return Img;
+    }());
+
+    var Sound = (function () {
+        function Sound() {
+        }
+        Sound.load = function (path) {
+            return new Promise(function (resolve, reject) {
+                var snd = new Audio();
+                snd.src = path;
+                console.log('xhr processing starting (' + path + ')');
+                snd.addEventListener('canplaythrough', function () {
+                    console.log('xhr done successfully (' + path + ')');
+                    resolve(snd);
+                }, false);
+                snd.addEventListener('canplay', function () {
+                    console.log('xhr done successfully (' + path + ')');
+                    resolve(snd);
+                }, false);
+                snd.addEventListener('error', function () {
+                    console.log('error', 'xhr failed (' + path + ')');
+                    reject(new Error('xhr failed (' + path + ')'));
+                }, false);
+            });
+        };
+        return Sound;
+    }());
+
     exports.Check = Check;
     exports.Dom = Dom;
+    exports.Bind = Bind;
     exports.String = String;
+    exports.File = File;
     exports.Ajax = Ajax;
+    exports.Img = Img;
+    exports.Sound = Sound;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

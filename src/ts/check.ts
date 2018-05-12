@@ -1,12 +1,13 @@
 
 export class Check {
 
-  static isJSON(str: string): any {
+  static isJSON(str: string): Object|false {
     let json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
     try {
       json = JSON.parse(str);
     } catch (e) {
-      return e;
+      console.log(e);
+      return false;
     }
     return json;
   }

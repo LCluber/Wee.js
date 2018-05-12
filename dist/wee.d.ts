@@ -30,8 +30,15 @@ export declare class Ajax {
 }
 export declare class Ascii {
 }
+export declare class Bind {
+    data: string | number;
+    element: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement;
+    constructor(element: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement, data: string);
+    handleEvent(event: Event): void;
+    change(value: string | number): void;
+}
 export declare class Check {
-    static isJSON(str: string): any;
+    static isJSON(str: string): Object | false;
     static isFunction(func: Function): boolean;
     static isObject(object: Function): boolean;
     static isASCII(code: string | number, extended: boolean): boolean;
@@ -39,18 +46,36 @@ export declare class Check {
 }
 export declare class Dom {
     static scrollToBottom(HtmlElement: HTMLElement): void;
-    static findById(id: string): HTMLElement | HTMLInputElement | HTMLCanvasElement;
+    static findById(id: string): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement;
     static showById(a: string): void;
     static hideById(a: string): void;
     static showOverflow(): void;
     static hideOverflow(): void;
 }
+export declare class File {
+    static load(path: string): Promise<string>;
+    static removeTrailingSlash(path: string): string;
+    static getName(path: string): string;
+    static getExtension(path: string): string;
+    static getDirectory(path: string): string;
+    static checkExtension(extension: string, validExtensions: Array<string>): boolean;
+}
+export declare class Img {
+    static load(path: string): Promise<string>;
+}
 export declare class Number {
+}
+export declare class Sound {
+    static load(path: string): Promise<string>;
 }
 export declare class String {
     static ucfirst(string: string): string;
     static toASCII(code: string): number;
 }
+
+
+
+
 
 
 
