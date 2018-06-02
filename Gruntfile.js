@@ -50,16 +50,17 @@ module.exports = function(grunt){
                 compiledSrcDir + '*'
               ]
       },
-      web:{
-        src: [  //zipDir + '*',
-                webDir + 'static/*',
-                webDir + 'sass/build/*'
+      websass:{
+        src: [  webDir + 'sass/build/*',
+                publicDir + 'css/*'
         ]
       },
-      public: {
-        src: [  publicDir + 'js/*',
-                publicDir + 'css/*',
-                publicDir + 'fonts/*'
+      webjs:{
+        src: [  publicDir + 'js/*'
+        ]
+      },
+      webmisc: {
+        src: [  publicDir + 'fonts/*'
         ]
       }
     },
@@ -286,13 +287,6 @@ module.exports = function(grunt){
         overwrite: false,
         force: false
       },
-      // declaration:{
-      //   expand: true,
-      //   cwd: compiledSrcDir,
-      //   src: ['**/*.d.ts'],
-      //   dest: distDir,
-      //   filter: 'isFile'
-      // },
       fonts:{
         expand: true,
         cwd: nodeDir + 'bootstrap/dist/',
@@ -306,12 +300,6 @@ module.exports = function(grunt){
         src: ['fonts/**/*'],
         dest: publicDir,
         filter: 'isFile'
-      },
-      dist: {
-        expand: true,
-        cwd: 'dist/',
-        src: ['**/*'],
-        dest: webDir + 'static/dist/'
       }
     },
     nodemon: {
@@ -332,19 +320,19 @@ module.exports = function(grunt){
     },
     watch: {
       lib: {
-        files: srcDir + 'ts/**/*.ts',
-        tasks: ['dist'],
+        files: [ srcDir + 'ts/**/*.ts', '!' + srcDir + 'ts/build/*'],
+        tasks: ['dist']
       },
       webpug:{
         files: webDir + 'views/**/*.pug'
       },
       webjs: {
         files: webDir + 'js/**/*.js',
-        tasks: ['website:js'],
+        tasks: ['webjs']
       },
-      webcss: {
-        files: webDir + 'sass/**/*.scss',
-        tasks: ['website:css', 'static'],
+      websass: {
+        files: [webDir + 'sass/**/*.scss', '!' + webDir + 'sass/build/*'],
+        tasks: ['websass']
       },
       options: {
         interrupt: true,
@@ -368,7 +356,6 @@ module.exports = function(grunt){
   grunt.loadNpmTasks( 'grunt-contrib-csslint' );
   grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
   grunt.loadNpmTasks( 'grunt-contrib-concat' );
-  grunt.loadNpmTasks( 'grunt-contrib-pug' );
   grunt.loadNpmTasks( 'grunt-contrib-sass' );
   grunt.loadNpmTasks( 'grunt-contrib-htmlmin' );
   grunt.loadNpmTasks( 'grunt-contrib-symlink' );
@@ -400,19 +387,39 @@ module.exports = function(grunt){
                       [ 'concurrent' ]
                     );
 
+  grunt.registerTask( 'websass',
+                      'Compile website css',
+                      [ 'clean:websass',
+                        'sass',
+                        'cssmin',
+                        'concat:webcss'
+                       ]
+                    );
+
+  grunt.registerTask( 'webjs',
+                      'Compile website js',
+                      [ 'jshint:web',
+                        'clean:webjs',
+                        'uglify:web',
+                        'concat:webjs'
+                       ]
+                    );
+
+  grunt.registerTask( 'webmisc',
+                      'Compile website misc',
+                      [ 'clean:webmisc',
+                        'symlink:fonts',
+                        'symlink:fontAwesome'
+                       ]
+                    );
+
   grunt.registerTask( 'website',
                       'build the website in the website/ folder',
-                      [ 'jshint:web',
-                        'clean:public', 'clean:web',
-                        //js
-                          'uglify:web',
-                          'concat:webjs',
-                        //css
-                          'sass',
-                          'cssmin',
-                          'symlink:fonts', 'symlink:fontAwesome',
-                          'concat:webcss',
-                      ]
+                      function() {
+                        grunt.task.run('webjs');
+                        grunt.task.run('websass');
+                        grunt.task.run('webmisc');
+                      }
                     );
 
   grunt.registerTask( 'dist',
