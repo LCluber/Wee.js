@@ -282,11 +282,7 @@ module.exports = function(grunt){
           src: distDir + projectName + '.d.ts'
       }
     },
-    symlink: {
-      options: {
-        overwrite: false,
-        force: false
-      },
+    copy: {
       fonts:{
         expand: true,
         cwd: nodeDir + 'bootstrap/dist/',
@@ -351,6 +347,7 @@ module.exports = function(grunt){
   });
 
   grunt.loadNpmTasks( 'grunt-contrib-clean' );
+  grunt.loadNpmTasks( 'grunt-contrib-copy' );
   grunt.loadNpmTasks( 'grunt-contrib-jshint' );
   grunt.loadNpmTasks( 'grunt-contrib-uglify' );
   grunt.loadNpmTasks( 'grunt-contrib-csslint' );
@@ -358,7 +355,6 @@ module.exports = function(grunt){
   grunt.loadNpmTasks( 'grunt-contrib-concat' );
   grunt.loadNpmTasks( 'grunt-contrib-sass' );
   grunt.loadNpmTasks( 'grunt-contrib-htmlmin' );
-  grunt.loadNpmTasks( 'grunt-contrib-symlink' );
   grunt.loadNpmTasks( 'grunt-contrib-watch' );
   grunt.loadNpmTasks( 'grunt-strip-code' );
   grunt.loadNpmTasks( 'grunt-concurrent' );
@@ -408,8 +404,8 @@ module.exports = function(grunt){
   grunt.registerTask( 'webmisc',
                       'Compile website misc',
                       [ 'clean:webmisc',
-                        'symlink:fonts',
-                        'symlink:fontAwesome'
+                        'copy:fonts',
+                        'copy:fontAwesome'
                        ]
                     );
 
