@@ -1,3 +1,7 @@
+Version 0.1.4 (June 07th 2018)
+-----------------------------
+ * New methods for Dom class
+
 Version 0.1.3 (May 13th 2018)
 -----------------------------
  * New bind class for data binding.

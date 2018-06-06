@@ -1,4 +1,15 @@
 
+export type ChildElementOptions = {
+  id      : string;
+  content : string;
+  class   : string;
+  href    : string;
+  src     : string;
+  alt     : string;
+  width   : string;
+  height  : string;
+}
+
 export class Dom {
 
   static scrollToBottom(HtmlElement: HTMLElement): void {
@@ -23,6 +34,33 @@ export class Dom {
 
   static hideOverflow(): void {
     document.body.style.overflow = 'hidden';
+  }
+
+  static getInputValue(a: string): string {
+    return (<HTMLInputElement>this.findById(a)).value;
+  }
+
+  static clearInputValue(a: string): void {
+    (<HTMLInputElement>this.findById(a)).value = '';
+  }
+
+  static focusOn(a: string): void {
+    this.findById(a).focus();
+  }
+
+  static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementOptions?: ChildElementOptions): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement {
+    var newElement = document.createElement(childElementType);
+    if(childElementOptions !== undefined) {
+      Object.keys(childElementOptions).forEach(key => {
+        if(key === 'content') {
+          newElement.textContent = childElementOptions[key];
+        } else {
+          newElement.setAttribute(key, childElementOptions[key]);
+        }
+      });
+    }
+    parentElement.appendChild(newElement);
+    return newElement;
   }
 
 }
