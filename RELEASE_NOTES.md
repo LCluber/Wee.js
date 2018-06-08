@@ -1,6 +1,6 @@
-Version 0.1.4 (June 07th 2018)
+Version 0.1.4 (June 08th 2018)
 -----------------------------
- * New methods for Dom class
+ * New methods for Dom class: addHTMLElement, getInputValue, clearInputValue, focusOn
 
 Version 0.1.3 (May 13th 2018)
 -----------------------------

@@ -49,7 +49,7 @@ export class Dom {
   }
 
   static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementOptions?: ChildElementOptions): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement {
-    var newElement = document.createElement(childElementType);
+    let newElement = document.createElement(childElementType);
     if(childElementOptions !== undefined) {
       Object.keys(childElementOptions).forEach(key => {
         if(key === 'content') {
