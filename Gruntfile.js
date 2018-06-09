@@ -135,10 +135,10 @@ module.exports = function(grunt){
     ts: {
       tsconfig: 'config/tsconfig.json',
       lib : {
-        outDir: compiledSrcDir,
+        //outDir: compiledSrcDir,
         options: {
-          rootDir: srcDir + 'ts/',
-          declaration: true
+          fast: 'never'
+          //rootDir: srcDir + 'ts/'
         },
         src: [ srcDir + '**/*.ts', '!node_modules/**/*.ts' ]
       }
@@ -241,7 +241,7 @@ module.exports = function(grunt){
           stripBanners: false,
           banner: banner
         },
-        src: srcDir + '**/*.d.ts',
+        src: compiledSrcDir + '*.d.ts',
         dest: distDir + projectNameLC + '.d.ts'
       },
       webjs: {
@@ -374,7 +374,6 @@ module.exports = function(grunt){
                         'uglify:libmin',
                         'concat:declaration',
                         'strip_code:declaration'
-                        //'jsdoc'
                       ]
                     );
 
