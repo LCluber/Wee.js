@@ -2,7 +2,7 @@ module.exports = function(grunt){
 
   require('time-grunt')(grunt);
 
-  var projectName = 'WEE';
+  var projectName = 'Wee';
   var projectNameLC = projectName.toLowerCase();
 
   var port      = 3011;
