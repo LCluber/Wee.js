@@ -23,11 +23,8 @@
 * http://weejs.lcluber.com
 */
 
-(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-    typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (factory((global.WEE = {})));
-}(this, (function (exports) { 'use strict';
+var WEE = (function (exports) {
+    'use strict';
 
     var Check = (function () {
         function Check() {
@@ -258,6 +255,6 @@
     exports.Img = Img;
     exports.Sound = Sound;
 
-    Object.defineProperty(exports, '__esModule', { value: true });
+    return exports;
 
-})));
+}({}));

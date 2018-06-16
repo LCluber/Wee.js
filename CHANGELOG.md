@@ -1,3 +1,7 @@
+Version 0.1.5 (June 16th 2018)
+-----------------------------
+ * library exported as ES6 and IIFE modules instead of UMD.
+
 Version 0.1.4 (June 08th 2018)
 -----------------------------
  * New methods for Dom class: addHTMLElement, getInputValue, clearInputValue, focusOn

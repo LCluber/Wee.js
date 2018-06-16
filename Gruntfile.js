@@ -10,6 +10,8 @@ module.exports = function(grunt){
 
   var srcDir          = 'src/';
   var compiledSrcDir  = srcDir + 'ts/build/';
+  var compiledES5Dir  = compiledSrcDir + 'es5/';
+  var compiledES6Dir  = compiledSrcDir + 'es6/';
   var distDir         = 'dist/';
   var webDir          = 'website/';
   var publicDir       = webDir + 'public/';
@@ -47,7 +49,8 @@ module.exports = function(grunt){
     clean: {
       lib:{
         src: [  distDir + '*',
-                compiledSrcDir + '*'
+                compiledES5Dir + '*',
+                compiledES6Dir + '*'
               ]
       },
       websass:{
@@ -133,41 +136,47 @@ module.exports = function(grunt){
       }
     },
     ts: {
-      tsconfig: 'config/tsconfig.json',
-      lib : {
-        //outDir: compiledSrcDir,
-        options: {
-          fast: 'never'
-          //rootDir: srcDir + 'ts/'
-        },
-        src: [ srcDir + '**/*.ts', '!node_modules/**/*.ts' ]
+      options: {
+        fast: 'never'
+        //rootDir: srcDir + 'ts/'
+      },
+      es6: {
+        tsconfig: 'config/tsconfig.es6.json',
+        src: [ srcDir + 'ts/**/*.ts', '!node_modules/**/*.ts' ]
+      },
+      es5: {
+        tsconfig: 'config/tsconfig.es5.json',
+        src: [ srcDir + 'ts/**/*.ts', '!node_modules/**/*.ts' ]
       }
     },
     rollup: {
-      options: {
-        format:'umd',
-        moduleName: projectName,
-        banner: banner
-      },
-      bundle:{
+      es6:{
+        options: {
+          format:'es',
+          // moduleName: projectName,
+          banner: banner
+          // sourceMap: 'inline'
+        },
         files: [ {
-          src : compiledSrcDir + projectNameLC + '.js',
-          dest : distDir + projectNameLC + '.js'
+          src : compiledES6Dir + projectNameLC + '.js',
+          dest : distDir + projectNameLC + '.es6.js'
+        } ]
+      },
+      iife:{
+        options: {
+          format:'iife',
+          moduleName: projectName,
+          banner: banner
+          // sourceMap: 'inline'
+        },
+        files: [ {
+          src : compiledES5Dir + projectNameLC + '.js',
+          dest : distDir + projectNameLC + '.iife.js'
         } ]
       }
     },
     uglify: {
-      // lib: {
-      //   options: {
-      //     beautify: true,
-      //     banner: banner,
-      //     mangle: false,
-      //     compress:false,
-      //   },
-      //   src: distDir + projectNameLC + '.js',
-      //   dest: distDir + projectNameLC + '.js'
-      // },
-      libmin: {
+      libIife: {
         options: {
           sourceMap: false,
           sourceMapName: srcDir + 'sourcemap.map',
@@ -194,8 +203,8 @@ module.exports = function(grunt){
             keep_fnames: false
           }
         },
-        src: distDir + projectNameLC + '.js',
-        dest: distDir + projectNameLC + '.min.js'
+        src: distDir + projectNameLC + '.iife.js',
+        dest: distDir + projectNameLC + '.iife.min.js'
       },
       web: {
         options: {
@@ -227,7 +236,7 @@ module.exports = function(grunt){
         files: [{
           src  : [
             nodeDir + 'jquery-easing/jquery.easing.1.3.js',
-            distDir + projectNameLC + '.js',
+            distDir + projectNameLC + '.iife.js',
             webDir + 'js/*.js'
           ],
           dest : publicDir + 'js/main.min.js'
@@ -241,7 +250,7 @@ module.exports = function(grunt){
           stripBanners: false,
           banner: banner
         },
-        src: compiledSrcDir + '*.d.ts',
+        src: compiledES6Dir + '*.d.ts',
         dest: distDir + projectNameLC + '.d.ts'
       },
       webjs: {
@@ -369,9 +378,14 @@ module.exports = function(grunt){
                       'build the library in the dist/ folder',
                       [ 'tslint:lib',
                         'clean:lib',
-                        'ts:lib',
-                        'rollup',
-                        'uglify:libmin',
+                        //lib es6
+                        'ts:es6',
+                        'rollup:es6',
+                        //lib es5
+                        'ts:es5',
+                        'rollup:iife',
+                        'uglify:libIife',
+                        //declaration
                         'concat:declaration',
                         'strip_code:declaration'
                       ]

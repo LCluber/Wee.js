@@ -1,25 +1,35 @@
 {
-  "name": "Weejs",
-  "version": "0.1.4",
+  "name": "weejs",
+  "version": "0.1.5",
   "description": "javascript library",
   "keywords": [],
-  "homepage": "",
+  "homepage": "http://weejs.lcluber.com",
+  "main":"dist/wee.es6",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/LCluber/Wee.js.git"
+  },
   "bugs": {
-    "url": "https://github.com/LCluber/Wee.js/issues"
+    "url": "https://github.com/LCluber/Wee.js/issues",
+    "email" : "project@hostname.com"
   },
-  "license": {
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/mit-license.php"
-  },
+  "license": "See license in LICENSE.md",
   "author": {
     "name": "Ludovic Cluber",
     "email": "http://www.lcluber.com/contact",
-    "url": "http://www.lcluber.com/"
+    "url": "http://www.lcluber.com"
   },
-  "private": true,
+  "contributors":[{
+    "name": "Estelle Picq",
+    "email": "",
+    "url": "http://www.estellepicq.com"
+  }],
   "scripts": {
     "start": "node ./bin/www"
   },
+  "files":[
+    "dist/"
+  ],
   "dependencies": {
     "body-parser": "1.18.2",
     "cookie-parser": "1.4.3",
@@ -33,12 +43,10 @@
     "serve-favicon": "2.5.0"
   },
   "devDependencies": {
-    "@types/es6-shim": "^0.31.36",
     "bootstrap": "3.3.7",
     "connect-livereload": "0.6.0",
     "font-awesome": "4.7.0",
     "grunt": "1.0.2",
-    "grunt-bower-concat": "1.0.0",
     "grunt-concurrent": "2.3.1",
     "grunt-contrib-clean": "1.1.0",
     "grunt-contrib-copy": "^1.0.0",

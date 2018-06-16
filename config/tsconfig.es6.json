@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "module": "es2015",
-        "target": "es5",
+        "module": "ES6",
+        "target": "ES6",
         "sourceMap": true,
         "noImplicitAny": true,
         "allowSyntheticDefaultImports": true,
@@ -10,8 +10,8 @@
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors":true,
         "declaration":true,
-        "declarationDir":"src/ts/build/",
-        "outDir":"../src/ts/build/",
+        "declarationDir":"src/ts/build/es6/",
+        "outDir":"../src/ts/build/es6/",
         "rootDir":"src/ts/"
     },
     "exclude": [
