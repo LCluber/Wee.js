@@ -4,14 +4,14 @@
   "description": "javascript library",
   "keywords": [],
   "homepage": "http://weejs.lcluber.com",
-  "main":"dist/wee.es6",
+  "main":"dist/wee",
   "repository": {
     "type" : "git",
     "url" : "https://github.com/LCluber/Wee.js.git"
   },
   "bugs": {
     "url": "https://github.com/LCluber/Wee.js/issues",
-    "email" : "project@hostname.com"
+    "email" : ""
   },
   "license": "See license in LICENSE.md",
   "author": {
@@ -63,11 +63,9 @@
     "grunt-rollup": "9.0.0",
     "grunt-strip-code": "^1.0.6",
     "grunt-ts": "6.0.0-beta.19",
-    "grunt-tslint": "5.0.2",
     "jquery": "3.2.1",
     "jquery-easing": "0.0.1",
     "time-grunt": "1.4.0",
-    "tslint": "5.9.1",
-    "typescript": "2.8.3"
+    "tslint": "5.9.1"
   }
 }

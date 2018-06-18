@@ -23,7 +23,7 @@
 * http://weejs.lcluber.com
 */
 
-var WEE = (function (exports) {
+var Wee = (function (exports) {
     'use strict';
 
     var Check = (function () {

@@ -28,6 +28,10 @@ You just cloned Wee.js : git clone https://github.com/LCluber/Wee.js.git
   - Run **npm install -g grunt-cli**
 
 
+### Install typescript :
+  - Run **npm install -g typescript**
+
+
 ### Install project dependencies
   - Run **npm install** in your project directory
 

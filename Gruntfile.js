@@ -69,9 +69,8 @@ module.exports = function(grunt){
     },
     jshint: {
       options: {
-        jshintrc: 'config/.jshintrc'
+        
       },
-      lib: [ 'Gruntfile.js', srcDir + '**/*.js'],
       web: [ webDir + 'js/**/*.js'],
     },
     sass: {
@@ -122,30 +121,17 @@ module.exports = function(grunt){
         dest: webDir + 'static/'
       }
     },
-    tslint: {
-      options: {
-        configuration: 'config/tslint.json',
-        force: false
-      },
-      lib: {
-        files: [{
-          expand: true,
-          cwd: srcDir,
-          src: [ srcDir + '**/*.ts' ]
-        }]
-      }
-    },
     ts: {
       options: {
         fast: 'never'
         //rootDir: srcDir + 'ts/'
       },
       es6: {
-        tsconfig: 'config/tsconfig.es6.json',
+        tsconfig: 'tsconfig.json',
         src: [ srcDir + 'ts/**/*.ts', '!node_modules/**/*.ts' ]
       },
       es5: {
-        tsconfig: 'config/tsconfig.es5.json',
+        tsconfig: 'tsconfig.es5.json',
         src: [ srcDir + 'ts/**/*.ts', '!node_modules/**/*.ts' ]
       }
     },
@@ -159,7 +145,7 @@ module.exports = function(grunt){
         },
         files: [ {
           src : compiledES6Dir + projectNameLC + '.js',
-          dest : distDir + projectNameLC + '.es6.js'
+          dest : distDir + projectNameLC + '.js'
         } ]
       },
       iife:{
@@ -288,7 +274,7 @@ module.exports = function(grunt){
                   ]
       },
       declaration: {
-          src: distDir + projectName + '.d.ts'
+        src: distDir + projectName + '.d.ts'
       }
     },
     copy: {
@@ -369,14 +355,13 @@ module.exports = function(grunt){
   grunt.loadNpmTasks( 'grunt-concurrent' );
   grunt.loadNpmTasks( 'grunt-nodemon' );
   grunt.loadNpmTasks( 'grunt-open' );
-  grunt.loadNpmTasks( 'grunt-tslint' );
   grunt.loadNpmTasks( 'grunt-ts' );
   grunt.loadNpmTasks( 'grunt-rollup' );
 
 
   grunt.registerTask( 'lib',
                       'build the library in the dist/ folder',
-                      [ 'tslint:lib',
+                      [ // 'tslint:lib',
                         'clean:lib',
                         //lib es6
                         'ts:es6',
