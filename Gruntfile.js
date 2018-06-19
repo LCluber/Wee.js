@@ -67,6 +67,16 @@ module.exports = function(grunt){
         ]
       }
     },
+    typedoc: {
+  		build: {
+  			options: {
+  				module: 'amd',
+  				out: './website/docs',
+  				target: 'es6'
+  			},
+  			src: ['./src/ts/*.ts']
+  		}
+  	},
     jshint: {
       options: {
         jshintrc: 'config/.jshintrc'
@@ -372,6 +382,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks( 'grunt-tslint' );
   grunt.loadNpmTasks( 'grunt-ts' );
   grunt.loadNpmTasks( 'grunt-rollup' );
+  grunt.loadNpmTasks( 'grunt-typedoc' );
 
 
   grunt.registerTask( 'lib',
@@ -428,6 +439,7 @@ module.exports = function(grunt){
                         grunt.task.run('webjs');
                         grunt.task.run('websass');
                         grunt.task.run('webmisc');
+                        grunt.task.run('typedoc');
                       }
                     );
 

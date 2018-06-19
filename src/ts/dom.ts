@@ -48,9 +48,6 @@ export class Dom {
     this.findById(a).focus();
   }
 
-  /**
-  *  Add an HTML element to the DOM
-  */
   static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementOptions?: ChildElementOptions): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement {
     let newElement = document.createElement(childElementType);
     if(childElementOptions !== undefined) {
