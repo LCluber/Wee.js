@@ -71,8 +71,9 @@ module.exports = function(grunt){
   		build: {
   			options: {
   				module: 'amd',
-  				out: './website/docs',
-  				target: 'es6'
+  				out: './website/doc',
+  				target: 'es6',
+          name: projectName + '.js - Documentation'
   			},
   			src: ['./src/ts/*.ts']
   		}
