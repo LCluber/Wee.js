@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
-        "module": "ES6",
-        "target": "ES6",
+        "module": "es6",
+        "target": "es5",
+        "lib":["DOM","ES5","ScriptHost","ES2015.Promise"],
         "sourceMap": true,
         "noImplicitAny": true,
         "allowSyntheticDefaultImports": true,
@@ -9,12 +10,11 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors":true,
-        "declaration":true,
-        "declarationDir":"src/ts/build/es6/",
-        "outDir":"../src/ts/build/es6/",
+        "declaration":false,
+        "outDir":"src/ts/build/es5/",
         "rootDir":"src/ts/"
     },
     "exclude": [
-      "../node_modules"
+      "node_modules"
     ]
 }

@@ -7,7 +7,7 @@ Version 0.1.6 (June 19th 2018)
 
 Version 0.1.5 (June 16th 2018)
 -----------------------------
- * library exported as ES6 and IIFE modules instead of UMD.
+ * Library exported as ES6 and IIFE modules instead of UMD.
  * WEE namespace becomes Wee
 
 Version 0.1.4 (June 08th 2018)
