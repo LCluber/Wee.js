@@ -67,6 +67,16 @@ module.exports = function(grunt){
         ]
       }
     },
+    typedoc: {
+  		build: {
+  			options: {
+  				out: webDir + 'doc',
+  				target: 'es6',
+          name: projectName + '.js - Documentation'
+  			},
+  			src: [srcDir + 'ts/*.ts']
+  		}
+  	},
     jshint: {
       options: {
         
@@ -357,6 +367,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks( 'grunt-open' );
   grunt.loadNpmTasks( 'grunt-ts' );
   grunt.loadNpmTasks( 'grunt-rollup' );
+  grunt.loadNpmTasks( 'grunt-typedoc' );
 
 
   grunt.registerTask( 'lib',
@@ -413,6 +424,7 @@ module.exports = function(grunt){
                         grunt.task.run('webjs');
                         grunt.task.run('websass');
                         grunt.task.run('webmisc');
+                        grunt.task.run('typedoc');
                       }
                     );
 
