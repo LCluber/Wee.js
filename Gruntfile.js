@@ -70,12 +70,11 @@ module.exports = function(grunt){
     typedoc: {
   		build: {
   			options: {
-  				module: 'amd',
-  				out: './website/doc',
+  				out: webDir + 'doc',
   				target: 'es6',
           name: projectName + '.js - Documentation'
   			},
-  			src: ['./src/ts/*.ts']
+  			src: [srcDir + 'ts/*.ts']
   		}
   	},
     jshint: {
