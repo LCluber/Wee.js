@@ -79,7 +79,7 @@ module.exports = function(grunt){
   	},
     jshint: {
       options: {
-        
+
       },
       web: [ webDir + 'js/**/*.js'],
     },
