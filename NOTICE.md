@@ -2,10 +2,10 @@
 
 You just cloned Wee.js : git clone https://github.com/LCluber/Wee.js.git
 
-### Install nodejs 4 on your server :
+### Install nodejs on your server :
   - Windows and OSX : **https://nodejs.org/en/**
-  - Linux master race : run
-    - **curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -**
+  - Linux : run
+    - **curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -**
     - **sudo apt-get install -y nodejs**
 
 
@@ -16,7 +16,7 @@ You just cloned Wee.js : git clone https://github.com/LCluber/Wee.js.git
 ### Install ruby :
   - Windows : **http://rubyinstaller.org/downloads/**
   - OSX : already installed
-  - Linux master race : run **sudo apt-get install ruby-full**
+  - Linux : run **sudo apt-get install ruby-full**
 
 
 ### Install sass :
@@ -37,25 +37,12 @@ You just cloned Wee.js : git clone https://github.com/LCluber/Wee.js.git
 
 
 ### Workflow
+  - Run **grunt** to build the app and serve the website.
   - Use **grunt --help** to see the list of tasks.
-  - Run **grunt dist** to build the app in production mode.
-  - Run **grunt serve** to serve files in development mode, open the website, watch for changes and start working.
 
-
-  - You can use those commands to target specific tasks :
-    - **grunt doc** builds the static documentation,
-    - **grunt src** builds the library in the dist folder,
-    - **grunt js** builds javascript for the website,
-    - **grunt css** builds CSS for the website,
-    - **grunt static** builds the static version of the website,
-    - **grunt zip** builds the downloadable zip.
-    - **grunt watch** builds the library automatically on files modifications.
-    - Start Express server :
-      - Windows : Run **set DEBUG=Weejs:* & npm start**
-      - Linux / OSX : Run **DEBUG=Weejs:* npm start**
+  - Start the server :
+    - Run **npm start**
     - Go to **http://localhost:3011/** to test the app.
-    - Keep in mind running **grunt serve** once will do all this automatically.
-
 
   - Set node environment if needed :
     - Run **export NODE_ENV=development**
