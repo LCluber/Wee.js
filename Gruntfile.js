@@ -81,7 +81,7 @@ module.exports = function(grunt){
       options: {
 
       },
-      web: [ webDir + 'js/**/*.js'],
+      web: [ webDir + 'js/**/*.js']
     },
     sass: {
       dist: {

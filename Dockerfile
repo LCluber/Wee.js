@@ -16,4 +16,5 @@ RUN apt-get update && apt-get install -y ruby-full && gem install sass && npm in
 COPY . .
 
 EXPOSE 8080
+# USER node
 CMD [ "bash" ]
