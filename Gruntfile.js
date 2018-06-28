@@ -16,6 +16,7 @@ module.exports = function(grunt){
   var webDir          = 'website/';
   var publicDir       = webDir + 'public/';
   var nodeDir         = 'node_modules/';
+  var docDir          = 'doc/'
 
   var banner    = '/** MIT License\n' +
     '* \n' +
@@ -53,6 +54,10 @@ module.exports = function(grunt){
                 compiledES6Dir + '*'
               ]
       },
+      doc:{
+        src: [  docDir + '*'
+              ]
+      },
       websass:{
         src: [  webDir + 'sass/build/*',
                 publicDir + 'css/*'
@@ -70,7 +75,7 @@ module.exports = function(grunt){
     typedoc: {
   		build: {
   			options: {
-  				out: webDir + 'doc',
+  				out: docDir,
   				target: 'es6',
           name: projectName + '.js - Documentation'
   			},
@@ -387,6 +392,14 @@ module.exports = function(grunt){
                       ]
                     );
 
+  grunt.registerTask( 'doc',
+                      'Compile lib documentation',
+                      [ 'clean:doc',
+                        'typedoc'
+                       ]
+                    );
+
+
   grunt.registerTask( 'serve',
                       'launch server, open website and watch for changes',
                       [ 'concurrent' ]
@@ -424,7 +437,6 @@ module.exports = function(grunt){
                         grunt.task.run('webjs');
                         grunt.task.run('websass');
                         grunt.task.run('webmisc');
-                        grunt.task.run('typedoc');
                       }
                     );
 
@@ -435,6 +447,8 @@ module.exports = function(grunt){
                         grunt.task.run('lib');
                         //build site
                         grunt.task.run('website');
+                        //build documentation
+                        grunt.task.run('doc');
                       }
                     );
 
