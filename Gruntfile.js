@@ -16,7 +16,7 @@ module.exports = function(grunt){
   var webDir          = 'website/';
   var publicDir       = webDir + 'public/';
   var nodeDir         = 'node_modules/';
-  var docDir          = 'doc/'
+  var docDir          = 'doc/';
 
   var banner    = '/** MIT License\n' +
     '* \n' +
@@ -398,7 +398,6 @@ module.exports = function(grunt){
                         'typedoc'
                        ]
                     );
-
 
   grunt.registerTask( 'serve',
                       'launch server, open website and watch for changes',
