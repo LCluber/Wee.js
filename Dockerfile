@@ -1,4 +1,4 @@
-FROM node:8
+FROM starefossen/ruby-node:latest
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN apt-get update && apt-get install -y ruby-full && gem install sass && npm install -g grunt-cli typescript && npm install
+RUN gem install sass && npm install -g grunt-cli typescript && npm install
 # If you are building your code for production
 # RUN npm install --only=production
 
