@@ -16,6 +16,7 @@ module.exports = function(grunt){
   var webDir          = 'website/';
   var publicDir       = webDir + 'public/';
   var nodeDir         = 'node_modules/';
+  var docDir          = 'doc/';
 
   var banner    = '/** MIT License\n' +
     '* \n' +
@@ -53,6 +54,10 @@ module.exports = function(grunt){
                 compiledES6Dir + '*'
               ]
       },
+      doc:{
+        src: [  docDir + '*'
+              ]
+      },
       websass:{
         src: [  webDir + 'sass/build/*',
                 publicDir + 'css/*'
@@ -70,7 +75,7 @@ module.exports = function(grunt){
     typedoc: {
   		build: {
   			options: {
-  				out: webDir + 'doc',
+  				out: docDir,
   				target: 'es6',
           name: projectName + '.js - Documentation'
   			},
@@ -322,7 +327,7 @@ module.exports = function(grunt){
     watch: {
       lib: {
         files: [ srcDir + 'ts/**/*.ts', '!' + srcDir + 'ts/build/*'],
-        tasks: ['dist']
+        tasks: ['lib', 'webjs']
       },
       webpug:{
         files: webDir + 'views/**/*.pug'
@@ -387,6 +392,13 @@ module.exports = function(grunt){
                       ]
                     );
 
+  grunt.registerTask( 'doc',
+                      'Compile lib documentation',
+                      [ 'clean:doc',
+                        'typedoc'
+                       ]
+                    );
+
   grunt.registerTask( 'serve',
                       'launch server, open website and watch for changes',
                       [ 'concurrent' ]
@@ -424,25 +436,26 @@ module.exports = function(grunt){
                         grunt.task.run('webjs');
                         grunt.task.run('websass');
                         grunt.task.run('webmisc');
-                        grunt.task.run('typedoc');
                       }
                     );
 
-  grunt.registerTask( 'dist',
-                      'build library and website',
+  grunt.registerTask( 'build',
+                      'build for production',
                       function() {
                         //build lib
                         grunt.task.run('lib');
                         //build site
                         grunt.task.run('website');
+                        //build documentation
+                        grunt.task.run('doc');
+                        // launch server and watch for changes
+                        grunt.task.run('serve');
                       }
                     );
 
   grunt.registerTask( 'default',
                       'build library, website, launch server, open website and watch for changes.',
                       function() {
-                        //build library and website
-                        grunt.task.run('dist');
                         // launch server and watch for changes
                         grunt.task.run('serve');
                       }
