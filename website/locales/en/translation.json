@@ -17,7 +17,7 @@
     },
     "about" : {
       "h2" : "About",
-      "text" : "<p>The purpose of this library is to provide the usual basic tools for strings, numbers and DOM manipulation.<p>Check <a href=\"#example\" class=\"page-scroll\">Example</a> and <a href=\"#source\" class=\"page-scroll\">Code</a> section for more information on how to use Wee.js.</p><p> You can help develop Wee.js on <a href=\"https://github.com/LCluber/Wee.js\" target=\"_blank\">Github</a>.</p>"
+      "text" : "<p>The purpose of this library is to provide the usual basic tools for strings, numbers and DOM manipulation.<p> You can help develop Wee.js on <a href=\"https://github.com/LCluber/Wee.js\" target=\"_blank\">Github</a>.</p>"
     },
     "code" : {
       "h2" : "Code",
