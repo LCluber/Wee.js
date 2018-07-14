@@ -1,10 +1,11 @@
 {
   "name": "weejs",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "javascript library",
   "keywords": [],
   "homepage": "http://weejs.lcluber.com",
   "main": "dist/wee",
+  "types": "dist/wee",
   "repository": {
     "type": "git",
     "url": "https://github.com/LCluber/Wee.js.git"

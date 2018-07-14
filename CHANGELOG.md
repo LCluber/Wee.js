@@ -1,3 +1,8 @@
+Version 0.1.7 (July 14th 2018)
+-----------------------------
+ * The library is dockerized and can be used as a container.
+ * added typings directory into package.json
+
 Version 0.1.6 (June 19th 2018)
 -----------------------------
  * Documentation automatically generated in /doc folder

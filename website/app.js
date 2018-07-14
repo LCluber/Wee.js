@@ -27,16 +27,16 @@ var i18nOptions = {
 //routes
 var route_root = require('./routes/root');
 var route_doc  = require('./routes/doc');
-  
+
 var app = express();
 
 i18n
   .use(i18nMiddleware.LanguageDetector)
   .use(i18nBackend)
   .init(i18nOptions, function() {
-    
+
   });
-  
+
 var environment = process.env.NODE_ENV;
 
 // view engine setup
