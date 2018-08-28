@@ -1,0 +1,41 @@
+{
+  "title": "Wee.js",
+  "menu" : {
+    "menu"          : "Menu",
+    "home"          : "Home",
+    "about"         : "About",
+    "example"       : "Example",
+    "code"          : "Code",
+    "download"      : "Download",
+    "documentation" : "Documentation",
+    "contact"       : "Contact"
+  },
+  "section" : {
+    "home" : {
+      "h1" : "Wee.js",
+      "description" : "An open source utility library written in TypeScript."
+    },
+    "about" : {
+      "h2" : "About",
+      "text" : "<p>The purpose of this library is to provide the usual basic tools for strings, numbers and DOM manipulation.<p> You can help develop Wee.js on <a href=\"https://github.com/LCluber/Wee.js\" target=\"_blank\">Github</a>.</p>"
+    },
+    "code" : {
+      "h2" : "Code",
+      "h3" : "Javascript (main.js)",
+      "p1" : "Instantiate a Keyboard class and creates input listeners."
+    },
+    "download" : {
+      "h2" : "Download Wee.js",
+      "min" : "Wee.min.js",
+      "zip" : "Weejs.zip",
+      "github" : "Clone from Github"
+    },
+    "contact" : {
+      "h2" : "Contact me",
+      "description" : "Feel free to ask me about my work, give me suggestions, or just to say hi.",
+      "website" : "lcluber.com"
+    }
+  },
+  "github":"Github",
+  "twitter":"Twitter"
+}
