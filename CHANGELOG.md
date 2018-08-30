@@ -1,3 +1,7 @@
+Version 0.1.8 (August 30th 2018)
+-----------------------------
+ * Changed child element option content by textContent in Wee.Dom.addHTMLElement()
+
 Version 0.1.7 (July 14th 2018)
 -----------------------------
  * The library is dockerized and can be used as a container.

@@ -82,7 +82,7 @@ class Dom {
         let newElement = document.createElement(childElementType);
         if (childElementOptions !== undefined) {
             Object.keys(childElementOptions).forEach(key => {
-                if (key === 'content') {
+                if (key === 'textContent') {
                     newElement.textContent = childElementOptions[key];
                 }
                 else {
