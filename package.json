@@ -1,7 +1,7 @@
 {
-  "name": "weejs",
+  "name": "@lcluber/weejs",
   "version": "0.1.8",
-  "description": "javascript library",
+  "description": "Utility library written in Typescript",
   "keywords": [],
   "homepage": "http://weejs.lcluber.com",
   "main": "dist/wee",
