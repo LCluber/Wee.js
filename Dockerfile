@@ -1,4 +1,4 @@
-FROM starefossen/ruby-node:latest
+FROM node:8.12.0-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -12,16 +12,15 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 # COPY package.json /usr/src/app/package.json
 
-RUN gem install sass && npm install -g grunt-cli typescript && npm install
+# RUN npm install -g grunt-cli typescript && npm install
 # If you are building your code for production
-# RUN npm install --only=production
+RUN npm install --only=production
 
 # Bundle app source
 COPY . .
 # COPY . /usr/src/app
 
-EXPOSE 3011
+EXPOSE 3000
 # USER node
-CMD [ "grunt" ]
-# CMD [ "bash" ]
-# CMD [ "npm", "start" ]
+# CMD [ "grunt" ]
+CMD [ "npm", "start" ]

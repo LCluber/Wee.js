@@ -1,11 +1,12 @@
 module.exports = function(grunt){
 
   require('time-grunt')(grunt);
+  const sass = require('node-sass');
 
   var projectName = 'Wee';
   var projectNameLC = projectName.toLowerCase();
 
-  var port      = 3011;
+  var port      = 3000;
   var host      = 'localhost';
 
   var srcDir          = 'src/';
@@ -89,10 +90,11 @@ module.exports = function(grunt){
       web: [ webDir + 'js/**/*.js']
     },
     sass: {
+      options: {
+        implementation: sass,
+        sourceMap: true
+      },
       dist: {
-        options: {
-          trace:true
-        },
         files: [{
           expand: true,
           cwd: webDir + 'sass/',
@@ -363,7 +365,6 @@ module.exports = function(grunt){
   grunt.loadNpmTasks( 'grunt-contrib-csslint' );
   grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
   grunt.loadNpmTasks( 'grunt-contrib-concat' );
-  grunt.loadNpmTasks( 'grunt-contrib-sass' );
   grunt.loadNpmTasks( 'grunt-contrib-htmlmin' );
   grunt.loadNpmTasks( 'grunt-contrib-watch' );
   grunt.loadNpmTasks( 'grunt-strip-code' );
@@ -373,6 +374,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks( 'grunt-ts' );
   grunt.loadNpmTasks( 'grunt-rollup' );
   grunt.loadNpmTasks( 'grunt-typedoc' );
+  grunt.loadNpmTasks( 'grunt-sass' );
 
 
   grunt.registerTask( 'lib',

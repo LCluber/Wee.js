@@ -145,6 +145,7 @@ img::-moz-selection {
   100% {
     -webkit-transform: scale(1);
     transform: scale(1); } }
+
 @-moz-keyframes pulse {
   from {
     -moz-transform: scale(1);
@@ -155,12 +156,14 @@ img::-moz-selection {
   100% {
     -moz-transform: scale(1);
     transform: scale(1); } }
+
 .content-section {
   padding-top: 75px; }
 
 @media (min-width: 767px) {
   .content-section {
     padding-top: 200px; } }
+
 .btn {
   text-transform: uppercase;
   font-weight: 400;
