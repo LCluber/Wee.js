@@ -1,10 +1,6 @@
 ## Synopsis
 
-Wee.js is an open source utility library written in TypeScript.
-
-## Code Example
-
-[See basic examples on the dedicated website](http://weejs.lcluber.com/#example).
+[Wee.js](http://weejs.lcluber.com) is an open source utility library written in TypeScript.
 
 ## Motivation
 
@@ -12,11 +8,18 @@ The main purpose of this library is to provide the usual basic tools for strings
 
 ## Installation
 
-To use Wee.js you can download it **[here](http://weejs.lcluber.com/#download)**.
+```bash
+$ npm install @lcluber/weejs
+```
+Or download it **[here](http://weejs.lcluber.com/#download)**.
+
+## Demo
+
+See a basic example **[here](http://mouettejs.lcluber.com/#example)**.
 
 ## API Reference
 
-[See the documentation on the dedicated website](http://weejs.lcluber.com/doc/).
+Read the documentation **[here](http://weejs.lcluber.com/doc/)**.
 
 ## Tests
 

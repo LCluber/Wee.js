@@ -1,3 +1,8 @@
+Version 0.1.9 (October 06th 2018)
+-----------------------------
+ * Wee.js published on NPM at @lcluber/weejs.
+ * Updated README.md with NPM installation procedure.
+
 Version 0.1.8 (August 30th 2018)
 -----------------------------
  * Changed child element option content by textContent in Wee.Dom.addHTMLElement()

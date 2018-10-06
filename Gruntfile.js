@@ -263,6 +263,7 @@ module.exports = function(grunt){
           banner: ''
         },
         src: [nodeDir   + 'jquery/dist/jquery.min.js',
+              nodeDir   + '@fortawesome/fontawesome-free/js/all.min.js',
               nodeDir   + 'bootstrap/dist/js/bootstrap.min.js',
               publicDir + 'js/main.min.js'
             ],
@@ -274,7 +275,7 @@ module.exports = function(grunt){
           stripBanners: true,
           banner: ''
         },
-        src: [nodeDir   + 'font-awesome/css/font-awesome.min.css',
+        src: [// nodeDir   + 'font-awesome/css/font-awesome.min.css',
               nodeDir   + 'bootstrap/dist/css/bootstrap.min.css',
               publicDir + 'css/style.min.css'
             ],

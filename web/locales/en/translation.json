@@ -26,9 +26,10 @@
     },
     "download" : {
       "h2" : "Download Wee.js",
-      "min" : "Wee.min.js",
+      "min" : "Standalone IIFE",
+      "npm" : "Install with ",
       "zip" : "Weejs.zip",
-      "github" : "Clone from Github"
+      "github" : "Clone from Github "
     },
     "contact" : {
       "h2" : "Contact me",
@@ -36,6 +37,6 @@
       "website" : "lcluber.com"
     }
   },
-  "github":"Github",
+  "github":" Github",
   "twitter":"Twitter"
 }
