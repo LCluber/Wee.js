@@ -15,7 +15,7 @@ Or download it **[here](http://weejs.lcluber.com/#download)**.
 
 ## Demo
 
-See a basic example **[here](http://mouettejs.lcluber.com/#example)**.
+See a basic example **[here](http://weejs.lcluber.com/#example)**.
 
 ## API Reference
 
