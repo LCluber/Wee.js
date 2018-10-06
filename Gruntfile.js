@@ -21,7 +21,7 @@ module.exports = function(grunt){
 
   var banner    = '/** MIT License\n' +
     '* \n' +
-    '* Copyright (c) 2011 Ludovic CLUBER \n' +
+    '* Copyright (c) 2018 Ludovic CLUBER \n' +
     '* \n' +
     '* Permission is hereby granted, free of charge, to any person obtaining a copy\n' +
     '* of this software and associated documentation files (the "Software"), to deal\n' +
@@ -302,13 +302,6 @@ module.exports = function(grunt){
         src: ['fonts/**/*'],
         dest: publicDir,
         filter: 'isFile'
-      },
-      fontAwesome:{
-        expand: true,
-        cwd: nodeDir + 'font-awesome/',
-        src: ['fonts/**/*'],
-        dest: publicDir,
-        filter: 'isFile'
       }
     },
     nodemon: {
@@ -428,8 +421,7 @@ module.exports = function(grunt){
   grunt.registerTask( 'webmisc',
                       'Compile website misc',
                       [ 'clean:webmisc',
-                        'copy:fonts',
-                        'copy:fontAwesome'
+                        'copy:fonts'
                        ]
                     );
 

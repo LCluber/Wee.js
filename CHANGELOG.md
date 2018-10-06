@@ -1,3 +1,7 @@
+Version 0.1.10 (October 07th 2018)
+-----------------------------
+ * fix declaration file
+
 Version 0.1.9 (October 06th 2018)
 -----------------------------
  * Wee.js published on NPM at @lcluber/weejs.
