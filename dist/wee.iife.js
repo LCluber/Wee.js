@@ -138,14 +138,14 @@ var Wee = (function (exports) {
     var Ajax = (function () {
         function Ajax() {
         }
-        Ajax.call = function (url) {
+        Ajax.call = function (method, url) {
             var _this = this;
             return new Promise(function (resolve, reject) {
                 var http = new XMLHttpRequest();
                 if (_this.noCache) {
                     url += '?cache=' + (new Date()).getTime();
                 }
-                http.open(_this.method, url, _this.async);
+                http.open(method, url, _this.async);
                 http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 http.onreadystatechange = function () {
                     if (http.readyState == 4) {
@@ -163,7 +163,6 @@ var Wee = (function (exports) {
                 http.send();
             });
         };
-        Ajax.method = 'GET';
         Ajax.async = true;
         Ajax.noCache = false;
         return Ajax;
@@ -173,7 +172,7 @@ var Wee = (function (exports) {
         function File() {
         }
         File.load = function (path) {
-            return Ajax.call(path);
+            return Ajax.call('GET', path);
         };
         File.removeTrailingSlash = function (path) {
             return path.replace(/\/+$/, '');

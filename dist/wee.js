@@ -123,13 +123,13 @@ class String {
 }
 
 class Ajax {
-    static call(url) {
+    static call(method, url) {
         return new Promise((resolve, reject) => {
             let http = new XMLHttpRequest();
             if (this.noCache) {
                 url += '?cache=' + (new Date()).getTime();
             }
-            http.open(this.method, url, this.async);
+            http.open(method, url, this.async);
             http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             http.onreadystatechange = () => {
                 if (http.readyState == 4) {
@@ -148,13 +148,12 @@ class Ajax {
         });
     }
 }
-Ajax.method = 'GET';
 Ajax.async = true;
 Ajax.noCache = false;
 
 class File {
     static load(path) {
-        return Ajax.call(path);
+        return Ajax.call('GET', path);
     }
     static removeTrailingSlash(path) {
         return path.replace(/\/+$/, '');

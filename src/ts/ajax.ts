@@ -2,12 +2,12 @@
 //import * as Rx from 'rxjs/Rx'
 // import {Observable} from 'rxjs';
 // import {ajax, AjaxResponse} from 'rxjs/ajax';
-
+export type HTTPRequestMethods = 'GET'|'HEAD'|'POST'|'PUT'|'DELETE'|'CONNECT'|'OPTIONS'|'TRACE'|'PATCH';
 
 export class Ajax {
 
-  //static url: string;
-  static method: 'GET'|'POST' = 'GET';
+  // static url: string;
+  // static method: HTTPRequestMethods;
   static async: boolean = true;
   static noCache: boolean = false;
 
@@ -25,7 +25,7 @@ export class Ajax {
 // }).map(e => e.response);
 //   }
 
-  static call(url: string): Promise<string> {
+  static call( method: HTTPRequestMethods, url: string ): Promise<string> {
     return new Promise((resolve: Function, reject: Function) => {
 
       let http = new XMLHttpRequest();
@@ -34,7 +34,7 @@ export class Ajax {
         url += '?cache=' + (new Date()).getTime();
       }
 
-      http.open(this.method, url, this.async);
+      http.open(method, url, this.async);
       http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       http.onreadystatechange = () => {
         if(http.readyState == 4) {

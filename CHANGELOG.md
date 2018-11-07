@@ -1,3 +1,7 @@
+Version 0.1.11 (November 07th 2018)
+-----------------------------
+ * Updated Ajax Class with all HTTP request methods
+
 Version 0.1.10 (October 07th 2018)
 -----------------------------
  * fix declaration file

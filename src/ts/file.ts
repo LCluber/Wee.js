@@ -3,7 +3,7 @@ import { Ajax } from './ajax';
 export class File {
 
   static load(path: string): Promise<string> {
-    return Ajax.call(path);
+    return Ajax.call('GET', path);
   }
 
   static removeTrailingSlash(path: string): string {
