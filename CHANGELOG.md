@@ -1,3 +1,7 @@
+Version 0.1.12 (November 11th 2018)
+-----------------------------
+ * Updated addHTMLElement with innerHTML property in Dom Class
+
 Version 0.1.11 (November 07th 2018)
 -----------------------------
  * Updated Ajax Class with all HTTP request methods
