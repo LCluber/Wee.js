@@ -1,3 +1,7 @@
+Version 0.1.15 (December 1st 2018)
+-----------------------------
+ * Updated isObject, isJSON and isFunction parameter type to any
+
 Version 0.1.14 (November 30th 2018)
 -----------------------------
  * Updated isObject method in Check class

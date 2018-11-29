@@ -32,9 +32,9 @@ export declare class Bind {
     change(value: string | number): void;
 }
 export declare class Check {
-    static isJSON(str: string): Object | false;
-    static isFunction(func: Function): boolean;
-    static isObject(object: Object): boolean;
+    static isJSON(str: any): Object | false;
+    static isFunction(func: any): boolean;
+    static isObject(object: any): boolean;
     static isASCII(code: string | number, extended: boolean): boolean;
     static isInteger(value: string | number): boolean;
 }
