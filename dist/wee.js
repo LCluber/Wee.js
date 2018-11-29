@@ -42,7 +42,7 @@ class Check {
         return func && getType.toString.call(func) === '[object Function]';
     }
     static isObject(object) {
-        return (object !== null && (this.isFunction(object) || typeof object === 'object'));
+        return (object !== null && typeof object === 'object');
     }
     static isASCII(code, extended) {
         return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);

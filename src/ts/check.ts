@@ -17,8 +17,8 @@ export class Check {
     return func && getType.toString.call(func) === '[object Function]';
   }
 
-  static isObject(object: Function): boolean {
-    return ( object !== null && ( this.isFunction(object) || typeof object === 'object' ) );
+  static isObject(object: Object): boolean {
+    return ( object !== null && typeof object === 'object' );
   }
 
   static isASCII(code: string|number, extended: boolean): boolean {

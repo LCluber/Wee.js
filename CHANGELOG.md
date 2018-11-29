@@ -1,3 +1,7 @@
+Version 0.1.14 (November 30th 2018)
+-----------------------------
+ * Updated isObject method in Check class
+
 Version 0.1.13 (November 29th 2018)
 -----------------------------
  * Ajax class deleted
