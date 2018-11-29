@@ -26,15 +26,15 @@
 var Wee = (function (exports) {
     'use strict';
 
-    var Check = (function () {
-        function Check() {
-        }
+    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+    var Check = function () {
+        function Check() {}
         Check.isJSON = function (str) {
             var json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
             try {
                 json = JSON.parse(str);
-            }
-            catch (e) {
+            } catch (e) {
                 console.log(e);
                 return false;
             }
@@ -45,20 +45,19 @@ var Wee = (function (exports) {
             return func && getType.toString.call(func) === '[object Function]';
         };
         Check.isObject = function (object) {
-            return (object !== null && (this.isFunction(object) || typeof object === 'object'));
+            return object !== null && (this.isFunction(object) || (typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object');
         };
         Check.isASCII = function (code, extended) {
             return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
         };
         Check.isInteger = function (value) {
-            return (value === parseInt(value, 10));
+            return value === parseInt(value, 10);
         };
         return Check;
-    }());
+    }();
 
-    var Dom = (function () {
-        function Dom() {
-        }
+    var Dom = function () {
+        function Dom() {}
         Dom.scrollToBottom = function (HtmlElement) {
             HtmlElement.scrollTop = HtmlElement.scrollHeight;
         };
@@ -92,8 +91,7 @@ var Wee = (function (exports) {
                 Object.keys(childElementOptions).forEach(function (key) {
                     if (key === 'textContent' || key === 'innerHTML') {
                         newElement[key] = childElementOptions[key];
-                    }
-                    else {
+                    } else {
                         newElement.setAttribute(key, childElementOptions[key]);
                     }
                 });
@@ -102,9 +100,9 @@ var Wee = (function (exports) {
             return newElement;
         };
         return Dom;
-    }());
+    }();
 
-    var Bind = (function () {
+    var Bind = function () {
         function Bind(element, data) {
             this.data = data;
             this.element = element;
@@ -113,7 +111,8 @@ var Wee = (function (exports) {
         }
         Bind.prototype.handleEvent = function (event) {
             switch (event.type) {
-                case 'change': this.change(this.element.value);
+                case 'change':
+                    this.change(this.element.value);
             }
         };
         Bind.prototype.change = function (value) {
@@ -121,11 +120,10 @@ var Wee = (function (exports) {
             this.element.value = value;
         };
         return Bind;
-    }());
+    }();
 
-    var String = (function () {
-        function String() {
-        }
+    var String = function () {
+        function String() {}
         String.ucfirst = function (string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         };
@@ -133,46 +131,126 @@ var Wee = (function (exports) {
             return code.charCodeAt(0);
         };
         return String;
-    }());
+    }();
 
-    var Ajax = (function () {
-        function Ajax() {
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    /** MIT License
+    * 
+    * Copyright (c) 2010 Ludovic CLUBER 
+    * 
+    * Permission is hereby granted, free of charge, to any person obtaining a copy
+    * of this software and associated documentation files (the "Software"), to deal
+    * in the Software without restriction, including without limitation the rights
+    * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    * copies of the Software, and to permit persons to whom the Software is
+    * furnished to do so, subject to the following conditions:
+    *
+    * The above copyright notice and this permission notice shall be included in all
+    * copies or substantial portions of the Software.
+    *
+    * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    * SOFTWARE.
+    *
+    * http://aiasjs.lcluber.com
+    */
+
+    var HTTP = function () {
+        function HTTP() {
+            _classCallCheck(this, HTTP);
         }
-        Ajax.call = function (method, url) {
-            var _this = this;
-            return new Promise(function (resolve, reject) {
-                var http = new XMLHttpRequest();
-                if (_this.noCache) {
-                    url += '?cache=' + (new Date()).getTime();
-                }
-                http.open(method, url, _this.async);
-                http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                http.onreadystatechange = function () {
-                    if (http.readyState == 4) {
-                        if (http.status == 200) {
-                            console.log('xhr done successfully (' + url + ')');
-                            resolve(http.responseText);
-                        }
-                        else {
-                            console.log('error', 'xhr failed (' + url + ')');
-                            reject(http.status);
-                        }
+
+        _createClass(HTTP, null, [{
+            key: 'get',
+            value: function get(url) {
+                return this.call('GET', url);
+            }
+        }, {
+            key: 'head',
+            value: function head(url) {
+                return this.call('HEAD', url);
+            }
+        }, {
+            key: 'post',
+            value: function post(url) {
+                return this.call('POST', url);
+            }
+        }, {
+            key: 'put',
+            value: function put(url) {
+                return this.call('PUT', url);
+            }
+        }, {
+            key: 'delete',
+            value: function _delete(url) {
+                return this.call('DELETE', url);
+            }
+        }, {
+            key: 'connect',
+            value: function connect(url) {
+                return this.call('CONNECT', url);
+            }
+        }, {
+            key: 'options',
+            value: function options(url) {
+                return this.call('OPTIONS', url);
+            }
+        }, {
+            key: 'trace',
+            value: function trace(url) {
+                return this.call('TRACE', url);
+            }
+        }, {
+            key: 'patch',
+            value: function patch(url) {
+                return this.call('PATCH', url);
+            }
+        }, {
+            key: 'call',
+            value: function call(method, url) {
+                var _this = this;
+
+                return new Promise(function (resolve, reject) {
+                    var http = new XMLHttpRequest();
+                    if (_this.noCache) {
+                        url += '?cache=' + new Date().getTime();
                     }
-                };
-                console.log('xhr processing starting (' + url + ')');
-                http.send();
-            });
-        };
-        Ajax.async = true;
-        Ajax.noCache = false;
-        return Ajax;
-    }());
+                    http.open(method, url, _this.async);
+                    http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    http.onreadystatechange = function () {
+                        if (http.readyState == 4) {
+                            if (http.status == 200) {
+                                console.log('xhr done successfully (' + url + ')');
+                                resolve(http.responseText);
+                            } else {
+                                console.log('error', 'xhr failed (' + url + ')');
+                                reject(http.status);
+                            }
+                        }
+                    };
+                    console.log('xhr processing starting (' + url + ')');
+                    http.send();
+                });
+            }
+        }]);
 
-    var File = (function () {
-        function File() {
-        }
+        return HTTP;
+    }();
+
+    HTTP.async = true;
+    HTTP.noCache = false;
+
+    var File = function () {
+        function File() {}
         File.load = function (path) {
-            return Ajax.call('GET', path);
+            return HTTP.get(path);
         };
         File.removeTrailingSlash = function (path) {
             return path.replace(/\/+$/, '');
@@ -196,11 +274,10 @@ var Wee = (function (exports) {
             return false;
         };
         return File;
-    }());
+    }();
 
-    var Img = (function () {
-        function Img() {
-        }
+    var Img = function () {
+        function Img() {}
         Img.load = function (path) {
             return new Promise(function (resolve, reject) {
                 var img = new Image();
@@ -218,11 +295,10 @@ var Wee = (function (exports) {
             });
         };
         return Img;
-    }());
+    }();
 
-    var Sound = (function () {
-        function Sound() {
-        }
+    var Sound = function () {
+        function Sound() {}
         Sound.load = function (path) {
             return new Promise(function (resolve, reject) {
                 var snd = new Audio();
@@ -243,14 +319,13 @@ var Wee = (function (exports) {
             });
         };
         return Sound;
-    }());
+    }();
 
     exports.Check = Check;
     exports.Dom = Dom;
     exports.Bind = Bind;
     exports.String = String;
     exports.File = File;
-    exports.Ajax = Ajax;
     exports.Img = Img;
     exports.Sound = Sound;
 

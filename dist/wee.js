@@ -23,6 +23,8 @@
 * http://weejs.lcluber.com
 */
 
+import { HTTP } from '@lcluber/aiasjs';
+
 class Check {
     static isJSON(str) {
         let json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
@@ -122,38 +124,9 @@ class String {
     }
 }
 
-class Ajax {
-    static call(method, url) {
-        return new Promise((resolve, reject) => {
-            let http = new XMLHttpRequest();
-            if (this.noCache) {
-                url += '?cache=' + (new Date()).getTime();
-            }
-            http.open(method, url, this.async);
-            http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            http.onreadystatechange = () => {
-                if (http.readyState == 4) {
-                    if (http.status == 200) {
-                        console.log('xhr done successfully (' + url + ')');
-                        resolve(http.responseText);
-                    }
-                    else {
-                        console.log('error', 'xhr failed (' + url + ')');
-                        reject(http.status);
-                    }
-                }
-            };
-            console.log('xhr processing starting (' + url + ')');
-            http.send();
-        });
-    }
-}
-Ajax.async = true;
-Ajax.noCache = false;
-
 class File {
     static load(path) {
-        return Ajax.call('GET', path);
+        return HTTP.get(path);
     }
     static removeTrailingSlash(path) {
         return path.replace(/\/+$/, '');
@@ -218,4 +191,4 @@ class Sound {
     }
 }
 
-export { Check, Dom, Bind, String, File, Ajax, Img, Sound };
+export { Check, Dom, Bind, String, File, Img, Sound };

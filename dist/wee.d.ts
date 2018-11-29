@@ -22,12 +22,6 @@
 *
 * http://weejs.lcluber.com
 */
-export declare type HTTPRequestMethods = 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
-export declare class Ajax {
-    static async: boolean;
-    static noCache: boolean;
-    static call(method: HTTPRequestMethods, url: string): Promise<string>;
-}
 export declare class Ascii {
 }
 export declare class Bind {
@@ -86,7 +80,6 @@ export declare class String {
     static ucfirst(string: string): string;
     static toASCII(code: string): number;
 }
-
 
 
 

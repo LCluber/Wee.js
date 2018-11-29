@@ -6,6 +6,5 @@ export { Bind }   from './bind';
 //export { Number } from './number';
 export { String } from './string';
 export { File }   from './file';
-export { Ajax }   from './ajax';
 export { Img }    from './img';
 export { Sound }  from './sound';

@@ -1,3 +1,8 @@
+Version 0.1.13 (November 29th 2018)
+-----------------------------
+ * Ajax class deleted
+ * Ajax requests done via Aias.js
+
 Version 0.1.12 (November 11th 2018)
 -----------------------------
  * Updated addHTMLElement with innerHTML property in Dom Class

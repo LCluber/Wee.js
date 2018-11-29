@@ -1,4 +1,7 @@
 module.exports = function(grunt){
+  var path = require('path');
+  var babel = require('rollup-plugin-babel');
+  var resolve = require('rollup-plugin-node-resolve');
 
   require('time-grunt')(grunt);
   const sass = require('node-sass');
@@ -44,7 +47,7 @@ module.exports = function(grunt){
     '* http://' + projectNameLC + 'js.lcluber.com\n' +
     '*/\n';
 
-
+  grunt.option('stack', true);
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -78,7 +81,9 @@ module.exports = function(grunt){
   			options: {
   				out: docDir,
   				target: 'es6',
-          name: projectName + '.js - Documentation'
+          name: projectName + '.js - Documentation',
+          includeDeclarations: false,
+          hideGenerator: true
   			},
   			src: [srcDir + 'ts/*.ts']
   		}
@@ -157,8 +162,16 @@ module.exports = function(grunt){
         options: {
           format:'es',
           // moduleName: projectName,
-          banner: banner
+          banner: banner,
           // sourceMap: 'inline'
+          plugins: [
+            resolve({
+            //   //exclude: './node_modules/**'
+            })
+          ],
+          external: [
+            '@lcluber/aiasjs'
+          ]
         },
         files: [ {
           src : compiledES6Dir + projectNameLC + '.js',
@@ -169,8 +182,15 @@ module.exports = function(grunt){
         options: {
           format:'iife',
           moduleName: projectName,
-          banner: banner
-          // sourceMap: 'inline'
+          banner: banner,
+          plugins: [
+            babel({
+            //   //exclude: './node_modules/**'
+            }),
+            resolve({
+              //   //exclude: './node_modules/**'
+            })
+          ]
         },
         files: [ {
           src : compiledES5Dir + projectNameLC + '.js',

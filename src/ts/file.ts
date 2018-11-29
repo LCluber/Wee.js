@@ -1,9 +1,9 @@
-import { Ajax } from './ajax';
+import { HTTP } from '@lcluber/aiasjs';
 
 export class File {
 
   static load(path: string): Promise<string> {
-    return Ajax.call('GET', path);
+    return HTTP.get(path);
   }
 
   static removeTrailingSlash(path: string): string {
