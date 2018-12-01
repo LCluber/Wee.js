@@ -27,6 +27,9 @@ import { HTTP } from '@lcluber/aiasjs';
 
 class Check {
     static isJSON(str) {
+        if (!this.isString(str)) {
+            return false;
+        }
         let json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
         try {
             json = JSON.parse(str);
@@ -42,13 +45,16 @@ class Check {
         return func && getType.toString.call(func) === '[object Function]';
     }
     static isObject(object) {
-        return (object !== null && typeof object === 'object');
+        return object !== null && typeof object === 'object';
     }
     static isASCII(code, extended) {
         return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
     }
     static isInteger(value) {
-        return (value === parseInt(value, 10));
+        return value === parseInt(value, 10);
+    }
+    static isString(str) {
+        return typeof str === 'string';
     }
 }
 

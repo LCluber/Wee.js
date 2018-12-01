@@ -1,13 +1,14 @@
 
 export type ChildElementOptions = {
-  id      : string;
-  content : string;
-  class   : string;
-  href    : string;
-  src     : string;
-  alt     : string;
-  width   : string;
-  height  : string;
+  id?      : string;
+  content? : string;
+  class?   : string;
+  href?    : string;
+  src?     : string;
+  alt?     : string;
+  width?   : string;
+  height?  : string;
+  download?: string;
 }
 
 export class Dom {

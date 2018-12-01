@@ -31,6 +31,9 @@ var Wee = (function (exports) {
     var Check = function () {
         function Check() {}
         Check.isJSON = function (str) {
+            if (!this.isString(str)) {
+                return false;
+            }
             var json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
             try {
                 json = JSON.parse(str);
@@ -52,6 +55,9 @@ var Wee = (function (exports) {
         };
         Check.isInteger = function (value) {
             return value === parseInt(value, 10);
+        };
+        Check.isString = function (str) {
+            return typeof str === 'string';
         };
         return Check;
     }();
