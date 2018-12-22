@@ -170,7 +170,8 @@ module.exports = function(grunt){
             })
           ],
           external: [
-            '@lcluber/aiasjs'
+            '@lcluber/aiasjs',
+            '@lcluber/mouettejs'
           ]
         },
         files: [ {
