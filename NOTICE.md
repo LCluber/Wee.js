@@ -1,6 +1,7 @@
-## Wee.js project installation guide
+## Installation guide
 
-You just cloned Wee.js : git clone https://github.com/LCluber/Wee.js.git
+### Clone the project :
+  - Run **git clone https://github.com/LCluber/Wee.js.git**
 
 ### Install nodejs on your server :
   - Windows and OSX : **https://nodejs.org/en/**
