@@ -13,6 +13,53 @@ $ npm install @lcluber/weejs
 ```
 Or download it **[here](http://weejs.lcluber.com/#download)**.
 
+## Usage
+
+### ES6
+
+```javascript
+import { Dom, Bind, String, File, Img, Sound } from '@lcluber/weejs';
+
+let shaders = {
+  test1 : 'test1',
+  test2 : 'test2'
+};
+let select = Wee.Dom.findById("shaders");
+for(var property in shaders ) {
+  if(shaders.hasOwnProperty(property)) {
+    Wee.Dom.addHTMLElement( select,
+                            'option',
+                            { textContent:property,
+                              value:property
+                            });
+  }
+}
+
+```
+
+### IIFE
+
+```html
+<script src="node-modules/@lcluber/weejs/dist/wee.iife.min.js"></script>
+```
+
+```javascript
+var shaders = {
+  test1 : 'test1',
+  test2 : 'test2'
+};
+var select = Wee.Dom.findById("shaders");
+for(var property in shaders ) {
+  if(shaders.hasOwnProperty(property)) {
+    Wee.Dom.addHTMLElement( select,
+                            'option',
+                            { textContent:property,
+                              value:property
+                            });
+  }
+}
+```
+
 ## Demo
 
 See a basic example **[here](http://weejs.lcluber.com/#example)**.

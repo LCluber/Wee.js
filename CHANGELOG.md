@@ -1,10 +1,15 @@
+Version 0.2.1 (December 24th 2018)
+-----------------------------
+ * Updated Mouette.js dependency to version 0.2.8
+ * Updated Aias.js dependency to version 0.1.9
+
 Version 0.2.0 (December 23th 2018)
 -----------------------------
  * Deleted Check class to give it its own library Ch.js
 
 Version 0.1.17 (December 07th 2018)
 -----------------------------
- * Added logs with Mouettejs
+ * Added logs with Mouette.js
 
 Version 0.1.16 (December 2nd 2018)
 -----------------------------

@@ -148,186 +148,6 @@ var Wee = (function (exports) {
 
   /** MIT License
   * 
-  * Copyright (c) 2010 Ludovic CLUBER 
-  * 
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the "Software"), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  *
-  * http://aiasjs.lcluber.com
-  */
-
-  /** MIT License
-  * 
-  * Copyright (c) 2018 Ludovic CLUBER 
-  * 
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the "Software"), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  *
-  * http://weejs.lcluber.com
-  */
-  var Check =
-  /*#__PURE__*/
-  function () {
-    function Check() {}
-
-    Check.isJSON = function isJSON(str) {
-      if (!this.isString(str)) {
-        return false;
-      }
-
-      var json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
-
-      try {
-        json = JSON.parse(str);
-      } catch (e) {
-        console.log(e);
-        return false;
-      }
-
-      return json;
-    };
-
-    Check.isFunction = function isFunction(func) {
-      var getType = {};
-      return func && getType.toString.call(func) === '[object Function]';
-    };
-
-    Check.isObject = function isObject(object) {
-      return object !== null && typeof object === 'object';
-    };
-
-    Check.isASCII = function isASCII(code, extended) {
-      return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
-    };
-
-    Check.isInteger = function isInteger(value) {
-      return value === parseInt(value, 10);
-    };
-
-    Check.isString = function isString(str) {
-      return typeof str === 'string';
-    };
-
-    return Check;
-  }();
-
-  var Dom$1 =
-  /*#__PURE__*/
-  function () {
-    function Dom() {}
-
-    Dom.scrollToBottom = function scrollToBottom(HtmlElement) {
-      HtmlElement.scrollTop = HtmlElement.scrollHeight;
-    };
-
-    Dom.findById = function findById(id) {
-      return document.getElementById(id);
-    };
-
-    Dom.showById = function showById(a) {
-      this.findById(a).style.display = 'block';
-    };
-
-    Dom.hideById = function hideById(a) {
-      this.findById(a).style.display = 'none';
-    };
-
-    Dom.showOverflow = function showOverflow() {
-      document.body.style.overflow = 'visible';
-    };
-
-    Dom.hideOverflow = function hideOverflow() {
-      document.body.style.overflow = 'hidden';
-    };
-
-    Dom.getInputValue = function getInputValue(a) {
-      return this.findById(a).value;
-    };
-
-    Dom.clearInputValue = function clearInputValue(a) {
-      this.findById(a).value = '';
-    };
-
-    Dom.focusOn = function focusOn(a) {
-      this.findById(a).focus();
-    };
-
-    Dom.addHTMLElement = function addHTMLElement(parentElement, childElementType, childElementOptions) {
-      var newElement = document.createElement(childElementType);
-
-      if (childElementOptions !== undefined) {
-        Object.keys(childElementOptions).forEach(function (key) {
-          if (key === 'textContent' || key === 'innerHTML') {
-            newElement[key] = childElementOptions[key];
-          } else {
-            newElement.setAttribute(key, childElementOptions[key]);
-          }
-        });
-      }
-
-      parentElement.appendChild(newElement);
-      return newElement;
-    };
-
-    return Dom;
-  }();
-
-  /** MIT License
-  * 
-  * Copyright (c) 2010 Ludovic CLUBER 
-  * 
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the "Software"), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  *
-  * http://aiasjs.lcluber.com
-  */
-  /** MIT License
-  * 
   * Copyright (c) 2015 Ludovic CLUBER 
   * 
   * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -350,7 +170,6 @@ var Wee = (function (exports) {
   *
   * http://mouettejs.lcluber.com
   */
-
   var LEVELS = [{
     id: 1,
     name: 'info'
@@ -472,9 +291,103 @@ var Wee = (function (exports) {
   Logger._level = Logger.findLevel(LEVELS[0].name);
   Logger.messages = [];
   Logger.nbMessages = 0;
-  Logger.target = Dom$1.findById('Mouette');
+  Logger.target = document.getElementById('Mouette');
 
-  var HTTP$1 =
+  /** MIT License
+  * 
+  * Copyright (c) 2018 Ludovic CLUBER 
+  * 
+  * Permission is hereby granted, free of charge, to any person obtaining a copy
+  * of this software and associated documentation files (the "Software"), to deal
+  * in the Software without restriction, including without limitation the rights
+  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  * copies of the Software, and to permit persons to whom the Software is
+  * furnished to do so, subject to the following conditions:
+  *
+  * The above copyright notice and this permission notice shall be included in all
+  * copies or substantial portions of the Software.
+  *
+  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  * SOFTWARE.
+  *
+  * http://chjs.lcluber.com
+  */
+  var Is =
+  /*#__PURE__*/
+  function () {
+    function Is() {}
+
+    Is.json = function json(str) {
+      if (!this.string(str)) {
+        return false;
+      }
+
+      var json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
+
+      try {
+        json = JSON.parse(str);
+      } catch (e) {
+        Logger.error(e);
+        return false;
+      }
+
+      return json;
+    };
+
+    Is.function = function _function(func) {
+      var getType = {};
+      return func && getType.toString.call(func) === '[object Function]';
+    };
+
+    Is.object = function object(_object) {
+      return _object !== null && typeof _object === 'object';
+    };
+
+    Is.ascii = function ascii(code, extended) {
+      return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
+    };
+
+    Is.integer = function integer(value) {
+      return value === parseInt(value, 10);
+    };
+
+    Is.string = function string(str) {
+      return typeof str === 'string';
+    };
+
+    return Is;
+  }();
+
+  /** MIT License
+  * 
+  * Copyright (c) 2010 Ludovic CLUBER 
+  * 
+  * Permission is hereby granted, free of charge, to any person obtaining a copy
+  * of this software and associated documentation files (the "Software"), to deal
+  * in the Software without restriction, including without limitation the rights
+  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  * copies of the Software, and to permit persons to whom the Software is
+  * furnished to do so, subject to the following conditions:
+  *
+  * The above copyright notice and this permission notice shall be included in all
+  * copies or substantial portions of the Software.
+  *
+  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  * SOFTWARE.
+  *
+  * http://aiasjs.lcluber.com
+  */
+  var HTTP =
   /*#__PURE__*/
   function () {
     function HTTP() {}
@@ -560,7 +473,7 @@ var Wee = (function (exports) {
           return;
         }
 
-        if (Check.isObject(data)) {
+        if (Is.object(data)) {
           data = JSON.stringify(data);
         }
 
@@ -571,19 +484,19 @@ var Wee = (function (exports) {
     return HTTP;
   }();
 
-  HTTP$1.async = true;
-  HTTP$1.noCache = false;
-  HTTP$1.headers = {
+  HTTP.async = true;
+  HTTP.noCache = false;
+  HTTP.headers = {
     'Content-Type': 'application/json'
   };
 
-  var File$1 =
+  var File =
   /*#__PURE__*/
   function () {
     function File() {}
 
     File.load = function load(path) {
-      return HTTP$1.get(path);
+      return HTTP.get(path);
     };
 
     File.removeTrailingSlash = function removeTrailingSlash(path) {
@@ -628,239 +541,7 @@ var Wee = (function (exports) {
     return File;
   }();
 
-  /** MIT License
-  * 
-  * Copyright (c) 2011 Ludovic CLUBER 
-  * 
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the "Software"), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  *
-  * http://weejs.lcluber.com
-  */
-  var Dom$2 =
-  /*#__PURE__*/
-  function () {
-    function Dom() {}
-
-    Dom.scrollToBottom = function scrollToBottom(HtmlElement) {
-      HtmlElement.scrollTop = HtmlElement.scrollHeight;
-    };
-
-    Dom.findById = function findById(id) {
-      return document.getElementById(id);
-    };
-
-    Dom.showById = function showById(a) {
-      this.findById(a).style.display = 'block';
-    };
-
-    Dom.hideById = function hideById(a) {
-      this.findById(a).style.display = 'none';
-    };
-
-    Dom.showOverflow = function showOverflow() {
-      document.body.style.overflow = 'visible';
-    };
-
-    Dom.hideOverflow = function hideOverflow() {
-      document.body.style.overflow = 'hidden';
-    };
-
-    Dom.getInputValue = function getInputValue(a) {
-      return this.findById(a).value;
-    };
-
-    Dom.clearInputValue = function clearInputValue(a) {
-      this.findById(a).value = '';
-    };
-
-    Dom.focusOn = function focusOn(a) {
-      this.findById(a).focus();
-    };
-
-    Dom.addHTMLElement = function addHTMLElement(parentElement, childElementType, childElementOptions) {
-      var newElement = document.createElement(childElementType);
-
-      if (childElementOptions !== undefined) {
-        Object.keys(childElementOptions).forEach(function (key) {
-          if (key === 'textContent') {
-            newElement.textContent = childElementOptions[key];
-          } else {
-            newElement.setAttribute(key, childElementOptions[key]);
-          }
-        });
-      }
-
-      parentElement.appendChild(newElement);
-      return newElement;
-    };
-
-    return Dom;
-  }();
-
-  /** MIT License
-  * 
-  * Copyright (c) 2015 Ludovic CLUBER 
-  * 
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the "Software"), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  *
-  * http://mouettejs.lcluber.com
-  */
-  var LEVELS$1 = [{
-    id: 1,
-    name: 'info'
-  }, {
-    id: 2,
-    name: 'trace'
-  }, {
-    id: 3,
-    name: 'warn'
-  }, {
-    id: 4,
-    name: 'error'
-  }, {
-    id: 99,
-    name: 'off'
-  }];
-
-  var Message$1 =
-  /*#__PURE__*/
-  function () {
-    function Message(levelName, content) {
-      this.setLevel(levelName);
-      this.content = content;
-    }
-
-    var _proto = Message.prototype;
-
-    _proto.setLevel = function setLevel(name) {
-      this.level = this.findLevel(name);
-    };
-
-    _proto.getLevelId = function getLevelId() {
-      return this.level.id;
-    };
-
-    _proto.display = function display() {
-      console[this.level.name](this.content);
-    };
-
-    _proto.findLevel = function findLevel(name) {
-      for (var _i = 0; _i < LEVELS$1.length; _i++) {
-        var level = LEVELS$1[_i];
-
-        if (level.name === name) {
-          return level;
-        }
-      }
-
-      return this.level ? this.level : LEVELS$1[0];
-    };
-
-    return Message;
-  }();
-
-  var Logger$1 =
-  /*#__PURE__*/
-  function () {
-    function Logger() {}
-
-    Logger.info = function info(text) {
-      Logger.log('info', text);
-    };
-
-    Logger.trace = function trace(text) {
-      Logger.log('trace', text);
-    };
-
-    Logger.time = function time(text) {
-      Logger.log('time', text);
-    };
-
-    Logger.warn = function warn(text) {
-      Logger.log('warn', text);
-    };
-
-    Logger.error = function error(text) {
-      Logger.log('error', text);
-    };
-
-    Logger.log = function log(levelName, content) {
-      Logger.addMessage(levelName, content);
-      var message = this.messages[this.nbMessages - 1];
-
-      if (this._level.id <= message.getLevelId()) {
-        message.display();
-      }
-    };
-
-    Logger.addMessage = function addMessage(levelName, content) {
-      this.messages.push(new Message$1(levelName, content));
-      this.nbMessages++;
-    };
-
-    Logger.findLevel = function findLevel(name) {
-      for (var _i2 = 0; _i2 < LEVELS$1.length; _i2++) {
-        var level = LEVELS$1[_i2];
-
-        if (level.name === name) {
-          return level;
-        }
-      }
-
-      return this._level ? this._level : LEVELS$1[0];
-    };
-
-    _createClass(Logger, [{
-      key: "level",
-      set: function set(name) {
-        Logger._level = Logger.findLevel(name);
-      },
-      get: function get() {
-        return Logger._level.name;
-      }
-    }]);
-
-    return Logger;
-  }();
-
-  Logger$1._level = Logger$1.findLevel(LEVELS$1[0].name);
-  Logger$1.messages = [];
-  Logger$1.nbMessages = 0;
-  Logger$1.target = Dom$2.findById('Mouette');
-
-  var Img$2 =
+  var Img =
   /*#__PURE__*/
   function () {
     function Img() {}
@@ -869,14 +550,14 @@ var Wee = (function (exports) {
       return new Promise(function (resolve, reject) {
         var img = new Image();
         img.src = path;
-        img.name = File$1.getName(path);
-        Logger$1.info('xhr processing starting (' + path + ')');
+        img.name = File.getName(path);
+        Logger.info('xhr processing starting (' + path + ')');
         img.addEventListener('load', function () {
-          Logger$1.info('xhr done successfully (' + path + ')');
+          Logger.info('xhr done successfully (' + path + ')');
           resolve(img);
         });
         img.addEventListener('error', function () {
-          Logger$1.error('xhr failed (' + path + ')');
+          Logger.error('xhr failed (' + path + ')');
           reject(new Error('xhr failed (' + path + ')'));
         });
       });
@@ -885,7 +566,7 @@ var Wee = (function (exports) {
     return Img;
   }();
 
-  var Sound$2 =
+  var Sound =
   /*#__PURE__*/
   function () {
     function Sound() {}
@@ -894,17 +575,17 @@ var Wee = (function (exports) {
       return new Promise(function (resolve, reject) {
         var snd = new Audio();
         snd.src = path;
-        Logger$1.info('xhr processing starting (' + path + ')');
+        Logger.info('xhr processing starting (' + path + ')');
         snd.addEventListener('canplaythrough', function () {
-          Logger$1.info('xhr done successfully (' + path + ')');
+          Logger.info('xhr done successfully (' + path + ')');
           resolve(snd);
         }, false);
         snd.addEventListener('canplay', function () {
-          Logger$1.info('xhr done successfully (' + path + ')');
+          Logger.info('xhr done successfully (' + path + ')');
           resolve(snd);
         }, false);
         snd.addEventListener('error', function () {
-          Logger$1.error('xhr failed (' + path + ')');
+          Logger.error('xhr failed (' + path + ')');
           reject(new Error('xhr failed (' + path + ')'));
         }, false);
       });
@@ -916,9 +597,9 @@ var Wee = (function (exports) {
   exports.Dom = Dom;
   exports.Bind = Bind;
   exports.String = String$1;
-  exports.File = File$1;
-  exports.Img = Img$2;
-  exports.Sound = Sound$2;
+  exports.File = File;
+  exports.Img = Img;
+  exports.Sound = Sound;
 
   return exports;
 
