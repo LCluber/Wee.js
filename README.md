@@ -24,10 +24,10 @@ let shaders = {
   test1 : 'test1',
   test2 : 'test2'
 };
-let select = Wee.Dom.findById("shaders");
+let select = Dom.findById("shaders");
 for(var property in shaders ) {
   if(shaders.hasOwnProperty(property)) {
-    Wee.Dom.addHTMLElement( select,
+    Dom.addHTMLElement( select,
                             'option',
                             { textContent:property,
                               value:property
