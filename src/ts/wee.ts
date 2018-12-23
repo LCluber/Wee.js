@@ -1,6 +1,5 @@
 
 //export { Ascii }  from './ascii';
-export { Check }  from './check';
 export { Dom }    from './dom';
 export { Bind }   from './bind';
 //export { Number } from './number';

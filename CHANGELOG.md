@@ -1,6 +1,10 @@
+Version 0.2.0 (December 23th 2018)
+-----------------------------
+ * Deleted Check class to give it its own library Ch.js
+
 Version 0.1.17 (December 07th 2018)
 -----------------------------
- * Added logs with @lcluber/Mouettejs
+ * Added logs with Mouettejs
 
 Version 0.1.16 (December 2nd 2018)
 -----------------------------
