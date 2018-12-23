@@ -28,10 +28,10 @@ let select = Dom.findById("shaders");
 for(var property in shaders ) {
   if(shaders.hasOwnProperty(property)) {
     Dom.addHTMLElement( select,
-                            'option',
-                            { textContent:property,
-                              value:property
-                            });
+                        'option',
+                        { textContent:property,
+                          value:property
+                        });
   }
 }
 
