@@ -26,39 +26,6 @@
 import { HTTP } from '@lcluber/aiasjs';
 import { Logger } from '@lcluber/mouettejs';
 
-class Check {
-    static isJSON(str) {
-        if (!this.isString(str)) {
-            return false;
-        }
-        let json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
-        try {
-            json = JSON.parse(str);
-        }
-        catch (e) {
-            console.log(e);
-            return false;
-        }
-        return json;
-    }
-    static isFunction(func) {
-        let getType = {};
-        return func && getType.toString.call(func) === '[object Function]';
-    }
-    static isObject(object) {
-        return object !== null && typeof object === 'object';
-    }
-    static isASCII(code, extended) {
-        return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
-    }
-    static isInteger(value) {
-        return value === parseInt(value, 10);
-    }
-    static isString(str) {
-        return typeof str === 'string';
-    }
-}
-
 class Dom {
     static scrollToBottom(HtmlElement) {
         HtmlElement.scrollTop = HtmlElement.scrollHeight;
@@ -198,4 +165,4 @@ class Sound {
     }
 }
 
-export { Check, Dom, Bind, String, File, Img, Sound };
+export { Dom, Bind, String, File, Img, Sound };

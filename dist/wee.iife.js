@@ -26,52 +26,6 @@
 var Wee = (function (exports) {
   'use strict';
 
-  var Check =
-  /*#__PURE__*/
-  function () {
-    function Check() {}
-
-    Check.isJSON = function isJSON(str) {
-      if (!this.isString(str)) {
-        return false;
-      }
-
-      var json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
-
-      try {
-        json = JSON.parse(str);
-      } catch (e) {
-        console.log(e);
-        return false;
-      }
-
-      return json;
-    };
-
-    Check.isFunction = function isFunction(func) {
-      var getType = {};
-      return func && getType.toString.call(func) === '[object Function]';
-    };
-
-    Check.isObject = function isObject(object) {
-      return object !== null && typeof object === 'object';
-    };
-
-    Check.isASCII = function isASCII(code, extended) {
-      return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
-    };
-
-    Check.isInteger = function isInteger(value) {
-      return value === parseInt(value, 10);
-    };
-
-    Check.isString = function isString(str) {
-      return typeof str === 'string';
-    };
-
-    return Check;
-  }();
-
   var Dom =
   /*#__PURE__*/
   function () {
@@ -241,7 +195,7 @@ var Wee = (function (exports) {
   *
   * http://weejs.lcluber.com
   */
-  var Check$1 =
+  var Check =
   /*#__PURE__*/
   function () {
     function Check() {}
@@ -606,7 +560,7 @@ var Wee = (function (exports) {
           return;
         }
 
-        if (Check$1.isObject(data)) {
+        if (Check.isObject(data)) {
           data = JSON.stringify(data);
         }
 
@@ -959,7 +913,6 @@ var Wee = (function (exports) {
     return Sound;
   }();
 
-  exports.Check = Check;
   exports.Dom = Dom;
   exports.Bind = Bind;
   exports.String = String$1;

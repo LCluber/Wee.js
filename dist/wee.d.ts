@@ -31,14 +31,6 @@ export declare class Bind {
     handleEvent(event: Event): void;
     change(value: string | number): void;
 }
-export declare class Check {
-    static isJSON(str: any): Object | false;
-    static isFunction(func: any): boolean;
-    static isObject(object: any): boolean;
-    static isASCII(code: string | number, extended: boolean): boolean;
-    static isInteger(value: string | number): boolean;
-    static isString(str: any): boolean;
-}
 export declare type ChildElementOptions = {
     id?: string;
     content?: string;
@@ -82,7 +74,6 @@ export declare class String {
     static ucfirst(string: string): string;
     static toASCII(code: string): number;
 }
-
 
 
 
