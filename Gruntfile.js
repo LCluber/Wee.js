@@ -165,9 +165,9 @@ module.exports = function(grunt){
           banner: banner,
           // sourceMap: 'inline'
           plugins: [
-            resolve({
-            //   //exclude: './node_modules/**'
-            })
+            // resolve({
+            // //   //exclude: './node_modules/**'
+            // })
           ],
           external: [
             '@lcluber/aiasjs',
@@ -185,16 +185,18 @@ module.exports = function(grunt){
           moduleName: projectName,
           banner: banner,
           plugins: [
+            resolve({
+              module: true,
+              browser: true
+              //   //exclude: './node_modules/**'
+            }),
             babel({
             //   //exclude: './node_modules/**'
-            }),
-            resolve({
-              //   //exclude: './node_modules/**'
             })
           ]
         },
         files: [ {
-          src : compiledES5Dir + projectNameLC + '.js',
+          src : compiledES6Dir + projectNameLC + '.js',
           dest : distDir + projectNameLC + '.iife.js'
         } ]
       }
@@ -307,9 +309,10 @@ module.exports = function(grunt){
       options: {
         //import { IBase64Service } from '../services/base64.service';
         // /// <reference path="../config/typings/index.d.ts" />
-        patterns: [ /import.*';/g,
+        patterns: [
+                    // /import.*';/g,
                     /export { .* } from '.*';/g,
-                    /\/\/\/ <reference path=.*\/>/g
+                    // /\/\/\/ <reference path=.*\/>/g
                   ]
       },
       declaration: {
@@ -400,7 +403,7 @@ module.exports = function(grunt){
                         'ts:es6',
                         'rollup:es6',
                         //lib es5
-                        'ts:es5',
+                        //'ts:es5',
                         'rollup:iife',
                         'uglify:libIife',
                         //declaration
