@@ -2,6 +2,16 @@
 .sass-cache
 .ts-cache
 node_modules
+src
 web/sass
 web/js
 npm-debug.log
+.gitignore
+babel.config.js
+CHANGELOG.md
+Gruntfile.js
+NOTICE.md
+LICENCE.md
+package-lock.json
+README.md
+tsconfig.json
