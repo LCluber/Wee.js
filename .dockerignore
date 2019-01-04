@@ -1,6 +1,6 @@
 .git
 .sass-cache
-.ts-cache
+.tscache
 node_modules
 src
 web/sass
