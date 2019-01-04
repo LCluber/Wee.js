@@ -1,16 +1,4 @@
 
-export type ChildElementOptions = {
-  id?      : string;
-  content? : string;
-  class?   : string;
-  href?    : string;
-  src?     : string;
-  alt?     : string;
-  width?   : string;
-  height?  : string;
-  download?: string;
-}
-
 export class Dom {
 
   static scrollToBottom(HtmlElement: HTMLElement): void {
@@ -49,14 +37,14 @@ export class Dom {
     this.findById(a).focus();
   }
 
-  static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementOptions?: ChildElementOptions): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement {
+  static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement {
     let newElement = document.createElement(childElementType);
-    if(childElementOptions !== undefined) {
-      Object.keys(childElementOptions).forEach(key => {
+    if(childElementAttributes !== undefined) {
+      Object.keys(childElementAttributes).forEach(key => {
         if(key === 'textContent' || key === 'innerHTML') {
-          newElement[key] = childElementOptions[key];
+          newElement[key] = childElementAttributes[key];
         } else {
-          newElement.setAttribute(key, childElementOptions[key]);
+          newElement.setAttribute(key, childElementAttributes[key]);
         }
       });
     }

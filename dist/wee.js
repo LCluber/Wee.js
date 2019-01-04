@@ -54,15 +54,15 @@ class Dom {
     static focusOn(a) {
         this.findById(a).focus();
     }
-    static addHTMLElement(parentElement, childElementType, childElementOptions) {
+    static addHTMLElement(parentElement, childElementType, childElementAttributes) {
         let newElement = document.createElement(childElementType);
-        if (childElementOptions !== undefined) {
-            Object.keys(childElementOptions).forEach(key => {
+        if (childElementAttributes !== undefined) {
+            Object.keys(childElementAttributes).forEach(key => {
                 if (key === 'textContent' || key === 'innerHTML') {
-                    newElement[key] = childElementOptions[key];
+                    newElement[key] = childElementAttributes[key];
                 }
                 else {
-                    newElement.setAttribute(key, childElementOptions[key]);
+                    newElement.setAttribute(key, childElementAttributes[key]);
                 }
             });
         }

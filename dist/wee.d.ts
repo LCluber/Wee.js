@@ -31,17 +31,6 @@ export declare class Bind {
     handleEvent(event: Event): void;
     change(value: string | number): void;
 }
-export declare type ChildElementOptions = {
-    id?: string;
-    content?: string;
-    class?: string;
-    href?: string;
-    src?: string;
-    alt?: string;
-    width?: string;
-    height?: string;
-    download?: string;
-};
 export declare class Dom {
     static scrollToBottom(HtmlElement: HTMLElement): void;
     static findById(id: string): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement;
@@ -52,7 +41,7 @@ export declare class Dom {
     static getInputValue(a: string): string;
     static clearInputValue(a: string): void;
     static focusOn(a: string): void;
-    static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementOptions?: ChildElementOptions): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement;
+    static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement;
 }
 export declare class File {
     static load(path: string): Promise<string>;
