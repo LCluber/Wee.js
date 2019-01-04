@@ -67,15 +67,15 @@ var Wee = (function (exports) {
       this.findById(a).focus();
     };
 
-    Dom.addHTMLElement = function addHTMLElement(parentElement, childElementType, childElementOptions) {
+    Dom.addHTMLElement = function addHTMLElement(parentElement, childElementType, childElementAttributes) {
       var newElement = document.createElement(childElementType);
 
-      if (childElementOptions !== undefined) {
-        Object.keys(childElementOptions).forEach(function (key) {
+      if (childElementAttributes !== undefined) {
+        Object.keys(childElementAttributes).forEach(function (key) {
           if (key === 'textContent' || key === 'innerHTML') {
-            newElement[key] = childElementOptions[key];
+            newElement[key] = childElementAttributes[key];
           } else {
-            newElement.setAttribute(key, childElementOptions[key]);
+            newElement.setAttribute(key, childElementAttributes[key]);
           }
         });
       }

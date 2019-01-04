@@ -1,3 +1,7 @@
+Version 0.2.2 (January 04th 2019)
+-----------------------------
+ * childElementAttributes parameter of addHTMLElement() method in Dom class accepts more attributes
+
 Version 0.2.1 (December 24th 2018)
 -----------------------------
  * Updated Mouette.js dependency to version 0.2.8
