@@ -25,10 +25,8 @@ script:
   - grunt website
   - grunt doc
 
-before_deploy:
+after_script:
   - echo '{ "insecure-registries":["vps239051.ovh.net:5000"] }' | sudo tee /etc/docker/daemon.json
   - sudo service docker restart
   - docker build -t vps239051.ovh.net:5000/weejs:0.2.2 .
   - docker push vps239051.ovh.net:5000/weejs:0.2.2
-
-deploy:
