@@ -37,7 +37,7 @@ for(var property in shaders ) {
 
 ```
 
-### IIFE
+### ES5
 
 ```html
 <script src="node-modules/@lcluber/weejs/dist/wee.iife.min.js"></script>
