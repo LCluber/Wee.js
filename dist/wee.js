@@ -30,6 +30,9 @@ class Dom {
     static scrollToBottom(HtmlElement) {
         HtmlElement.scrollTop = HtmlElement.scrollHeight;
     }
+    static scrollToTop(HtmlElement) {
+        HtmlElement.scrollTop = 0;
+    }
     static findById(id) {
         return document.getElementById(id);
     }
@@ -68,6 +71,13 @@ class Dom {
         }
         parentElement.appendChild(newElement);
         return newElement;
+    }
+    static clearHTMLElement(id) {
+        let element = this.findById(id);
+        if (element) {
+            element.innerHTML = '';
+        }
+        return element;
     }
 }
 

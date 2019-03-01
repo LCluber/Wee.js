@@ -1,3 +1,8 @@
+Version 0.2.3 (March 02nd 2019)
+-----------------------------
+ * added clearHTMLElement() method into Dom class
+ * added scrollToTop() method into Dom class
+
 Version 0.2.2 (January 04th 2019)
 -----------------------------
  * childElementAttributes parameter of addHTMLElement() method in Dom class accepts more attributes

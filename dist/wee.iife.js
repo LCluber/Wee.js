@@ -35,6 +35,10 @@ var Wee = (function (exports) {
       HtmlElement.scrollTop = HtmlElement.scrollHeight;
     };
 
+    Dom.scrollToTop = function scrollToTop(HtmlElement) {
+      HtmlElement.scrollTop = 0;
+    };
+
     Dom.findById = function findById(id) {
       return document.getElementById(id);
     };
@@ -82,6 +86,16 @@ var Wee = (function (exports) {
 
       parentElement.appendChild(newElement);
       return newElement;
+    };
+
+    Dom.clearHTMLElement = function clearHTMLElement(id) {
+      var element = this.findById(id);
+
+      if (element) {
+        element.innerHTML = '';
+      }
+
+      return element;
     };
 
     return Dom;

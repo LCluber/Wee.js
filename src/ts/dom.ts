@@ -1,43 +1,49 @@
 
+export type HTMLElements = HTMLElement|HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement|HTMLProgressElement|HTMLCanvasElement;
+
 export class Dom {
 
-  static scrollToBottom(HtmlElement: HTMLElement): void {
+  public static scrollToBottom(HtmlElement: HTMLElement): void {
     HtmlElement.scrollTop = HtmlElement.scrollHeight;
   }
 
-  static findById(id: string): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement  {
+  public static scrollToTop(HtmlElement: HTMLElement): void {
+    HtmlElement.scrollTop = 0;
+  }
+
+  public static findById(id: string): HTMLElements {
     return document.getElementById(id);
   }
 
-  static showById(a: string): void {
+  public static showById(a: string): void {
     this.findById(a).style.display='block';
   }
 
-  static hideById(a: string): void {
+  public static hideById(a: string): void {
     this.findById(a).style.display='none';
   }
 
-  static showOverflow(): void {
+  public static showOverflow(): void {
     document.body.style.overflow = 'visible';
   }
 
-  static hideOverflow(): void {
+  public static hideOverflow(): void {
     document.body.style.overflow = 'hidden';
   }
 
-  static getInputValue(a: string): string {
+  public static getInputValue(a: string): string {
     return (<HTMLInputElement>this.findById(a)).value;
   }
 
-  static clearInputValue(a: string): void {
+  public static clearInputValue(a: string): void {
     (<HTMLInputElement>this.findById(a)).value = '';
   }
 
-  static focusOn(a: string): void {
+  public static focusOn(a: string): void {
     this.findById(a).focus();
   }
 
-  static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement {
+  public static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElements {
     let newElement = document.createElement(childElementType);
     if(childElementAttributes !== undefined) {
       Object.keys(childElementAttributes).forEach(key => {
@@ -50,6 +56,14 @@ export class Dom {
     }
     parentElement.appendChild(newElement);
     return newElement;
+  }
+
+  public static clearHTMLElement(id: string): HTMLElement {
+    let element = this.findById(id);
+    if (element) {
+      element.innerHTML = '';
+    }
+    return element;
   }
 
 }
