@@ -43,6 +43,14 @@ var Wee = (function (exports) {
       return document.getElementById(id);
     };
 
+    Dom.findByClassName = function findByClassName(className) {
+      return this.arrayFrom(document.getElementsByClassName(className));
+    };
+
+    Dom.findByTagName = function findByTagName(tagName) {
+      return this.arrayFrom(document.getElementsByTagName(tagName));
+    };
+
     Dom.showById = function showById(a) {
       this.findById(a).style.display = 'block';
     };
@@ -96,6 +104,16 @@ var Wee = (function (exports) {
       }
 
       return element;
+    };
+
+    Dom.arrayFrom = function arrayFrom(HTMLCollection) {
+      var elements = [];
+
+      for (var i = 0; i < HTMLCollection.length; i++) {
+        elements.push(HTMLCollection[i]);
+      }
+
+      return elements;
     };
 
     return Dom;

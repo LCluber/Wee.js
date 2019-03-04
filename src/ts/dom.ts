@@ -15,6 +15,14 @@ export class Dom {
     return document.getElementById(id);
   }
 
+  public static findByClassName(className: string): Array<HTMLElements> {
+    return this.arrayFrom(document.getElementsByClassName(className));
+  }
+
+  public static findByTagName(tagName: string): Array<HTMLElements> {
+    return this.arrayFrom(document.getElementsByTagName(tagName));
+  }
+
   public static showById(a: string): void {
     this.findById(a).style.display='block';
   }
@@ -64,6 +72,14 @@ export class Dom {
       element.innerHTML = '';
     }
     return element;
+  }
+
+  private static arrayFrom(HTMLCollection: HTMLCollection): Array<HTMLElements> {
+    const elements: Array<HTMLElements> = [];
+    for (let i = 0; i < HTMLCollection.length; i++) {
+      elements.push(<HTMLElement>HTMLCollection[i]);
+    }
+    return elements;
   }
 
 }
