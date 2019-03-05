@@ -15,12 +15,12 @@ export class Dom {
     return document.getElementById(id);
   }
 
-  public static findByClassName(className: string): Array<HTMLElements> {
-    return this.arrayFrom(document.getElementsByClassName(className));
+  public static findByClass(name: string): Array<HTMLElements> {
+    return this.arrayFrom(document.getElementsByClassName(name));
   }
 
-  public static findByTagName(tagName: string): Array<HTMLElements> {
-    return this.arrayFrom(document.getElementsByTagName(tagName));
+  public static findByTag(name: string): Array<HTMLElements> {
+    return this.arrayFrom(document.getElementsByTagName(name));
   }
 
   public static showById(a: string): void {
