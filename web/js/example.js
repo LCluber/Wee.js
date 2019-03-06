@@ -27,3 +27,5 @@ for(var property in shaders ) {
     // select.appendChild(el);
   }
 }
+// console.log(Wee.Dom.findByClassName('btn'));
+// console.log(Wee.Dom.findByTagName('a'));

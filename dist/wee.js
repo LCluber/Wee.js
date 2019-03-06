@@ -36,6 +36,12 @@ class Dom {
     static findById(id) {
         return document.getElementById(id);
     }
+    static findByClassName(className) {
+        return this.arrayFrom(document.getElementsByClassName(className));
+    }
+    static findByTagName(tagName) {
+        return this.arrayFrom(document.getElementsByTagName(tagName));
+    }
     static showById(a) {
         this.findById(a).style.display = 'block';
     }
@@ -78,6 +84,13 @@ class Dom {
             element.innerHTML = '';
         }
         return element;
+    }
+    static arrayFrom(HTMLCollection) {
+        const elements = [];
+        for (let i = 0; i < HTMLCollection.length; i++) {
+            elements.push(HTMLCollection[i]);
+        }
+        return elements;
     }
 }
 
