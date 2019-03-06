@@ -33,13 +33,13 @@ class Dom {
     static scrollToTop(HtmlElement) {
         HtmlElement.scrollTop = 0;
     }
-    static findById(id) {
-        return document.getElementById(id);
+    static findById(idName) {
+        return document.getElementById(idName);
     }
-    static findByClassName(className) {
+    static findByClass(className) {
         return this.arrayFrom(document.getElementsByClassName(className));
     }
-    static findByTagName(tagName) {
+    static findByTag(tagName) {
         return this.arrayFrom(document.getElementsByTagName(tagName));
     }
     static showById(a) {
@@ -78,8 +78,8 @@ class Dom {
         parentElement.appendChild(newElement);
         return newElement;
     }
-    static clearHTMLElement(id) {
-        let element = this.findById(id);
+    static clearHTMLElement(idName) {
+        let element = this.findById(idName);
         if (element) {
             element.innerHTML = '';
         }

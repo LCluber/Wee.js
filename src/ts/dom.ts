@@ -11,16 +11,16 @@ export class Dom {
     HtmlElement.scrollTop = 0;
   }
 
-  public static findById(id: string): HTMLElements {
-    return document.getElementById(id);
+  public static findById(idName: string): HTMLElements {
+    return document.getElementById(idName);
   }
 
-  public static findByClass(name: string): Array<HTMLElements> {
-    return this.arrayFrom(document.getElementsByClassName(name));
+  public static findByClass(className: string): Array<HTMLElements> {
+    return this.arrayFrom(document.getElementsByClassName(className));
   }
 
-  public static findByTag(name: string): Array<HTMLElements> {
-    return this.arrayFrom(document.getElementsByTagName(name));
+  public static findByTag(tagName: string): Array<HTMLElements> {
+    return this.arrayFrom(document.getElementsByTagName(tagName));
   }
 
   public static showById(a: string): void {
@@ -66,8 +66,8 @@ export class Dom {
     return newElement;
   }
 
-  public static clearHTMLElement(id: string): HTMLElement {
-    let element = this.findById(id);
+  public static clearHTMLElement(idName: string): HTMLElement {
+    let element = this.findById(idName);
     if (element) {
       element.innerHTML = '';
     }

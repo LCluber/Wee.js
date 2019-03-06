@@ -1,3 +1,7 @@
+Version 0.2.4 (March 06th 2019)
+-----------------------------
+ * added findByClass() and findByTag() methods into Dom class
+
 Version 0.2.3 (March 02nd 2019)
 -----------------------------
  * added clearHTMLElement() method into Dom class

@@ -39,15 +39,15 @@ var Wee = (function (exports) {
       HtmlElement.scrollTop = 0;
     };
 
-    Dom.findById = function findById(id) {
-      return document.getElementById(id);
+    Dom.findById = function findById(idName) {
+      return document.getElementById(idName);
     };
 
-    Dom.findByClassName = function findByClassName(className) {
+    Dom.findByClass = function findByClass(className) {
       return this.arrayFrom(document.getElementsByClassName(className));
     };
 
-    Dom.findByTagName = function findByTagName(tagName) {
+    Dom.findByTag = function findByTag(tagName) {
       return this.arrayFrom(document.getElementsByTagName(tagName));
     };
 
@@ -96,8 +96,8 @@ var Wee = (function (exports) {
       return newElement;
     };
 
-    Dom.clearHTMLElement = function clearHTMLElement(id) {
-      var element = this.findById(id);
+    Dom.clearHTMLElement = function clearHTMLElement(idName) {
+      var element = this.findById(idName);
 
       if (element) {
         element.innerHTML = '';

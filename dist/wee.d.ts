@@ -35,9 +35,9 @@ export declare type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectEl
 export declare class Dom {
     static scrollToBottom(HtmlElement: HTMLElement): void;
     static scrollToTop(HtmlElement: HTMLElement): void;
-    static findById(id: string): HTMLElements;
-    static findByClassName(className: string): Array<HTMLElements>;
-    static findByTagName(tagName: string): Array<HTMLElements>;
+    static findById(idName: string): HTMLElements;
+    static findByClass(className: string): Array<HTMLElements>;
+    static findByTag(tagName: string): Array<HTMLElements>;
     static showById(a: string): void;
     static hideById(a: string): void;
     static showOverflow(): void;
@@ -46,7 +46,7 @@ export declare class Dom {
     static clearInputValue(a: string): void;
     static focusOn(a: string): void;
     static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElements;
-    static clearHTMLElement(id: string): HTMLElement;
+    static clearHTMLElement(idName: string): HTMLElement;
     private static arrayFrom;
 }
 export declare class File {
@@ -69,9 +69,9 @@ export declare class String {
     static ucfirst(string: string): string;
     static toASCII(code: string): number;
 }
-export { Dom } from './dom';
-export { Bind } from './bind';
-export { String } from './string';
-export { File } from './file';
-export { Img } from './img';
-export { Sound } from './sound';
+
+
+
+
+
+
