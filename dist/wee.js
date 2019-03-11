@@ -23,6 +23,7 @@
 * http://weejs.lcluber.com
 */
 
+import { Is } from '@lcluber/chjs';
 import { HTTP } from '@lcluber/aiasjs';
 import { Logger } from '@lcluber/mouettejs';
 
@@ -33,8 +34,8 @@ class Dom {
     static scrollToTop(HtmlElement) {
         HtmlElement.scrollTop = 0;
     }
-    static findById(idName) {
-        return document.getElementById(idName);
+    static findById(id) {
+        return document.getElementById(id);
     }
     static findByClass(className) {
         return this.arrayFrom(document.getElementsByClassName(className));
@@ -42,11 +43,18 @@ class Dom {
     static findByTag(tagName) {
         return this.arrayFrom(document.getElementsByTagName(tagName));
     }
-    static showById(a) {
-        this.findById(a).style.display = 'block';
+    static showElement(element) {
+        return this.styleElement(element, 'display', 'block');
     }
-    static hideById(a) {
-        this.findById(a).style.display = 'none';
+    static hideElement(element) {
+        return this.styleElement(element, 'display', 'none');
+    }
+    static styleElement(element, parameter, value) {
+        element = this.checkElement(element);
+        if (element) {
+            element.style[parameter] = value;
+        }
+        return element;
     }
     static showOverflow() {
         document.body.style.overflow = 'visible';
@@ -54,16 +62,29 @@ class Dom {
     static hideOverflow() {
         document.body.style.overflow = 'hidden';
     }
-    static getInputValue(a) {
-        return this.findById(a).value;
+    static getInputValue(element) {
+        element = this.checkElement(element);
+        if (element) {
+            return element.value;
+        }
+        return null;
     }
-    static clearInputValue(a) {
-        this.findById(a).value = '';
+    static clearInputValue(element) {
+        element = this.checkElement(element);
+        if (element) {
+            element.value = '';
+        }
+        return element;
     }
-    static focusOn(a) {
-        this.findById(a).focus();
+    static focusOn(element) {
+        element = this.checkElement(element);
+        if (element) {
+            element.focus();
+        }
+        return element;
     }
     static addHTMLElement(parentElement, childElementType, childElementAttributes) {
+        parentElement = this.checkElement(parentElement);
         let newElement = document.createElement(childElementType);
         if (childElementAttributes !== undefined) {
             Object.keys(childElementAttributes).forEach(key => {
@@ -78,8 +99,8 @@ class Dom {
         parentElement.appendChild(newElement);
         return newElement;
     }
-    static clearHTMLElement(idName) {
-        let element = this.findById(idName);
+    static clearHTMLElement(element) {
+        element = this.checkElement(element);
         if (element) {
             element.innerHTML = '';
         }
@@ -91,6 +112,12 @@ class Dom {
             elements.push(HTMLCollection[i]);
         }
         return elements;
+    }
+    static checkElement(element) {
+        if (Is.string(element)) {
+            element = this.findById(element);
+        }
+        return element;
     }
 }
 

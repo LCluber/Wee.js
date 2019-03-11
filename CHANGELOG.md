@@ -1,3 +1,10 @@
+
+Version 0.2.5 (March 11th 2019)
+-----------------------------
+ * Added styleElement() method
+ * showById(), hideById(), clearInputValue() and focusOn() methods now returns the HTMLElement
+ * Dom methods now accept the id name or the HTMLElement as parameter
+
 Version 0.2.4 (March 06th 2019)
 -----------------------------
  * added findByClass() and findByTag() methods into Dom class

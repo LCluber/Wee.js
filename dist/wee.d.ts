@@ -35,19 +35,21 @@ export declare type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectEl
 export declare class Dom {
     static scrollToBottom(HtmlElement: HTMLElement): void;
     static scrollToTop(HtmlElement: HTMLElement): void;
-    static findById(idName: string): HTMLElements;
+    static findById(id: string): HTMLElements;
     static findByClass(className: string): Array<HTMLElements>;
     static findByTag(tagName: string): Array<HTMLElements>;
-    static showById(a: string): void;
-    static hideById(a: string): void;
+    static showElement(element: string | HTMLElement): HTMLElement | null;
+    static hideElement(element: string | HTMLElement): HTMLElement | null;
+    static styleElement(element: string | HTMLElement, parameter: string, value: string): HTMLElement | null;
     static showOverflow(): void;
     static hideOverflow(): void;
-    static getInputValue(a: string): string;
-    static clearInputValue(a: string): void;
-    static focusOn(a: string): void;
-    static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElements;
-    static clearHTMLElement(idName: string): HTMLElement;
+    static getInputValue(element: string | HTMLElement): string;
+    static clearInputValue(element: string | HTMLElement): HTMLElement;
+    static focusOn(element: string | HTMLElement): HTMLElement | null;
+    static addHTMLElement(parentElement: string | HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElements;
+    static clearHTMLElement(element: string | HTMLElement): HTMLElement | null;
     private static arrayFrom;
+    private static checkElement;
 }
 export declare class File {
     static load(path: string): Promise<string>;

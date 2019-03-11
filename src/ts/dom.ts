@@ -1,3 +1,4 @@
+import { Is } from '@lcluber/chjs';
 
 export type HTMLElements = HTMLElement|HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement|HTMLProgressElement|HTMLCanvasElement;
 
@@ -11,8 +12,8 @@ export class Dom {
     HtmlElement.scrollTop = 0;
   }
 
-  public static findById(idName: string): HTMLElements {
-    return document.getElementById(idName);
+  public static findById(id: string): HTMLElements {
+    return document.getElementById(id);
   }
 
   public static findByClass(className: string): Array<HTMLElements> {
@@ -23,12 +24,20 @@ export class Dom {
     return this.arrayFrom(document.getElementsByTagName(tagName));
   }
 
-  public static showById(a: string): void {
-    this.findById(a).style.display='block';
+  public static showElement(element: string|HTMLElement): HTMLElement|null {
+    return this.styleElement(element,'display','block');
   }
 
-  public static hideById(a: string): void {
-    this.findById(a).style.display='none';
+  public static hideElement(element: string|HTMLElement): HTMLElement|null {
+    return this.styleElement(element,'display','none');
+  }
+
+  public static styleElement(element: string|HTMLElement, parameter: string, value: string): HTMLElement|null {
+    element = this.checkElement(element);
+    if (element) {
+      element.style[parameter] = value;
+    }
+    return element;
   }
 
   public static showOverflow(): void {
@@ -39,19 +48,32 @@ export class Dom {
     document.body.style.overflow = 'hidden';
   }
 
-  public static getInputValue(a: string): string {
-    return (<HTMLInputElement>this.findById(a)).value;
+  public static getInputValue(element: string|HTMLElement): string {
+    element = this.checkElement(element);
+    if (element) {
+      return (<HTMLInputElement>element).value;
+    }
+    return null;
   }
 
-  public static clearInputValue(a: string): void {
-    (<HTMLInputElement>this.findById(a)).value = '';
+  public static clearInputValue(element: string|HTMLElement): HTMLElement  {
+    element = this.checkElement(element);
+    if (element) {
+      (<HTMLInputElement>element).value = '';
+    }
+    return element;
   }
 
-  public static focusOn(a: string): void {
-    this.findById(a).focus();
+  public static focusOn(element: string|HTMLElement): HTMLElement|null {
+    element = this.checkElement(element);
+    if (element) {
+      element.focus();
+    }
+    return element;
   }
 
-  public static addHTMLElement(parentElement: HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElements {
+  public static addHTMLElement(parentElement: string|HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElements {
+    parentElement = this.checkElement(parentElement);
     let newElement = document.createElement(childElementType);
     if(childElementAttributes !== undefined) {
       Object.keys(childElementAttributes).forEach(key => {
@@ -62,12 +84,12 @@ export class Dom {
         }
       });
     }
-    parentElement.appendChild(newElement);
+    (<HTMLElement>parentElement).appendChild(newElement);
     return newElement;
   }
 
-  public static clearHTMLElement(idName: string): HTMLElement {
-    let element = this.findById(idName);
+  public static clearHTMLElement(element: string|HTMLElement): HTMLElement|null {
+    element = this.checkElement(element);
     if (element) {
       element.innerHTML = '';
     }
@@ -80,6 +102,13 @@ export class Dom {
       elements.push(<HTMLElement>HTMLCollection[i]);
     }
     return elements;
+  }
+
+  private static checkElement(element: string|HTMLElement): HTMLElement|null{
+    if (Is.string(element)) {
+      element = this.findById(<string>element);
+    }
+    return <HTMLElement>element;
   }
 
 }

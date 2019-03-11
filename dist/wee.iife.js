@@ -26,142 +26,6 @@
 var Wee = (function (exports) {
   'use strict';
 
-  var Dom =
-  /*#__PURE__*/
-  function () {
-    function Dom() {}
-
-    Dom.scrollToBottom = function scrollToBottom(HtmlElement) {
-      HtmlElement.scrollTop = HtmlElement.scrollHeight;
-    };
-
-    Dom.scrollToTop = function scrollToTop(HtmlElement) {
-      HtmlElement.scrollTop = 0;
-    };
-
-    Dom.findById = function findById(idName) {
-      return document.getElementById(idName);
-    };
-
-    Dom.findByClass = function findByClass(className) {
-      return this.arrayFrom(document.getElementsByClassName(className));
-    };
-
-    Dom.findByTag = function findByTag(tagName) {
-      return this.arrayFrom(document.getElementsByTagName(tagName));
-    };
-
-    Dom.showById = function showById(a) {
-      this.findById(a).style.display = 'block';
-    };
-
-    Dom.hideById = function hideById(a) {
-      this.findById(a).style.display = 'none';
-    };
-
-    Dom.showOverflow = function showOverflow() {
-      document.body.style.overflow = 'visible';
-    };
-
-    Dom.hideOverflow = function hideOverflow() {
-      document.body.style.overflow = 'hidden';
-    };
-
-    Dom.getInputValue = function getInputValue(a) {
-      return this.findById(a).value;
-    };
-
-    Dom.clearInputValue = function clearInputValue(a) {
-      this.findById(a).value = '';
-    };
-
-    Dom.focusOn = function focusOn(a) {
-      this.findById(a).focus();
-    };
-
-    Dom.addHTMLElement = function addHTMLElement(parentElement, childElementType, childElementAttributes) {
-      var newElement = document.createElement(childElementType);
-
-      if (childElementAttributes !== undefined) {
-        Object.keys(childElementAttributes).forEach(function (key) {
-          if (key === 'textContent' || key === 'innerHTML') {
-            newElement[key] = childElementAttributes[key];
-          } else {
-            newElement.setAttribute(key, childElementAttributes[key]);
-          }
-        });
-      }
-
-      parentElement.appendChild(newElement);
-      return newElement;
-    };
-
-    Dom.clearHTMLElement = function clearHTMLElement(idName) {
-      var element = this.findById(idName);
-
-      if (element) {
-        element.innerHTML = '';
-      }
-
-      return element;
-    };
-
-    Dom.arrayFrom = function arrayFrom(HTMLCollection) {
-      var elements = [];
-
-      for (var i = 0; i < HTMLCollection.length; i++) {
-        elements.push(HTMLCollection[i]);
-      }
-
-      return elements;
-    };
-
-    return Dom;
-  }();
-
-  var Bind =
-  /*#__PURE__*/
-  function () {
-    function Bind(element, data) {
-      this.data = data;
-      this.element = element;
-      this.element.value = data;
-      this.element.addEventListener('change', this, false);
-    }
-
-    var _proto = Bind.prototype;
-
-    _proto.handleEvent = function handleEvent(event) {
-      switch (event.type) {
-        case 'change':
-          this.change(this.element.value);
-      }
-    };
-
-    _proto.change = function change(value) {
-      this.data = value;
-      this.element.value = value;
-    };
-
-    return Bind;
-  }();
-
-  var String$1 =
-  /*#__PURE__*/
-  function () {
-    function String() {}
-
-    String.ucfirst = function ucfirst(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    };
-
-    String.toASCII = function toASCII(code) {
-      return code.charCodeAt(0);
-    };
-
-    return String;
-  }();
-
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
@@ -380,6 +244,257 @@ var Wee = (function (exports) {
       return _object !== null && typeof _object === 'object';
     };
 
+    Is.array = function array(_array) {
+      return _array !== null && _array.constructor === Array;
+    };
+
+    Is.ascii = function ascii(code, extended) {
+      return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
+    };
+
+    Is.integer = function integer(value) {
+      return value === parseInt(value, 10);
+    };
+
+    Is.float = function float(value) {
+      return Number(value) === value && value % 1 !== 0;
+    };
+
+    Is.string = function string(str) {
+      return typeof str === 'string';
+    };
+
+    return Is;
+  }();
+
+  var Dom =
+  /*#__PURE__*/
+  function () {
+    function Dom() {}
+
+    Dom.scrollToBottom = function scrollToBottom(HtmlElement) {
+      HtmlElement.scrollTop = HtmlElement.scrollHeight;
+    };
+
+    Dom.scrollToTop = function scrollToTop(HtmlElement) {
+      HtmlElement.scrollTop = 0;
+    };
+
+    Dom.findById = function findById(id) {
+      return document.getElementById(id);
+    };
+
+    Dom.findByClass = function findByClass(className) {
+      return this.arrayFrom(document.getElementsByClassName(className));
+    };
+
+    Dom.findByTag = function findByTag(tagName) {
+      return this.arrayFrom(document.getElementsByTagName(tagName));
+    };
+
+    Dom.showElement = function showElement(element) {
+      return this.styleElement(element, 'display', 'block');
+    };
+
+    Dom.hideElement = function hideElement(element) {
+      return this.styleElement(element, 'display', 'none');
+    };
+
+    Dom.styleElement = function styleElement(element, parameter, value) {
+      element = this.checkElement(element);
+
+      if (element) {
+        element.style[parameter] = value;
+      }
+
+      return element;
+    };
+
+    Dom.showOverflow = function showOverflow() {
+      document.body.style.overflow = 'visible';
+    };
+
+    Dom.hideOverflow = function hideOverflow() {
+      document.body.style.overflow = 'hidden';
+    };
+
+    Dom.getInputValue = function getInputValue(element) {
+      element = this.checkElement(element);
+
+      if (element) {
+        return element.value;
+      }
+
+      return null;
+    };
+
+    Dom.clearInputValue = function clearInputValue(element) {
+      element = this.checkElement(element);
+
+      if (element) {
+        element.value = '';
+      }
+
+      return element;
+    };
+
+    Dom.focusOn = function focusOn(element) {
+      element = this.checkElement(element);
+
+      if (element) {
+        element.focus();
+      }
+
+      return element;
+    };
+
+    Dom.addHTMLElement = function addHTMLElement(parentElement, childElementType, childElementAttributes) {
+      parentElement = this.checkElement(parentElement);
+      var newElement = document.createElement(childElementType);
+
+      if (childElementAttributes !== undefined) {
+        Object.keys(childElementAttributes).forEach(function (key) {
+          if (key === 'textContent' || key === 'innerHTML') {
+            newElement[key] = childElementAttributes[key];
+          } else {
+            newElement.setAttribute(key, childElementAttributes[key]);
+          }
+        });
+      }
+
+      parentElement.appendChild(newElement);
+      return newElement;
+    };
+
+    Dom.clearHTMLElement = function clearHTMLElement(element) {
+      element = this.checkElement(element);
+
+      if (element) {
+        element.innerHTML = '';
+      }
+
+      return element;
+    };
+
+    Dom.arrayFrom = function arrayFrom(HTMLCollection) {
+      var elements = [];
+
+      for (var i = 0; i < HTMLCollection.length; i++) {
+        elements.push(HTMLCollection[i]);
+      }
+
+      return elements;
+    };
+
+    Dom.checkElement = function checkElement(element) {
+      if (Is.string(element)) {
+        element = this.findById(element);
+      }
+
+      return element;
+    };
+
+    return Dom;
+  }();
+
+  var Bind =
+  /*#__PURE__*/
+  function () {
+    function Bind(element, data) {
+      this.data = data;
+      this.element = element;
+      this.element.value = data;
+      this.element.addEventListener('change', this, false);
+    }
+
+    var _proto = Bind.prototype;
+
+    _proto.handleEvent = function handleEvent(event) {
+      switch (event.type) {
+        case 'change':
+          this.change(this.element.value);
+      }
+    };
+
+    _proto.change = function change(value) {
+      this.data = value;
+      this.element.value = value;
+    };
+
+    return Bind;
+  }();
+
+  var String$1 =
+  /*#__PURE__*/
+  function () {
+    function String() {}
+
+    String.ucfirst = function ucfirst(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
+    String.toASCII = function toASCII(code) {
+      return code.charCodeAt(0);
+    };
+
+    return String;
+  }();
+
+  /** MIT License
+  * 
+  * Copyright (c) 2018 Ludovic CLUBER 
+  * 
+  * Permission is hereby granted, free of charge, to any person obtaining a copy
+  * of this software and associated documentation files (the "Software"), to deal
+  * in the Software without restriction, including without limitation the rights
+  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  * copies of the Software, and to permit persons to whom the Software is
+  * furnished to do so, subject to the following conditions:
+  *
+  * The above copyright notice and this permission notice shall be included in all
+  * copies or substantial portions of the Software.
+  *
+  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  * SOFTWARE.
+  *
+  * http://chjs.lcluber.com
+  */
+  var Is$1 =
+  /*#__PURE__*/
+  function () {
+    function Is() {}
+
+    Is.json = function json(str) {
+      if (!this.string(str)) {
+        return false;
+      }
+
+      var json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
+
+      try {
+        json = JSON.parse(str);
+      } catch (e) {
+        Logger.error(e);
+        return false;
+      }
+
+      return json;
+    };
+
+    Is.function = function _function(func) {
+      var getType = {};
+      return func && getType.toString.call(func) === '[object Function]';
+    };
+
+    Is.object = function object(_object) {
+      return _object !== null && typeof _object === 'object';
+    };
+
     Is.ascii = function ascii(code, extended) {
       return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
     };
@@ -505,7 +620,7 @@ var Wee = (function (exports) {
           return;
         }
 
-        if (Is.object(data)) {
+        if (Is$1.object(data)) {
           data = JSON.stringify(data);
         }
 
