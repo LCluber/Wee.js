@@ -16,7 +16,7 @@ export class File {
     //return filename.split('.').shift();
   }
 
-  static getExtension(path: string): string {
+  static getExtension(path: string): string|undefined {
     return path.split('.').pop();
   }
 

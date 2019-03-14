@@ -1,4 +1,5 @@
 import { Is } from '@lcluber/chjs';
+import { HTMLParameters } from './interfaces';
 
 export type HTMLElements = HTMLElement|HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement|HTMLProgressElement|HTMLCanvasElement;
 
@@ -12,7 +13,7 @@ export class Dom {
     HtmlElement.scrollTop = 0;
   }
 
-  public static findById(id: string): HTMLElements {
+  public static findById(id: string): HTMLElements|null {
     return document.getElementById(id);
   }
 
@@ -32,10 +33,10 @@ export class Dom {
     return this.styleElement(element,'display','none');
   }
 
-  public static styleElement(element: string|HTMLElement, parameter: string, value: string): HTMLElement|null {
+  public static styleElement(element: string|HTMLElement|null, parameter: string|number, value: string): HTMLElement|null {
     element = this.checkElement(element);
     if (element) {
-      element.style[parameter] = value;
+      element.style[<number>parameter] = value;
     }
     return element;
   }
@@ -48,7 +49,7 @@ export class Dom {
     document.body.style.overflow = 'hidden';
   }
 
-  public static getInputValue(element: string|HTMLElement): string {
+  public static getInputValue(element: string|HTMLElement|null): string|null {
     element = this.checkElement(element);
     if (element) {
       return (<HTMLInputElement>element).value;
@@ -56,7 +57,7 @@ export class Dom {
     return null;
   }
 
-  public static clearInputValue(element: string|HTMLElement): HTMLElement  {
+  public static clearInputValue(element: string|HTMLElement|null): HTMLElement|null  {
     element = this.checkElement(element);
     if (element) {
       (<HTMLInputElement>element).value = '';
@@ -64,7 +65,7 @@ export class Dom {
     return element;
   }
 
-  public static focusOn(element: string|HTMLElement): HTMLElement|null {
+  public static focusOn(element: string|HTMLElement|null): HTMLElement|null {
     element = this.checkElement(element);
     if (element) {
       element.focus();
@@ -72,10 +73,10 @@ export class Dom {
     return element;
   }
 
-  public static addHTMLElement(parentElement: string|HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElements {
+  public static addHTMLElement(parentElement: string|HTMLElement|null, childElementType: string, childElementAttributes?: HTMLParameters): HTMLElements {
     parentElement = this.checkElement(parentElement);
     let newElement = document.createElement(childElementType);
-    if(childElementAttributes !== undefined) {
+    if(childElementAttributes) {
       Object.keys(childElementAttributes).forEach(key => {
         if(key === 'textContent' || key === 'innerHTML') {
           newElement[key] = childElementAttributes[key];
@@ -88,7 +89,7 @@ export class Dom {
     return newElement;
   }
 
-  public static clearHTMLElement(element: string|HTMLElement): HTMLElement|null {
+  public static clearHTMLElement(element: string|HTMLElement|null): HTMLElement|null {
     element = this.checkElement(element);
     if (element) {
       element.innerHTML = '';
@@ -104,7 +105,7 @@ export class Dom {
     return elements;
   }
 
-  private static checkElement(element: string|HTMLElement): HTMLElement|null{
+  private static checkElement(element: string|HTMLElement|null): HTMLElement|null{
     if (Is.string(element)) {
       element = this.findById(<string>element);
     }

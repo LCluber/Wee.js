@@ -352,7 +352,7 @@ var Wee = (function (exports) {
       parentElement = this.checkElement(parentElement);
       var newElement = document.createElement(childElementType);
 
-      if (childElementAttributes !== undefined) {
+      if (childElementAttributes) {
         Object.keys(childElementAttributes).forEach(function (key) {
           if (key === 'textContent' || key === 'innerHTML') {
             newElement[key] = childElementAttributes[key];

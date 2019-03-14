@@ -86,7 +86,7 @@ class Dom {
     static addHTMLElement(parentElement, childElementType, childElementAttributes) {
         parentElement = this.checkElement(parentElement);
         let newElement = document.createElement(childElementType);
-        if (childElementAttributes !== undefined) {
+        if (childElementAttributes) {
             Object.keys(childElementAttributes).forEach(key => {
                 if (key === 'textContent' || key === 'innerHTML') {
                     newElement[key] = childElementAttributes[key];

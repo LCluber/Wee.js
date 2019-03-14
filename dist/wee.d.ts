@@ -31,23 +31,24 @@ export declare class Bind {
     handleEvent(event: Event): void;
     change(value: string | number): void;
 }
+import { HTMLParameters } from './interfaces';
 export declare type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement;
 export declare class Dom {
     static scrollToBottom(HtmlElement: HTMLElement): void;
     static scrollToTop(HtmlElement: HTMLElement): void;
-    static findById(id: string): HTMLElements;
+    static findById(id: string): HTMLElements | null;
     static findByClass(className: string): Array<HTMLElements>;
     static findByTag(tagName: string): Array<HTMLElements>;
     static showElement(element: string | HTMLElement): HTMLElement | null;
     static hideElement(element: string | HTMLElement): HTMLElement | null;
-    static styleElement(element: string | HTMLElement, parameter: string, value: string): HTMLElement | null;
+    static styleElement(element: string | HTMLElement | null, parameter: string | number, value: string): HTMLElement | null;
     static showOverflow(): void;
     static hideOverflow(): void;
-    static getInputValue(element: string | HTMLElement): string;
-    static clearInputValue(element: string | HTMLElement): HTMLElement;
-    static focusOn(element: string | HTMLElement): HTMLElement | null;
-    static addHTMLElement(parentElement: string | HTMLElement, childElementType: string, childElementAttributes?: Object): HTMLElements;
-    static clearHTMLElement(element: string | HTMLElement): HTMLElement | null;
+    static getInputValue(element: string | HTMLElement | null): string | null;
+    static clearInputValue(element: string | HTMLElement | null): HTMLElement | null;
+    static focusOn(element: string | HTMLElement | null): HTMLElement | null;
+    static addHTMLElement(parentElement: string | HTMLElement | null, childElementType: string, childElementAttributes?: HTMLParameters): HTMLElements;
+    static clearHTMLElement(element: string | HTMLElement | null): HTMLElement | null;
     private static arrayFrom;
     private static checkElement;
 }
@@ -55,12 +56,15 @@ export declare class File {
     static load(path: string): Promise<string>;
     static removeTrailingSlash(path: string): string;
     static getName(path: string): string;
-    static getExtension(path: string): string;
+    static getExtension(path: string): string | undefined;
     static getDirectory(path: string): string;
     static checkExtension(extension: string, validExtensions: Array<string>): boolean;
 }
 export declare class Img {
     static load(path: string): Promise<string>;
+}
+export interface HTMLParameters {
+    [key: string]: string;
 }
 export declare class Number {
 }

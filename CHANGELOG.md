@@ -1,4 +1,8 @@
 
+Version 0.2.6 (March 14th 2019)
+-----------------------------
+ * Improved typings
+ 
 Version 0.2.5 (March 11th 2019)
 -----------------------------
  * Added styleElement() method
