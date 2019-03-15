@@ -1,7 +1,7 @@
 import { Is } from '@lcluber/chjs';
 import { HTMLParameters } from './interfaces';
 
-export type HTMLElements = HTMLElement|HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement|HTMLProgressElement|HTMLCanvasElement;
+export type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement;
 
 export class Dom {
 
@@ -33,7 +33,11 @@ export class Dom {
     return this.styleElement(element,'display','none');
   }
 
-  public static styleElement(element: string|HTMLElement|null, parameter: string|number, value: string): HTMLElement|null {
+  public static styleElement( element: string|HTMLElement|null, 
+                              parameter: string|number, 
+                              value: string
+                            ): HTMLElement|null {
+                              
     element = this.checkElement(element);
     if (element) {
       element.style[<number>parameter] = value;
@@ -73,7 +77,11 @@ export class Dom {
     return element;
   }
 
-  public static addHTMLElement(parentElement: string|HTMLElement|null, childElementType: string, childElementAttributes?: HTMLParameters): HTMLElements {
+  public static addHTMLElement( parentElement: string|HTMLElement|null, 
+                                childElementType: string, 
+                                childElementAttributes?: HTMLParameters
+                              ): HTMLElements {
+                                
     parentElement = this.checkElement(parentElement);
     let newElement = document.createElement(childElementType);
     if(childElementAttributes) {
