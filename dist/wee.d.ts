@@ -31,7 +31,7 @@ export declare class Bind {
     handleEvent(event: Event): void;
     change(value: string | number): void;
 }
-import { HTMLParameters } from './interfaces';
+
 export declare type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement;
 export declare class Dom {
     static scrollToBottom(HtmlElement: HTMLElement): void;
