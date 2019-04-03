@@ -32,7 +32,7 @@ export declare class Bind {
     change(value: string | number): void;
 }
 
-export declare type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement;
+export declare type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement | HTMLIFrameElement;
 export declare class Dom {
     static scrollToBottom(HtmlElement: HTMLElement): void;
     static scrollToTop(HtmlElement: HTMLElement): void;
