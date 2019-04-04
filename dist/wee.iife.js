@@ -244,20 +244,12 @@ var Wee = (function (exports) {
       return _object !== null && typeof _object === 'object';
     };
 
-    Is.array = function array(_array) {
-      return _array !== null && _array.constructor === Array;
-    };
-
     Is.ascii = function ascii(code, extended) {
       return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
     };
 
     Is.integer = function integer(value) {
       return value === parseInt(value, 10);
-    };
-
-    Is.float = function float(value) {
-      return Number(value) === value && value % 1 !== 0;
     };
 
     Is.string = function string(str) {
@@ -442,76 +434,6 @@ var Wee = (function (exports) {
 
   /** MIT License
   * 
-  * Copyright (c) 2018 Ludovic CLUBER 
-  * 
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the "Software"), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  *
-  * http://chjs.lcluber.com
-  */
-  var Is$1 =
-  /*#__PURE__*/
-  function () {
-    function Is() {}
-
-    Is.json = function json(str) {
-      if (!this.string(str)) {
-        return false;
-      }
-
-      var json = str.replace(/(\r\n|\n|\r|\t)/gm, '');
-
-      try {
-        json = JSON.parse(str);
-      } catch (e) {
-        Logger.error(e);
-        return false;
-      }
-
-      return json;
-    };
-
-    Is.function = function _function(func) {
-      var getType = {};
-      return func && getType.toString.call(func) === '[object Function]';
-    };
-
-    Is.object = function object(_object) {
-      return _object !== null && typeof _object === 'object';
-    };
-
-    Is.ascii = function ascii(code, extended) {
-      return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
-    };
-
-    Is.integer = function integer(value) {
-      return value === parseInt(value, 10);
-    };
-
-    Is.string = function string(str) {
-      return typeof str === 'string';
-    };
-
-    return Is;
-  }();
-
-  /** MIT License
-  * 
   * Copyright (c) 2010 Ludovic CLUBER 
   * 
   * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -620,7 +542,7 @@ var Wee = (function (exports) {
           return;
         }
 
-        if (Is$1.object(data)) {
+        if (Is.object(data)) {
           data = JSON.stringify(data);
         }
 
