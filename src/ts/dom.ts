@@ -1,7 +1,7 @@
 import { Is } from '@lcluber/chjs';
 import { HTMLParameters } from './interfaces';
 
-export type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement;
+export type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement | HTMLIFrameElement;
 
 export class Dom {
 
