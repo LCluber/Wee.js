@@ -75,13 +75,13 @@ static Dom.findByClass(className: string): HTMLElements[] | null {}
 static Dom.findByTag(tagName: string): HTMLElements[] | null {}
 
 static Dom.showElement(element: string | HTMLElements): HTMLElements | null {}
-static Dom.hideElement(element: string | HTMLElements): HTMLElements | null {
-static Dom.styleElement( element:   string | HTMLElements | null,
+static Dom.hideElement(element: string | HTMLElements): HTMLElements | null {}
+static Dom.styleElement( element:   string | HTMLElements,
                          parameter: string | number,
                          value:     string
-                        ): HTMLElements | null  {}
+                        ): HTMLElements | null {}
 
-static Dom.addHTMLElement( parentElement:           string | HTMLElement | null,
+static Dom.addHTMLElement( parentElement:           string | HTMLElement,
                            childElementType:        string,
                            childElementAttributes?: HTMLParameters
                          ): HTMLElements {}
@@ -93,10 +93,10 @@ static Dom.scrollToTop(HtmlElement: HTMLElements): void {}
 static Dom.showOverflow(): void {}
 static Dom.hideOverflow(): void {}
 
-static Dom.getInputValue(element: string | HTMLElement | null): string | null {}
-static Dom.clearInputValue(element: string | HTMLElement | null): HTMLElement | null {}
+static Dom.getInputValue(element: string | HTMLElement): string | null {}
+static Dom.clearInputValue(element: string | HTMLElement): HTMLElement | null {}
 
-static Dom.focusOn(element: string | HTMLElements | null): HTMLElements | null {}
+static Dom.focusOn(element: string | HTMLElements): HTMLElements | null {}
 
 ```
 

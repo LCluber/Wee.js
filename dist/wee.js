@@ -50,11 +50,11 @@ class Dom {
         return this.styleElement(element, 'display', 'none');
     }
     static styleElement(element, parameter, value) {
-        element = this.checkElement(element);
-        if (element) {
-            element.style[parameter] = value;
+        let htmlelement = this.checkElement(element);
+        if (htmlelement) {
+            htmlelement.style[parameter] = value;
         }
-        return element;
+        return htmlelement;
     }
     static showOverflow() {
         document.body.style.overflow = 'visible';
@@ -63,48 +63,51 @@ class Dom {
         document.body.style.overflow = 'hidden';
     }
     static getInputValue(element) {
-        element = this.checkElement(element);
-        if (element) {
-            return element.value;
+        let htmlelement = this.checkElement(element);
+        if (htmlelement) {
+            return htmlelement.value;
         }
         return null;
     }
     static clearInputValue(element) {
-        element = this.checkElement(element);
-        if (element) {
-            element.value = '';
+        let htmlelement = this.checkElement(element);
+        if (htmlelement) {
+            htmlelement.value = '';
         }
-        return element;
+        return htmlelement;
     }
     static focusOn(element) {
-        element = this.checkElement(element);
-        if (element) {
-            element.focus();
+        let htmlelement = this.checkElement(element);
+        if (htmlelement) {
+            htmlelement.focus();
         }
-        return element;
+        return htmlelement;
     }
     static addHTMLElement(parentElement, childElementType, childElementAttributes) {
-        parentElement = this.checkElement(parentElement);
-        let newElement = document.createElement(childElementType);
-        if (childElementAttributes) {
-            Object.keys(childElementAttributes).forEach(key => {
-                if (key === 'textContent' || key === 'innerHTML') {
-                    newElement[key] = childElementAttributes[key];
-                }
-                else {
-                    newElement.setAttribute(key, childElementAttributes[key]);
-                }
-            });
+        let parentHtmlElement = this.checkElement(parentElement);
+        if (parentHtmlElement) {
+            let newElement = document.createElement(childElementType);
+            if (childElementAttributes) {
+                Object.keys(childElementAttributes).forEach(key => {
+                    if (key === 'textContent' || key === 'innerHTML') {
+                        newElement[key] = childElementAttributes[key];
+                    }
+                    else {
+                        newElement.setAttribute(key, childElementAttributes[key]);
+                    }
+                });
+            }
+            (parentHtmlElement).appendChild(newElement);
+            return newElement;
         }
-        parentElement.appendChild(newElement);
-        return newElement;
+        return null;
     }
     static clearHTMLElement(element) {
-        element = this.checkElement(element);
-        if (element) {
-            element.innerHTML = '';
+        let htmlelement = this.checkElement(element);
+        if (htmlelement) {
+            htmlelement.innerHTML = '';
         }
-        return element;
+        return htmlelement;
     }
     static arrayFrom(HTMLCollection) {
         const elements = [];
@@ -115,7 +118,7 @@ class Dom {
     }
     static checkElement(element) {
         if (Is.string(element)) {
-            element = this.findById(element);
+            return this.findById(element);
         }
         return element;
     }

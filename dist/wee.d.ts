@@ -41,14 +41,14 @@ export declare class Dom {
     static findByTag(tagName: string): HTMLElements[] | null;
     static showElement(element: string | HTMLElements): HTMLElements | null;
     static hideElement(element: string | HTMLElements): HTMLElements | null;
-    static styleElement(element: string | HTMLElements | null, parameter: string | number, value: string): HTMLElements | null;
+    static styleElement(element: string | HTMLElements, parameter: string | number, value: string): HTMLElements | null;
     static showOverflow(): void;
     static hideOverflow(): void;
-    static getInputValue(element: string | HTMLElement | null): string | null;
-    static clearInputValue(element: string | HTMLElement | null): HTMLElement | null;
-    static focusOn(element: string | HTMLElements | null): HTMLElements | null;
-    static addHTMLElement(parentElement: string | HTMLElement | null, childElementType: string, childElementAttributes?: HTMLParameters): HTMLElements;
-    static clearHTMLElement(element: string | HTMLElement | null): HTMLElement | null;
+    static getInputValue(element: string | HTMLElement): string | null;
+    static clearInputValue(element: string | HTMLElement): HTMLElement | null;
+    static focusOn(element: string | HTMLElements): HTMLElements | null;
+    static addHTMLElement(parentElement: string | HTMLElement, childElementType: string, childElementAttributes?: HTMLParameters): HTMLElements | null;
+    static clearHTMLElement(element: string | HTMLElement): HTMLElement | null;
     private static arrayFrom;
     private static checkElement;
 }

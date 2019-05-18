@@ -33,16 +33,16 @@ export class Dom {
     return this.styleElement(element,'display','none');
   }
 
-  public static styleElement( element: string|HTMLElements|null,
+  public static styleElement( element: string|HTMLElements,
                               parameter: string|number,
                               value: string
                             ): HTMLElements|null {
 
-    element = this.checkElement(element);
-    if (element) {
-      element.style[<number>parameter] = value;
+    let htmlelement = this.checkElement(element);
+    if (htmlelement) {
+      htmlelement.style[<number>parameter] = value;
     }
-    return element;
+    return htmlelement;
   }
 
   public static showOverflow(): void {
@@ -53,56 +53,59 @@ export class Dom {
     document.body.style.overflow = 'hidden';
   }
 
-  public static getInputValue(element: string|HTMLElement|null): string|null {
-    element = this.checkElement(element);
-    if (element) {
-      return (<HTMLInputElement>element).value;
+  public static getInputValue(element: string|HTMLElement): string|null {
+    let htmlelement = this.checkElement(element);
+    if (htmlelement) {
+      return (<HTMLInputElement>htmlelement).value;
     }
     return null;
   }
 
-  public static clearInputValue(element: string|HTMLElement|null): HTMLElement|null  {
-    element = this.checkElement(element);
-    if (element) {
-      (<HTMLInputElement>element).value = '';
+  public static clearInputValue(element: string|HTMLElement): HTMLElement|null  {
+    let htmlelement = this.checkElement(element);
+    if (htmlelement) {
+      (<HTMLInputElement>htmlelement).value = '';
     }
-    return element;
+    return htmlelement;
   }
 
-  public static focusOn(element: string|HTMLElements|null): HTMLElements|null {
-    element = this.checkElement(element);
-    if (element) {
-      element.focus();
+  public static focusOn(element: string|HTMLElements): HTMLElements|null {
+    let htmlelement = this.checkElement(element);
+    if (htmlelement) {
+      htmlelement.focus();
     }
-    return element;
+    return htmlelement;
   }
 
-  public static addHTMLElement( parentElement: string|HTMLElement|null,
+  public static addHTMLElement( parentElement: string|HTMLElement,
                                 childElementType: string,
                                 childElementAttributes?: HTMLParameters
-                              ): HTMLElements {
+                              ): HTMLElements|null {
 
-    parentElement = this.checkElement(parentElement);
-    let newElement = document.createElement(childElementType);
-    if(childElementAttributes) {
-      Object.keys(childElementAttributes).forEach(key => {
-        if(key === 'textContent' || key === 'innerHTML') {
-          newElement[key] = childElementAttributes[key];
-        } else {
-          newElement.setAttribute(key, childElementAttributes[key]);
-        }
-      });
+    let parentHtmlElement = this.checkElement(parentElement);
+    if (parentHtmlElement){
+      let newElement = document.createElement(childElementType);
+      if(childElementAttributes) {
+        Object.keys(childElementAttributes).forEach(key => {
+          if(key === 'textContent' || key === 'innerHTML') {
+            newElement[key] = childElementAttributes[key];
+          } else {
+            newElement.setAttribute(key, childElementAttributes[key]);
+          }
+        });
+      }
+      (parentHtmlElement).appendChild(newElement);
+      return newElement;
     }
-    (<HTMLElement>parentElement).appendChild(newElement);
-    return newElement;
+    return null;
   }
 
-  public static clearHTMLElement(element: string|HTMLElement|null): HTMLElement|null {
-    element = this.checkElement(element);
-    if (element) {
-      element.innerHTML = '';
+  public static clearHTMLElement(element: string|HTMLElement): HTMLElement|null {
+    let htmlelement = this.checkElement(element);
+    if (htmlelement) {
+      htmlelement.innerHTML = '';
     }
-    return element;
+    return htmlelement;
   }
 
   private static arrayFrom(HTMLCollection: HTMLCollection): HTMLElements[] {
@@ -113,9 +116,9 @@ export class Dom {
     return elements;
   }
 
-  private static checkElement(element: string|HTMLElements|null): HTMLElements|null{
+  private static checkElement(element: string|HTMLElements): HTMLElements|null {
     if (Is.string(element)) {
-      element = this.findById(<string>element);
+      return this.findById(<string>element);
     }
     return <HTMLElements>element;
   }

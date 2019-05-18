@@ -293,13 +293,13 @@ var Wee = (function (exports) {
     };
 
     Dom.styleElement = function styleElement(element, parameter, value) {
-      element = this.checkElement(element);
+      var htmlelement = this.checkElement(element);
 
-      if (element) {
-        element.style[parameter] = value;
+      if (htmlelement) {
+        htmlelement.style[parameter] = value;
       }
 
-      return element;
+      return htmlelement;
     };
 
     Dom.showOverflow = function showOverflow() {
@@ -311,61 +311,66 @@ var Wee = (function (exports) {
     };
 
     Dom.getInputValue = function getInputValue(element) {
-      element = this.checkElement(element);
+      var htmlelement = this.checkElement(element);
 
-      if (element) {
-        return element.value;
+      if (htmlelement) {
+        return htmlelement.value;
       }
 
       return null;
     };
 
     Dom.clearInputValue = function clearInputValue(element) {
-      element = this.checkElement(element);
+      var htmlelement = this.checkElement(element);
 
-      if (element) {
-        element.value = '';
+      if (htmlelement) {
+        htmlelement.value = '';
       }
 
-      return element;
+      return htmlelement;
     };
 
     Dom.focusOn = function focusOn(element) {
-      element = this.checkElement(element);
+      var htmlelement = this.checkElement(element);
 
-      if (element) {
-        element.focus();
+      if (htmlelement) {
+        htmlelement.focus();
       }
 
-      return element;
+      return htmlelement;
     };
 
     Dom.addHTMLElement = function addHTMLElement(parentElement, childElementType, childElementAttributes) {
-      parentElement = this.checkElement(parentElement);
-      var newElement = document.createElement(childElementType);
+      var parentHtmlElement = this.checkElement(parentElement);
 
-      if (childElementAttributes) {
-        Object.keys(childElementAttributes).forEach(function (key) {
-          if (key === 'textContent' || key === 'innerHTML') {
-            newElement[key] = childElementAttributes[key];
-          } else {
-            newElement.setAttribute(key, childElementAttributes[key]);
-          }
-        });
+      if (parentHtmlElement) {
+        var newElement = document.createElement(childElementType);
+
+        if (childElementAttributes) {
+          Object.keys(childElementAttributes).forEach(function (key) {
+            if (key === 'textContent' || key === 'innerHTML') {
+              newElement[key] = childElementAttributes[key];
+            } else {
+              newElement.setAttribute(key, childElementAttributes[key]);
+            }
+          });
+        }
+
+        parentHtmlElement.appendChild(newElement);
+        return newElement;
       }
 
-      parentElement.appendChild(newElement);
-      return newElement;
+      return null;
     };
 
     Dom.clearHTMLElement = function clearHTMLElement(element) {
-      element = this.checkElement(element);
+      var htmlelement = this.checkElement(element);
 
-      if (element) {
-        element.innerHTML = '';
+      if (htmlelement) {
+        htmlelement.innerHTML = '';
       }
 
-      return element;
+      return htmlelement;
     };
 
     Dom.arrayFrom = function arrayFrom(HTMLCollection) {
@@ -380,7 +385,7 @@ var Wee = (function (exports) {
 
     Dom.checkElement = function checkElement(element) {
       if (Is.string(element)) {
-        element = this.findById(element);
+        return this.findById(element);
       }
 
       return element;

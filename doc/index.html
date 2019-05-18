@@ -73,7 +73,7 @@
 				<p>Or download it <strong><a href="http://weejs.lcluber.com/#download">here</a></strong>.</p>
 				<h2 id="usage">Usage</h2>
 				<h3 id="es6">ES6</h3>
-				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Dom, Bind, <span class="hljs-built_in">String</span>, File, Img, Sound } <span class="hljs-keyword">from</span> <span class="hljs-string">'@lcluber/weejs'</span>;
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Dom } <span class="hljs-keyword">from</span> <span class="hljs-string">'@lcluber/weejs'</span>;
 
 <span class="hljs-keyword">let</span> shaders = {
   <span class="hljs-attr">test1</span> : <span class="hljs-string">'test1'</span>,
@@ -109,25 +109,36 @@
 				<h2 id="demo">Demo</h2>
 				<p>See a basic example <strong><a href="http://weejs.lcluber.com/#example">here</a></strong>.</p>
 				<h2 id="api-reference">API Reference</h2>
-				<pre><code class="language-javascript"><span class="hljs-keyword">static</span> Dom.findById(name: <span class="hljs-string">'info'</span> | <span class="hljs-string">'trace'</span> | <span class="hljs-string">'warn'</span> | <span class="hljs-string">'error'</span> | <span class="hljs-string">'off'</span>): <span class="hljs-keyword">void</span> {}
-<span class="hljs-keyword">static</span> Dom.findById(id: string): HTMLElements|<span class="hljs-literal">null</span> {}
-<span class="hljs-keyword">static</span> Dom.findByClass(className: string): <span class="hljs-built_in">Array</span>&lt;HTMLElements&gt; {}
-<span class="hljs-keyword">static</span> Dom.findByTag(tagName: string): <span class="hljs-built_in">Array</span>&lt;HTMLElements&gt; {}
-<span class="hljs-keyword">static</span> Dom.showElement(element: string|HTMLElement): HTMLElement|<span class="hljs-literal">null</span> {}
-<span class="hljs-keyword">static</span> Dom.hideElement(element: string|HTMLElement): HTMLElement|<span class="hljs-literal">null</span> {
-<span class="hljs-keyword">static</span> Dom.styleElement( element: string|HTMLElement|<span class="hljs-literal">null</span>,
-                              <span class="hljs-attr">parameter</span>: string|number,
-                              <span class="hljs-attr">value</span>: string
-                            ): HTMLElement|<span class="hljs-literal">null</span> {}
-<span class="hljs-keyword">static</span> Dom.scrollToBottom(HtmlElement: HTMLElement): <span class="hljs-keyword">void</span> {}
-<span class="hljs-keyword">static</span> Dom.scrollToTop(HtmlElement: HTMLElement): <span class="hljs-keyword">void</span> {}
+				<pre><code class="language-javascript">
+type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement | HTMLIFrameElement;
 
+<span class="hljs-keyword">static</span> Dom.findById(id: string): HTMLElements | <span class="hljs-literal">null</span> {}
+<span class="hljs-keyword">static</span> Dom.findByClass(className: string): HTMLElements[] | <span class="hljs-literal">null</span> {}
+<span class="hljs-keyword">static</span> Dom.findByTag(tagName: string): HTMLElements[] | <span class="hljs-literal">null</span> {}
 
-Group.level = <span class="hljs-string">'info'</span> | <span class="hljs-string">'trace'</span> | <span class="hljs-string">'warn'</span> | <span class="hljs-string">'error'</span> | <span class="hljs-string">'off'</span>;
-Group.info(message: string|number|any[]|<span class="hljs-built_in">Object</span>): <span class="hljs-keyword">void</span> {}
-Group.trace(message: string|number|any[]|<span class="hljs-built_in">Object</span>): <span class="hljs-keyword">void</span> {}
-Group.warn(message: string|number|any[]|<span class="hljs-built_in">Object</span>): <span class="hljs-keyword">void</span> {}
-Group.error(message: string|number|any[]|<span class="hljs-built_in">Object</span>): <span class="hljs-keyword">void</span> {}
+<span class="hljs-keyword">static</span> Dom.showElement(element: string | HTMLElements): HTMLElements | <span class="hljs-literal">null</span> {}
+<span class="hljs-keyword">static</span> Dom.hideElement(element: string | HTMLElements): HTMLElements | <span class="hljs-literal">null</span> {}
+<span class="hljs-keyword">static</span> Dom.styleElement( element:   string | HTMLElements | <span class="hljs-literal">null</span>,
+                         <span class="hljs-attr">parameter</span>: string | number,
+                         <span class="hljs-attr">value</span>:     string
+                        ): HTMLElements | <span class="hljs-literal">null</span> {}
+
+<span class="hljs-keyword">static</span> Dom.addHTMLElement( parentElement:           string | HTMLElement | <span class="hljs-literal">null</span>,
+                           <span class="hljs-attr">childElementType</span>:        string,
+                           childElementAttributes?: HTMLParameters
+                         ): HTMLElements {}
+<span class="hljs-keyword">static</span> Dom.clearHTMLElement(element: string | HTMLElement | <span class="hljs-literal">null</span>): HTMLElement | <span class="hljs-literal">null</span> {}
+
+<span class="hljs-keyword">static</span> Dom.scrollToBottom(HtmlElement: HTMLElements): <span class="hljs-keyword">void</span> {}
+<span class="hljs-keyword">static</span> Dom.scrollToTop(HtmlElement: HTMLElements): <span class="hljs-keyword">void</span> {}
+
+<span class="hljs-keyword">static</span> Dom.showOverflow(): <span class="hljs-keyword">void</span> {}
+<span class="hljs-keyword">static</span> Dom.hideOverflow(): <span class="hljs-keyword">void</span> {}
+
+<span class="hljs-keyword">static</span> Dom.getInputValue(element: string | HTMLElement | <span class="hljs-literal">null</span>): string | <span class="hljs-literal">null</span> {}
+<span class="hljs-keyword">static</span> Dom.clearInputValue(element: string | HTMLElement | <span class="hljs-literal">null</span>): HTMLElement | <span class="hljs-literal">null</span> {}
+
+<span class="hljs-keyword">static</span> Dom.focusOn(element: string | HTMLElements | <span class="hljs-literal">null</span>): HTMLElements | <span class="hljs-literal">null</span> {}
 </code></pre>
 				<h2 id="tests">Tests</h2>
 				<p>No tests to run yet</p>
