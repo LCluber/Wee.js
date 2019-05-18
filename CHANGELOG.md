@@ -1,3 +1,6 @@
+Version 0.2.8 (May 18th 2019)
+-----------------------------
+ * Updated API Reference in README.md
 
 Version 0.2.7 (March 31th 2019)
 -----------------------------
