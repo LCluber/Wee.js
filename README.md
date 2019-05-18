@@ -85,7 +85,7 @@ static Dom.addHTMLElement( parentElement:           string | HTMLElement,
                            childElementType:        string,
                            childElementAttributes?: HTMLParameters
                          ): HTMLElements {}
-static Dom.clearHTMLElement(element: string | HTMLElement | null): HTMLElement | null {}
+static Dom.clearHTMLElement(element: string | HTMLElement): HTMLElement | null {}
 
 static Dom.scrollToBottom(HtmlElement: HTMLElements): void {}
 static Dom.scrollToTop(HtmlElement: HTMLElements): void {}
