@@ -18,7 +18,7 @@ Or download it **[here](http://weejs.lcluber.com/#download)**.
 ### ES6
 
 ```javascript
-import { Dom, Bind, String, File, Img, Sound } from '@lcluber/weejs';
+import { Dom } from '@lcluber/weejs';
 
 let shaders = {
   test1 : 'test1',
@@ -66,7 +66,39 @@ See a basic example **[here](http://weejs.lcluber.com/#example)**.
 
 ## API Reference
 
-Read the documentation **[here](http://weejs.lcluber.com/doc/)**.
+```javascript
+
+type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement | HTMLIFrameElement;
+
+static Dom.findById(id: string): HTMLElements | null {}
+static Dom.findByClass(className: string): HTMLElements[] | null {}
+static Dom.findByTag(tagName: string): HTMLElements[] | null {}
+
+static Dom.showElement(element: string | HTMLElements): HTMLElements | null {}
+static Dom.hideElement(element: string | HTMLElements): HTMLElements | null {
+static Dom.styleElement( element:   string | HTMLElements | null,
+                         parameter: string | number,
+                         value:     string
+                        ): HTMLElements | null  {}
+
+static Dom.addHTMLElement( parentElement:           string | HTMLElement | null,
+                           childElementType:        string,
+                           childElementAttributes?: HTMLParameters
+                         ): HTMLElements {}
+static Dom.clearHTMLElement(element: string | HTMLElement | null): HTMLElement | null {}
+
+static Dom.scrollToBottom(HtmlElement: HTMLElements): void {}
+static Dom.scrollToTop(HtmlElement: HTMLElements): void {}
+
+static Dom.showOverflow(): void {}
+static Dom.hideOverflow(): void {}
+
+static Dom.getInputValue(element: string | HTMLElement | null): string | null {}
+static Dom.clearInputValue(element: string | HTMLElement | null): HTMLElement | null {}
+
+static Dom.focusOn(element: string | HTMLElements | null): HTMLElements | null {}
+
+```
 
 ## Tests
 

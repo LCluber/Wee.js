@@ -5,11 +5,11 @@ export type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | 
 
 export class Dom {
 
-  public static scrollToBottom(HtmlElement: HTMLElement): void {
+  public static scrollToBottom(HtmlElement: HTMLElements): void {
     HtmlElement.scrollTop = HtmlElement.scrollHeight;
   }
 
-  public static scrollToTop(HtmlElement: HTMLElement): void {
+  public static scrollToTop(HtmlElement: HTMLElements): void {
     HtmlElement.scrollTop = 0;
   }
 
@@ -17,27 +17,27 @@ export class Dom {
     return document.getElementById(id);
   }
 
-  public static findByClass(className: string): Array<HTMLElements> {
+  public static findByClass(className: string): HTMLElements[]|null {
     return this.arrayFrom(document.getElementsByClassName(className));
   }
 
-  public static findByTag(tagName: string): Array<HTMLElements> {
+  public static findByTag(tagName: string): HTMLElements[]|null {
     return this.arrayFrom(document.getElementsByTagName(tagName));
   }
 
-  public static showElement(element: string|HTMLElement): HTMLElement|null {
+  public static showElement(element: string|HTMLElements): HTMLElements|null {
     return this.styleElement(element,'display','block');
   }
 
-  public static hideElement(element: string|HTMLElement): HTMLElement|null {
+  public static hideElement(element: string|HTMLElements): HTMLElements|null {
     return this.styleElement(element,'display','none');
   }
 
-  public static styleElement( element: string|HTMLElement|null, 
-                              parameter: string|number, 
+  public static styleElement( element: string|HTMLElements|null,
+                              parameter: string|number,
                               value: string
-                            ): HTMLElement|null {
-                              
+                            ): HTMLElements|null {
+
     element = this.checkElement(element);
     if (element) {
       element.style[<number>parameter] = value;
@@ -69,7 +69,7 @@ export class Dom {
     return element;
   }
 
-  public static focusOn(element: string|HTMLElement|null): HTMLElement|null {
+  public static focusOn(element: string|HTMLElements|null): HTMLElements|null {
     element = this.checkElement(element);
     if (element) {
       element.focus();
@@ -77,11 +77,11 @@ export class Dom {
     return element;
   }
 
-  public static addHTMLElement( parentElement: string|HTMLElement|null, 
-                                childElementType: string, 
+  public static addHTMLElement( parentElement: string|HTMLElement|null,
+                                childElementType: string,
                                 childElementAttributes?: HTMLParameters
                               ): HTMLElements {
-                                
+
     parentElement = this.checkElement(parentElement);
     let newElement = document.createElement(childElementType);
     if(childElementAttributes) {
@@ -105,19 +105,19 @@ export class Dom {
     return element;
   }
 
-  private static arrayFrom(HTMLCollection: HTMLCollection): Array<HTMLElements> {
-    const elements: Array<HTMLElements> = [];
+  private static arrayFrom(HTMLCollection: HTMLCollection): HTMLElements[] {
+    const elements: HTMLElements[] = [];
     for (let i = 0; i < HTMLCollection.length; i++) {
-      elements.push(<HTMLElement>HTMLCollection[i]);
+      elements.push(<HTMLElements>HTMLCollection[i]);
     }
     return elements;
   }
 
-  private static checkElement(element: string|HTMLElement|null): HTMLElement|null{
+  private static checkElement(element: string|HTMLElements|null): HTMLElements|null{
     if (Is.string(element)) {
       element = this.findById(<string>element);
     }
-    return <HTMLElement>element;
+    return <HTMLElements>element;
   }
 
 }
