@@ -25,11 +25,12 @@
 export declare class Ascii {
 }
 export declare class Bind {
-    data: string | number;
-    element: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement;
-    constructor(element: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement, data: string);
-    handleEvent(event: Event): void;
-    change(value: string | number): void;
+    private _value;
+    private elements;
+    constructor(elementId: string, value: string | number);
+    value: string | number;
+    update(value: string | number): void;
+    private updateDom;
 }
 
 export declare type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement | HTMLIFrameElement;

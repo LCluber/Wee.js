@@ -397,26 +397,46 @@ var Wee = (function (exports) {
   var Bind =
   /*#__PURE__*/
   function () {
-    function Bind(element, data) {
-      this.data = data;
-      this.element = element;
-      this.element.value = data;
-      this.element.addEventListener('change', this, false);
+    function Bind(elementId, value) {
+      this._value = '';
+      this.elements = Dom.findByClass(elementId);
+      this.value = value;
     }
 
     var _proto = Bind.prototype;
 
-    _proto.handleEvent = function handleEvent(event) {
-      switch (event.type) {
-        case 'change':
-          this.change(this.element.value);
+    _proto.update = function update(value) {
+      this.value = value;
+    };
+
+    _proto.updateDom = function updateDom() {
+      for (var _iterator = this.elements, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+        var _ref;
+
+        if (_isArray) {
+          if (_i >= _iterator.length) break;
+          _ref = _iterator[_i++];
+        } else {
+          _i = _iterator.next();
+          if (_i.done) break;
+          _ref = _i.value;
+        }
+
+        var element = _ref;
+        element.textContent = this._value;
       }
     };
 
-    _proto.change = function change(value) {
-      this.data = value;
-      this.element.value = value;
-    };
+    _createClass(Bind, [{
+      key: "value",
+      set: function set(value) {
+        this._value = value;
+        this.updateDom();
+      },
+      get: function get() {
+        return this._value;
+      }
+    }]);
 
     return Bind;
   }();

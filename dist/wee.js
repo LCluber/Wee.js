@@ -125,20 +125,25 @@ class Dom {
 }
 
 class Bind {
-    constructor(element, data) {
-        this.data = data;
-        this.element = element;
-        this.element.value = data;
-        this.element.addEventListener('change', this, false);
+    constructor(elementId, value) {
+        this._value = '';
+        this.elements = Dom.findByClass(elementId);
+        this.value = value;
     }
-    handleEvent(event) {
-        switch (event.type) {
-            case 'change': this.change(this.element.value);
+    set value(value) {
+        this._value = value;
+        this.updateDom();
+    }
+    get value() {
+        return this._value;
+    }
+    update(value) {
+        this.value = value;
+    }
+    updateDom() {
+        for (const element of this.elements) {
+            element.textContent = this._value;
         }
-    }
-    change(value) {
-        this.data = value;
-        this.element.value = value;
     }
 }
 

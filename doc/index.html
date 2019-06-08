@@ -118,16 +118,16 @@ type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTex
 
 <span class="hljs-keyword">static</span> Dom.showElement(element: string | HTMLElements): HTMLElements | <span class="hljs-literal">null</span> {}
 <span class="hljs-keyword">static</span> Dom.hideElement(element: string | HTMLElements): HTMLElements | <span class="hljs-literal">null</span> {}
-<span class="hljs-keyword">static</span> Dom.styleElement( element:   string | HTMLElements | <span class="hljs-literal">null</span>,
+<span class="hljs-keyword">static</span> Dom.styleElement( element:   string | HTMLElements,
                          <span class="hljs-attr">parameter</span>: string | number,
                          <span class="hljs-attr">value</span>:     string
                         ): HTMLElements | <span class="hljs-literal">null</span> {}
 
-<span class="hljs-keyword">static</span> Dom.addHTMLElement( parentElement:           string | HTMLElement | <span class="hljs-literal">null</span>,
+<span class="hljs-keyword">static</span> Dom.addHTMLElement( parentElement:           string | HTMLElement,
                            <span class="hljs-attr">childElementType</span>:        string,
                            childElementAttributes?: HTMLParameters
                          ): HTMLElements {}
-<span class="hljs-keyword">static</span> Dom.clearHTMLElement(element: string | HTMLElement | <span class="hljs-literal">null</span>): HTMLElement | <span class="hljs-literal">null</span> {}
+<span class="hljs-keyword">static</span> Dom.clearHTMLElement(element: string | HTMLElement): HTMLElement | <span class="hljs-literal">null</span> {}
 
 <span class="hljs-keyword">static</span> Dom.scrollToBottom(HtmlElement: HTMLElements): <span class="hljs-keyword">void</span> {}
 <span class="hljs-keyword">static</span> Dom.scrollToTop(HtmlElement: HTMLElements): <span class="hljs-keyword">void</span> {}
@@ -135,10 +135,10 @@ type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTex
 <span class="hljs-keyword">static</span> Dom.showOverflow(): <span class="hljs-keyword">void</span> {}
 <span class="hljs-keyword">static</span> Dom.hideOverflow(): <span class="hljs-keyword">void</span> {}
 
-<span class="hljs-keyword">static</span> Dom.getInputValue(element: string | HTMLElement | <span class="hljs-literal">null</span>): string | <span class="hljs-literal">null</span> {}
-<span class="hljs-keyword">static</span> Dom.clearInputValue(element: string | HTMLElement | <span class="hljs-literal">null</span>): HTMLElement | <span class="hljs-literal">null</span> {}
+<span class="hljs-keyword">static</span> Dom.getInputValue(element: string | HTMLElement): string | <span class="hljs-literal">null</span> {}
+<span class="hljs-keyword">static</span> Dom.clearInputValue(element: string | HTMLElement): HTMLElement | <span class="hljs-literal">null</span> {}
 
-<span class="hljs-keyword">static</span> Dom.focusOn(element: string | HTMLElements | <span class="hljs-literal">null</span>): HTMLElements | <span class="hljs-literal">null</span> {}
+<span class="hljs-keyword">static</span> Dom.focusOn(element: string | HTMLElements): HTMLElements | <span class="hljs-literal">null</span> {}
 </code></pre>
 				<h2 id="tests">Tests</h2>
 				<p>No tests to run yet</p>

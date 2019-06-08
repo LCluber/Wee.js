@@ -18,14 +18,8 @@ for(var property in shaders ) {
                             { textContent:property,
                               value:property
                             });
-    // var el = document.createElement("option");
-    // el.textContent = property;
-    // el.value = property;
-    // if(property == 'gradient'){
-    //   el.selected = true;
-    // }
-    // select.appendChild(el);
   }
 }
-// console.log(Wee.Dom.findByClassName('btn'));
-// console.log(Wee.Dom.findByTagName('a'));
+
+// var test = new Wee.Bind('test', 'value');
+// test.update('value2');
