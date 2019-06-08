@@ -1,6 +1,6 @@
 ersion 0.2.9 (June 08th 2019)
 -----------------------------
- * Updated Bind class with one way data binding
+ * Updated Bind class with better one-way data binding
 
 Version 0.2.8 (May 18th 2019)
 -----------------------------
