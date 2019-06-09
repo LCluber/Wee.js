@@ -124,10 +124,17 @@ class Dom {
     }
 }
 
-class Bind {
+class Binding {
     constructor(elementId, value) {
         this._value = '';
-        this.elements = Dom.findByClass(elementId);
+        this.elements = [];
+        let element = Dom.findById(elementId);
+        if (element) {
+            this.elements[0] = element;
+        }
+        else {
+            this.elements = Dom.findByClass(elementId);
+        }
         this.value = value;
     }
     set value(value) {
@@ -141,8 +148,15 @@ class Bind {
         this.value = value;
     }
     updateDom() {
-        for (const element of this.elements) {
-            element.textContent = this._value;
+        if (this.elements) {
+            for (const element of this.elements) {
+                if (element.hasOwnProperty('value')) {
+                    element.value = this._value;
+                }
+                else {
+                    element.textContent = this._value;
+                }
+            }
         }
     }
 }
@@ -223,4 +237,4 @@ class Sound {
     }
 }
 
-export { Dom, Bind, String, File, Img, Sound };
+export { Dom, Binding, String, File, Img, Sound };

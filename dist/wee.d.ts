@@ -24,7 +24,7 @@
 */
 export declare class Ascii {
 }
-export declare class Bind {
+export declare class Binding {
     private _value;
     private elements;
     constructor(elementId: string, value: string | number);

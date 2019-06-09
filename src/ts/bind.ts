@@ -1,13 +1,19 @@
 import { Dom } from './dom';
 
-export class Bind {
+export class Binding {
 
   private _value : string|number;
-  private elements : HTMLElement[]/*HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement*/;
+  private elements : HTMLElement[] | HTMLInputElement[] | HTMLSelectElement[] | HTMLTextAreaElement[] | HTMLProgressElement[] | HTMLCanvasElement[] | HTMLIFrameElement[] | null;
 
   constructor(elementId: string, value: string|number) {
     this._value = '';
-    this.elements = Dom.findByClass(elementId) as HTMLElement[];
+    this.elements = [];
+    let element = Dom.findById(elementId);
+    if (element) {
+      this.elements[0] = element;
+    } else {
+      this.elements = Dom.findByClass(elementId);
+    }
     this.value = value;
     // this.element.value = data;
     // this.element.addEventListener('change', this, false);
@@ -30,11 +36,15 @@ export class Bind {
   }
 
   private updateDom() {
-    // if (this.elements.length) {
+    if (this.elements) {
       for (const element of this.elements) {
-        element.textContent = this._value as string;
+        if (element.hasAttribute('value')) {
+          (element as HTMLInputElement).value = this._value as string;
+        } else {
+          element.textContent = this._value as string;
+        }
       }
-    // }
+    }
   }
 
   // public handleEvent(event: Event): void {

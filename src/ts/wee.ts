@@ -1,7 +1,7 @@
 
 //export { Ascii }  from './ascii';
 export { Dom }    from './dom';
-export { Bind }   from './bind';
+export { Binding }   from './bind';
 //export { Number } from './number';
 export { String } from './string';
 export { File }   from './file';

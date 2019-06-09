@@ -394,40 +394,55 @@ var Wee = (function (exports) {
     return Dom;
   }();
 
-  var Bind =
+  var Binding =
   /*#__PURE__*/
   function () {
-    function Bind(elementId, value) {
+    function Binding(elementId, value) {
       this._value = '';
-      this.elements = Dom.findByClass(elementId);
+      this.elements = [];
+      var element = Dom.findById(elementId);
+
+      if (element) {
+        this.elements[0] = element;
+      } else {
+        this.elements = Dom.findByClass(elementId);
+      }
+
       this.value = value;
     }
 
-    var _proto = Bind.prototype;
+    var _proto = Binding.prototype;
 
     _proto.update = function update(value) {
       this.value = value;
     };
 
     _proto.updateDom = function updateDom() {
-      for (var _iterator = this.elements, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-        var _ref;
+      if (this.elements) {
+        for (var _iterator = this.elements, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+          var _ref;
 
-        if (_isArray) {
-          if (_i >= _iterator.length) break;
-          _ref = _iterator[_i++];
-        } else {
-          _i = _iterator.next();
-          if (_i.done) break;
-          _ref = _i.value;
+          if (_isArray) {
+            if (_i >= _iterator.length) break;
+            _ref = _iterator[_i++];
+          } else {
+            _i = _iterator.next();
+            if (_i.done) break;
+            _ref = _i.value;
+          }
+
+          var element = _ref;
+
+          if (element.hasOwnProperty('value')) {
+            element.value = this._value;
+          } else {
+            element.textContent = this._value;
+          }
         }
-
-        var element = _ref;
-        element.textContent = this._value;
       }
     };
 
-    _createClass(Bind, [{
+    _createClass(Binding, [{
       key: "value",
       set: function set(value) {
         this._value = value;
@@ -438,7 +453,7 @@ var Wee = (function (exports) {
       }
     }]);
 
-    return Bind;
+    return Binding;
   }();
 
   var String$1 =
@@ -689,7 +704,7 @@ var Wee = (function (exports) {
   }();
 
   exports.Dom = Dom;
-  exports.Bind = Bind;
+  exports.Binding = Binding;
   exports.String = String$1;
   exports.File = File;
   exports.Img = Img;
