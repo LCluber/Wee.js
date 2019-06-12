@@ -37,11 +37,17 @@ export class Binding {
 
   private updateDom() {
     if (this.elements) {
+      let str = this._value as string;
       for (const element of this.elements) {
         if (element.hasAttribute('value')) {
-          (element as HTMLInputElement).value = this._value as string;
+          (element as HTMLInputElement).value = str;
         } else {
-          element.textContent = this._value as string;
+          let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/ig;
+          if (this._value && str.match(pattern)) {
+            element.innerHTML = str;
+          } else {
+            element.textContent = str;
+          }
         }
       }
     }

@@ -419,6 +419,8 @@ var Wee = (function (exports) {
 
     _proto.updateDom = function updateDom() {
       if (this.elements) {
+        var str = this._value;
+
         for (var _iterator = this.elements, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
           var _ref;
 
@@ -433,10 +435,16 @@ var Wee = (function (exports) {
 
           var element = _ref;
 
-          if (element.hasOwnProperty('value')) {
-            element.value = this._value;
+          if (element.hasAttribute('value')) {
+            element.value = str;
           } else {
-            element.textContent = this._value;
+            var pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/ig;
+
+            if (this._value && str.match(pattern)) {
+              element.innerHTML = str;
+            } else {
+              element.textContent = str;
+            }
           }
         }
       }

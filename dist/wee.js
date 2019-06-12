@@ -149,12 +149,19 @@ class Binding {
     }
     updateDom() {
         if (this.elements) {
+            let str = this._value;
             for (const element of this.elements) {
-                if (element.hasOwnProperty('value')) {
-                    element.value = this._value;
+                if (element.hasAttribute('value')) {
+                    element.value = str;
                 }
                 else {
-                    element.textContent = this._value;
+                    let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/ig;
+                    if (this._value && str.match(pattern)) {
+                        element.innerHTML = str;
+                    }
+                    else {
+                        element.textContent = str;
+                    }
                 }
             }
         }

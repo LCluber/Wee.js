@@ -1,3 +1,7 @@
+Version 0.2.11 (June 12th 2019)
+-----------------------------
+ * Binding automatically detects wether to display text or HTML
+
 Version 0.2.10 (June 09th 2019)
 -----------------------------
  * Bind class is now called Binding
