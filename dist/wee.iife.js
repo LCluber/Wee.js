@@ -440,7 +440,7 @@ var Wee = (function (exports) {
           } else {
             var pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/ig;
 
-            if (this._value && str.match(pattern)) {
+            if (Is.string(this._value) && str.match(pattern)) {
               element.innerHTML = str;
             } else {
               element.textContent = str;

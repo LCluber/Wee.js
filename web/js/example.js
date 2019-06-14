@@ -21,5 +21,5 @@ for(var property in shaders ) {
   }
 }
 
-// var test = new Wee.Bind('test', 'value');
+// var test = new Wee.Binding('test', 'value');
 // test.update('value2');

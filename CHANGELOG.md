@@ -1,3 +1,7 @@
+Version 0.2.12 (June 14th 2019)
+-----------------------------
+ * Updated update() method in Binding class
+
 Version 0.2.11 (June 12th 2019)
 -----------------------------
  * Binding automatically detects wether to display text or HTML
