@@ -13,7 +13,7 @@
     "strictPropertyInitialization": true,
     "allowSyntheticDefaultImports": true,
     "preserveConstEnums": true,
-    "suppressImplicitAnyIndexErrors":false,
+    "suppressImplicitAnyIndexErrors":true,
     "allowJs": false,
     "removeComments": true,
     "declaration":true,

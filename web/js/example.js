@@ -21,5 +21,26 @@ for(var property in shaders ) {
   }
 }
 
-// var test = new Wee.Binding('test', 'value');
-// test.update('value2');
+// testElement = Wee.Dom.findById('test');
+// console.log(testElement);
+// var test = new Wee.Binding(testElement, 'style.width', '20px');
+// console.log(test);
+// test.update('20px');
+//
+// testElement2 = Wee.Dom.findByClass('test2');
+// console.log('testElement2',testElement2);
+// var test2 = new Wee.Binding(testElement2, 'style.width', '20px');
+// console.log(test2);
+// test2.update('20px');
+
+// testElement = Wee.Dom.findById('test');
+// // console.log('testElement2',testElement2);
+// var test = new Wee.Binding(testElement, '', '20px');
+// // console.log(test2);
+// test.update('40px');
+//
+// testElement2 = Wee.Dom.findByClass('test2');
+// // console.log('testElement2',testElement2);
+// var test2 = new Wee.Binding(testElement2 , '', '20px');
+// // console.log(test2);
+// test2.update('40px');

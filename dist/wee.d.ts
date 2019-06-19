@@ -26,11 +26,15 @@ export declare class Ascii {
 }
 export declare class Binding {
     private _value;
+    private property;
+    private lastProperty;
     private elements;
-    constructor(elementId: string, value: string | number);
+    constructor(element: string | HTMLElement | HTMLElement[], property: string, value: string | number);
     value: string | number;
+    private addPropertyToElement;
     update(value: string | number): void;
     private updateDom;
+    private getElements;
 }
 
 export declare type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement | HTMLIFrameElement;

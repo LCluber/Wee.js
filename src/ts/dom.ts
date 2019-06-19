@@ -108,10 +108,10 @@ export class Dom {
     return htmlelement;
   }
 
-  private static arrayFrom(HTMLCollection: HTMLCollection): HTMLElements[] {
+  private static arrayFrom(htmlCollection: HTMLCollection): HTMLElements[] {
     const elements: HTMLElements[] = [];
-    for (let i = 0; i < HTMLCollection.length; i++) {
-      elements.push(<HTMLElements>HTMLCollection[i]);
+    for (let i = 0; i < htmlCollection.length; i++) {
+      elements.push(<HTMLElements>htmlCollection[i]);
     }
     return elements;
   }

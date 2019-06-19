@@ -109,10 +109,10 @@ class Dom {
         }
         return htmlelement;
     }
-    static arrayFrom(HTMLCollection) {
+    static arrayFrom(htmlCollection) {
         const elements = [];
-        for (let i = 0; i < HTMLCollection.length; i++) {
-            elements.push(HTMLCollection[i]);
+        for (let i = 0; i < htmlCollection.length; i++) {
+            elements.push(htmlCollection[i]);
         }
         return elements;
     }
@@ -125,15 +125,15 @@ class Dom {
 }
 
 class Binding {
-    constructor(elementId, value) {
+    constructor(element, property, value) {
         this._value = '';
-        this.elements = [];
-        let element = Dom.findById(elementId);
-        if (element) {
-            this.elements[0] = element;
-        }
-        else {
-            this.elements = Dom.findByClass(elementId);
+        this.elements = this.getElements(element);
+        this.property = [];
+        this.lastProperty = '';
+        if (property) {
+            this.property = property.split('.');
+            this.lastProperty = this.property[this.property.length - 1];
+            this.addPropertyToElement();
         }
         this.value = value;
     }
@@ -144,27 +144,64 @@ class Binding {
     get value() {
         return this._value;
     }
+    addPropertyToElement() {
+        if (this.elements) {
+            for (let j = 0; j < this.elements.length; j++) {
+                for (let i = 0; i < this.property.length - 1; i++) {
+                    this.elements[j] = this.elements[j][this.property[i]];
+                }
+            }
+        }
+    }
     update(value) {
         this.value = value;
     }
     updateDom() {
         if (this.elements) {
             let str = this._value;
-            for (const element of this.elements) {
-                if (element.hasAttribute('value')) {
-                    element.value = str;
+            for (let element of this.elements) {
+                if (this.property.length) {
+                    element[this.lastProperty] = str;
                 }
                 else {
-                    let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/ig;
-                    if (Is.string(this._value) && str.match(pattern)) {
-                        element.innerHTML = str;
+                    if (element.hasAttribute('value')) {
+                        element.value = str;
                     }
                     else {
-                        element.textContent = str;
+                        let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/ig;
+                        if (Is.string(this._value) && str.match(pattern)) {
+                            element.innerHTML = str;
+                        }
+                        else {
+                            element.textContent = str;
+                        }
                     }
                 }
             }
         }
+    }
+    getElements(element) {
+        let elements = [];
+        if (Is.array(element)) {
+            for (const elt of element) {
+                if (Is.htmlElement(elt)) {
+                    elements.push(elt);
+                }
+            }
+        }
+        else if (Is.string(element)) {
+            let htmlElement = Dom.findById(element);
+            if (htmlElement) {
+                elements.push(htmlElement);
+            }
+            else {
+                elements = Dom.findByClass(element);
+            }
+        }
+        else if (Is.htmlElement(element)) {
+            elements.push(element);
+        }
+        return elements;
     }
 }
 

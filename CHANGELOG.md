@@ -1,3 +1,7 @@
+Version 0.2.13 (June 19th 2019)
+-----------------------------
+ * Binding Constructor now accepts id string | class string | HTMLElement | array of HTMLElements as element parameter
+
 Version 0.2.12 (June 14th 2019)
 -----------------------------
  * Updated update() method in Binding class
