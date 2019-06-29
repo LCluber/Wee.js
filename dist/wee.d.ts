@@ -57,8 +57,9 @@ export declare class Dom {
     private static arrayFrom;
     private static checkElement;
 }
+import { DataTypes } from '@lcluber/aiasjs';
 export declare class File {
-    static load(path: string): Promise<string>;
+    static load(path: string): Promise<DataTypes>;
     static removeTrailingSlash(path: string): string;
     static getName(path: string): string;
     static getExtension(path: string): string | undefined;
@@ -66,6 +67,7 @@ export declare class File {
     static checkExtension(extension: string, validExtensions: Array<string>): boolean;
 }
 export declare class Img {
+    private static log;
     static load(path: string): Promise<string>;
 }
 export interface HTMLParameters {
@@ -74,6 +76,7 @@ export interface HTMLParameters {
 export declare class Number {
 }
 export declare class Sound {
+    private static log;
     static load(path: string): Promise<string>;
 }
 export declare class String {

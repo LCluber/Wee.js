@@ -600,6 +600,10 @@ var Wee = (function (exports) {
       return _object !== null && typeof _object === 'object';
     };
 
+    Is.array = function array(_array) {
+      return _array !== null && _array.constructor === Array;
+    };
+
     Is.ascii = function ascii(code, extended) {
       return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
     };
@@ -608,12 +612,217 @@ var Wee = (function (exports) {
       return value === parseInt(value, 10);
     };
 
+    Is.float = function float(value) {
+      return Number(value) === value && value % 1 !== 0;
+    };
+
     Is.string = function string(str) {
       return typeof str === 'string';
     };
 
     return Is;
   }();
+
+  /** MIT License
+  * 
+  * Copyright (c) 2015 Ludovic CLUBER 
+  * 
+  * Permission is hereby granted, free of charge, to any person obtaining a copy
+  * of this software and associated documentation files (the "Software"), to deal
+  * in the Software without restriction, including without limitation the rights
+  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  * copies of the Software, and to permit persons to whom the Software is
+  * furnished to do so, subject to the following conditions:
+  *
+  * The above copyright notice and this permission notice shall be included in all
+  * copies or substantial portions of the Software.
+  *
+  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  * SOFTWARE.
+  *
+  * http://mouettejs.lcluber.com
+  */
+  var LEVELS$1 = {
+    info: {
+      id: 1,
+      name: 'info',
+      color: '#28a745'
+    },
+    trace: {
+      id: 2,
+      name: 'trace',
+      color: '#17a2b8'
+    },
+    warn: {
+      id: 3,
+      name: 'warn',
+      color: '#ffc107'
+    },
+    error: {
+      id: 4,
+      name: 'error',
+      color: '#dc3545'
+    },
+    off: {
+      id: 99,
+      name: 'off',
+      color: null
+    }
+  };
+
+  function addZero(value) {
+    return value < 10 ? '0' + value : value;
+  }
+
+  function formatDate() {
+    var now = new Date();
+    var date = [addZero(now.getMonth() + 1), addZero(now.getDate()), now.getFullYear().toString().substr(-2)];
+    var time = [addZero(now.getHours()), addZero(now.getMinutes()), addZero(now.getSeconds())];
+    return date.join("/") + " " + time.join(":");
+  }
+
+  var Message$1 =
+  /*#__PURE__*/
+  function () {
+    function Message(level, content) {
+      this.id = level.id;
+      this.name = level.name;
+      this.color = level.color;
+      this.content = content;
+      this.date = formatDate();
+    }
+
+    var _proto = Message.prototype;
+
+    _proto.display = function display(groupName) {
+      console[this.name]('%c[' + groupName + '] ' + this.date + ' : ', 'color:' + this.color + ';', this.content);
+    };
+
+    return Message;
+  }();
+
+  var Group =
+  /*#__PURE__*/
+  function () {
+    function Group(name, level) {
+      this.messages = [];
+      this.name = name;
+      this.messages = [];
+      this._level = level;
+    }
+
+    var _proto2 = Group.prototype;
+
+    _proto2.info = function info(message) {
+      this.log(LEVELS$1.info, message);
+    };
+
+    _proto2.trace = function trace(message) {
+      this.log(LEVELS$1.trace, message);
+    };
+
+    _proto2.warn = function warn(message) {
+      this.log(LEVELS$1.warn, message);
+    };
+
+    _proto2.error = function error(message) {
+      this.log(LEVELS$1.error, message);
+    };
+
+    _proto2.log = function log(level, messageContent) {
+      var message = new Message$1(level, messageContent);
+      this.messages.push(message);
+
+      if (this._level.id <= message.id) {
+        message.display(this.name);
+      }
+    };
+
+    _createClass(Group, [{
+      key: "level",
+      set: function set(name) {
+        this._level = LEVELS$1.hasOwnProperty(name) ? LEVELS$1[name] : this._level;
+      },
+      get: function get() {
+        return this._level.name;
+      }
+    }]);
+
+    return Group;
+  }();
+
+  var Logger$1 =
+  /*#__PURE__*/
+  function () {
+    function Logger() {}
+
+    Logger.setLevel = function setLevel(name) {
+      Logger.level = LEVELS$1.hasOwnProperty(name) ? LEVELS$1[name] : Logger.level;
+
+      for (var _iterator = Logger.groups, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+        var _ref;
+
+        if (_isArray) {
+          if (_i >= _iterator.length) break;
+          _ref = _iterator[_i++];
+        } else {
+          _i = _iterator.next();
+          if (_i.done) break;
+          _ref = _i.value;
+        }
+
+        var group = _ref;
+        group.level = Logger.level.name;
+      }
+    };
+
+    Logger.getLevel = function getLevel() {
+      return Logger.level.name;
+    };
+
+    Logger.getGroup = function getGroup(name) {
+      for (var _iterator2 = Logger.groups, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+        var _ref2;
+
+        if (_isArray2) {
+          if (_i2 >= _iterator2.length) break;
+          _ref2 = _iterator2[_i2++];
+        } else {
+          _i2 = _iterator2.next();
+          if (_i2.done) break;
+          _ref2 = _i2.value;
+        }
+
+        var group = _ref2;
+
+        if (group.name === name) {
+          return group;
+        }
+      }
+
+      return null;
+    };
+
+    Logger.addGroup = function addGroup(name) {
+      return this.getGroup(name) || this.pushGroup(name);
+    };
+
+    Logger.pushGroup = function pushGroup(name) {
+      var group = new Group(name, Logger.level);
+      Logger.groups.push(group);
+      return group;
+    };
+
+    return Logger;
+  }();
+
+  Logger$1.level = LEVELS$1.error;
+  Logger$1.groups = [];
 
   /** MIT License
   * 
@@ -688,49 +897,52 @@ var Wee = (function (exports) {
       }
     };
 
+    HTTP.setResponseType = function setResponseType(responseType) {
+      this.responseType = responseType;
+    };
+
     HTTP.call = function call(method, url, data) {
       var _this = this;
 
       return new Promise(function (resolve, reject) {
+        var msg = ['Aias xhr ', ' (' + method + ':' + url + ')'];
         var http = new XMLHttpRequest();
-
-        if (_this.noCache) {
-          url += '?cache=' + new Date().getTime();
-        }
-
+        url += _this.noCache ? '?cache=' + new Date().getTime() : '';
         http.open(method, url, _this.async);
+        http.responseType = _this.responseType;
 
-        for (var property in _this.headers) {
-          if (_this.headers.hasOwnProperty(property)) {
-            http.setRequestHeader(property, _this.headers[property]);
-          }
-        }
+        _this.setRequestHeaders(http);
 
         http.onreadystatechange = function () {
           if (http.readyState == 4) {
             if (http.status == 200) {
-              Logger.info('xhr done successfully (' + url + ')');
+              _this.log.info(msg[0] + 'successful' + msg[1]);
+
               resolve(http.responseText);
             } else {
-              Logger.error('xhr failed (' + url + ')');
+              _this.log.error(msg[0] + 'failed' + msg[1]);
+
               reject(http.status);
             }
           }
         };
 
-        Logger.info('xhr processing starting (' + url + ')');
-
-        if (data == undefined) {
-          http.send();
-          return;
-        }
-
         if (Is$1.object(data)) {
           data = JSON.stringify(data);
         }
 
-        http.send(data);
+        http.send(data || null);
+
+        _this.log.info(msg[0] + 'sent' + msg[1]);
       });
+    };
+
+    HTTP.setRequestHeaders = function setRequestHeaders(http) {
+      for (var property in this.headers) {
+        if (this.headers.hasOwnProperty(property)) {
+          http.setRequestHeader(property, this.headers[property]);
+        }
+      }
     };
 
     return HTTP;
@@ -738,9 +950,9 @@ var Wee = (function (exports) {
 
   HTTP.async = true;
   HTTP.noCache = false;
-  HTTP.headers = {
-    'Content-Type': 'application/json'
-  };
+  HTTP.responseType = 'text';
+  HTTP.headers = {};
+  HTTP.log = Logger$1.addGroup('Aias');
 
   var File =
   /*#__PURE__*/
@@ -793,142 +1005,29 @@ var Wee = (function (exports) {
     return File;
   }();
 
-  /** MIT License
-  * 
-  * Copyright (c) 2015 Ludovic CLUBER 
-  * 
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the "Software"), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  *
-  * http://mouettejs.lcluber.com
-  */
-  var LEVELS$1 = {
-    info: {
-      id: 1,
-      name: 'info',
-      color: '#28a745'
-    },
-    trace: {
-      id: 2,
-      name: 'trace',
-      color: '#17a2b8'
-    },
-    warn: {
-      id: 3,
-      name: 'warn',
-      color: '#ffc107'
-    },
-    error: {
-      id: 4,
-      name: 'error',
-      color: '#dc3545'
-    },
-    off: {
-      id: 99,
-      name: 'off',
-      color: null
-    }
-  };
-
-  var Message$1 =
-  /*#__PURE__*/
-  function () {
-    function Message(level, content) {
-      this.id = level.id;
-      this.name = level.name;
-      this.color = level.color;
-      this.content = content;
-    }
-
-    var _proto = Message.prototype;
-
-    _proto.display = function display() {
-      console[this.name]('%c' + this.content, 'color:' + this.color + ';');
-    };
-
-    return Message;
-  }();
-
-  var Logger$1 =
-  /*#__PURE__*/
-  function () {
-    function Logger() {}
-
-    Logger.info = function info(message) {
-      Logger.log(LEVELS$1.info, message);
-    };
-
-    Logger.trace = function trace(message) {
-      Logger.log(LEVELS$1.trace, message);
-    };
-
-    Logger.warn = function warn(message) {
-      Logger.log(LEVELS$1.warn, message);
-    };
-
-    Logger.error = function error(message) {
-      Logger.log(LEVELS$1.error, message);
-    };
-
-    Logger.log = function log(level, messageContent) {
-      var message = new Message$1(level, messageContent);
-      this.messages.push(message);
-      this.nbMessages++;
-
-      if (this._level.id <= message.id) {
-        message.display();
-      }
-    };
-
-    _createClass(Logger, [{
-      key: "level",
-      set: function set(name) {
-        Logger._level = LEVELS$1.hasOwnProperty(name) ? LEVELS$1[name] : LEVELS$1.info;
-      },
-      get: function get() {
-        return Logger._level.name;
-      }
-    }]);
-
-    return Logger;
-  }();
-
-  Logger$1._level = LEVELS$1.info;
-  Logger$1.messages = [];
-  Logger$1.nbMessages = 0;
-
   var Img =
   /*#__PURE__*/
   function () {
     function Img() {}
 
     Img.load = function load(path) {
+      var _this = this;
+
       return new Promise(function (resolve, reject) {
         var img = new Image();
         img.src = path;
         img.name = File.getName(path);
-        Logger$1.info('xhr processing starting (' + path + ')');
+
+        _this.log.info('xhr processing starting (' + path + ')');
+
         img.addEventListener('load', function () {
-          Logger$1.info('xhr done successfully (' + path + ')');
+          _this.log.info('xhr done successfully (' + path + ')');
+
           resolve(img);
         });
         img.addEventListener('error', function () {
-          Logger$1.error('xhr failed (' + path + ')');
+          _this.log.error('xhr failed (' + path + ')');
+
           reject(new Error('xhr failed (' + path + ')'));
         });
       });
@@ -936,6 +1035,7 @@ var Wee = (function (exports) {
 
     return Img;
   }();
+  Img.log = Logger$1.addGroup('Wee');
 
   var Sound =
   /*#__PURE__*/
@@ -943,20 +1043,27 @@ var Wee = (function (exports) {
     function Sound() {}
 
     Sound.load = function load(path) {
+      var _this = this;
+
       return new Promise(function (resolve, reject) {
         var snd = new Audio();
         snd.src = path;
-        Logger$1.info('xhr processing starting (' + path + ')');
+
+        _this.log.info('xhr processing starting (' + path + ')');
+
         snd.addEventListener('canplaythrough', function () {
-          Logger$1.info('xhr done successfully (' + path + ')');
+          _this.log.info('xhr done successfully (' + path + ')');
+
           resolve(snd);
         }, false);
         snd.addEventListener('canplay', function () {
-          Logger$1.info('xhr done successfully (' + path + ')');
+          _this.log.info('xhr done successfully (' + path + ')');
+
           resolve(snd);
         }, false);
         snd.addEventListener('error', function () {
-          Logger$1.error('xhr failed (' + path + ')');
+          _this.log.error('xhr failed (' + path + ')');
+
           reject(new Error('xhr failed (' + path + ')'));
         }, false);
       });
@@ -964,6 +1071,7 @@ var Wee = (function (exports) {
 
     return Sound;
   }();
+  Sound.log = Logger$1.addGroup('Wee');
 
   exports.Dom = Dom;
   exports.Binding = Binding;

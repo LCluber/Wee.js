@@ -1,3 +1,7 @@
+Version 0.2.14 (June 29th 2019)
+-----------------------------
+ * Updated Mouette logger for log groups management
+
 Version 0.2.13 (June 19th 2019)
 -----------------------------
  * Binding Constructor now accepts id string | class string | HTMLElement | array of HTMLElements as element parameter

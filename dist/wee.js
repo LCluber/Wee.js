@@ -246,39 +246,42 @@ class Img {
             let img = new Image();
             img.src = path;
             img.name = File.getName(path);
-            Logger.info('xhr processing starting (' + path + ')');
+            this.log.info('xhr processing starting (' + path + ')');
             img.addEventListener('load', () => {
-                Logger.info('xhr done successfully (' + path + ')');
+                this.log.info('xhr done successfully (' + path + ')');
                 resolve(img);
             });
             img.addEventListener('error', () => {
-                Logger.error('xhr failed (' + path + ')');
+                this.log.error('xhr failed (' + path + ')');
                 reject(new Error('xhr failed (' + path + ')'));
             });
         });
     }
 }
+Img.log = Logger.addGroup('Wee');
 
 class Sound {
+    ;
     static load(path) {
         return new Promise((resolve, reject) => {
             let snd = new Audio();
             snd.src = path;
-            Logger.info('xhr processing starting (' + path + ')');
+            this.log.info('xhr processing starting (' + path + ')');
             snd.addEventListener('canplaythrough', () => {
-                Logger.info('xhr done successfully (' + path + ')');
+                this.log.info('xhr done successfully (' + path + ')');
                 resolve(snd);
             }, false);
             snd.addEventListener('canplay', () => {
-                Logger.info('xhr done successfully (' + path + ')');
+                this.log.info('xhr done successfully (' + path + ')');
                 resolve(snd);
             }, false);
             snd.addEventListener('error', () => {
-                Logger.error('xhr failed (' + path + ')');
+                this.log.error('xhr failed (' + path + ')');
                 reject(new Error('xhr failed (' + path + ')'));
             }, false);
         });
     }
 }
+Sound.log = Logger.addGroup('Wee');
 
 export { Dom, Binding, String, File, Img, Sound };

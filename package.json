@@ -1,6 +1,6 @@
 {
   "name": "@lcluber/weejs",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "description": "Utility library written in Typescript",
   "keywords": [],
   "homepage": "http://weejs.lcluber.com",
@@ -45,8 +45,8 @@
     "pug": "2.0.3",
     "serve-favicon": "2.5.0",
     "@lcluber/chjs": "1.1.0",
-    "@lcluber/aiasjs": "0.1.9",
-    "@lcluber/mouettejs": "0.2.11"
+    "@lcluber/aiasjs": "0.1.16",
+    "@lcluber/mouettejs": "0.3.1"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",

@@ -1,8 +1,8 @@
-import { HTTP } from '@lcluber/aiasjs';
+import { HTTP, DataTypes } from '@lcluber/aiasjs';
 
 export class File {
 
-  static load(path: string): Promise<string> {
+  static load(path: string): Promise<DataTypes> {
     return HTTP.get(path);
   }
 
