@@ -24,8 +24,6 @@
 */
 
 import { Is } from '@lcluber/chjs';
-import { HTTP } from '@lcluber/aiasjs';
-import { Logger } from '@lcluber/mouettejs';
 
 class Dom {
     static scrollToBottom(HtmlElement) {
@@ -215,9 +213,6 @@ class String {
 }
 
 class File {
-    static load(path) {
-        return HTTP.get(path);
-    }
     static removeTrailingSlash(path) {
         return path.replace(/\/+$/, '');
     }
@@ -240,48 +235,4 @@ class File {
     }
 }
 
-class Img {
-    static load(path) {
-        return new Promise((resolve, reject) => {
-            let img = new Image();
-            img.src = path;
-            img.name = File.getName(path);
-            this.log.info('xhr processing starting (' + path + ')');
-            img.addEventListener('load', () => {
-                this.log.info('xhr done successfully (' + path + ')');
-                resolve(img);
-            });
-            img.addEventListener('error', () => {
-                this.log.error('xhr failed (' + path + ')');
-                reject(new Error('xhr failed (' + path + ')'));
-            });
-        });
-    }
-}
-Img.log = Logger.addGroup('Wee');
-
-class Sound {
-    ;
-    static load(path) {
-        return new Promise((resolve, reject) => {
-            let snd = new Audio();
-            snd.src = path;
-            this.log.info('xhr processing starting (' + path + ')');
-            snd.addEventListener('canplaythrough', () => {
-                this.log.info('xhr done successfully (' + path + ')');
-                resolve(snd);
-            }, false);
-            snd.addEventListener('canplay', () => {
-                this.log.info('xhr done successfully (' + path + ')');
-                resolve(snd);
-            }, false);
-            snd.addEventListener('error', () => {
-                this.log.error('xhr failed (' + path + ')');
-                reject(new Error('xhr failed (' + path + ')'));
-            }, false);
-        });
-    }
-}
-Sound.log = Logger.addGroup('Wee');
-
-export { Dom, Binding, String, File, Img, Sound };
+export { Dom, Binding, String, File };
