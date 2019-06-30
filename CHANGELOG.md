@@ -1,6 +1,6 @@
 ## Version 0.3.0 (June 30th 2019)
 
-- Removed sound, image and file loaders.
+- Removed sound, image and file loaders
 
 ## Version 0.2.14 (June 29th 2019)
 
