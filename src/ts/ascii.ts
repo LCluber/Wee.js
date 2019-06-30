@@ -1,5 +1,1 @@
-
-export class Ascii {
-
-
-}
+export class Ascii {}

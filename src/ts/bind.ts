@@ -1,21 +1,32 @@
-import { Is } from '@lcluber/chjs';
-import { Dom, HTMLElements } from './dom';
+import { Is } from "@lcluber/chjs";
+import { Dom, HTMLElements } from "./dom";
 
 export class Binding {
+  private _value: string | number;
+  private property: string[];
+  private lastProperty: string;
+  private elements:
+    | HTMLElement[]
+    | HTMLInputElement[]
+    | HTMLSelectElement[]
+    | HTMLTextAreaElement[]
+    | HTMLProgressElement[]
+    | HTMLCanvasElement[]
+    | HTMLIFrameElement[]
+    | null;
 
-  private _value : string|number;
-  private property : string[];
-  private lastProperty : string;
-  private elements : HTMLElement[] | HTMLInputElement[] | HTMLSelectElement[] | HTMLTextAreaElement[] | HTMLProgressElement[] | HTMLCanvasElement[] | HTMLIFrameElement[] | null;
-
-  constructor(element: string | HTMLElement | HTMLElement[], property: string, value: string|number) {
-    this._value = '';
+  constructor(
+    element: string | HTMLElement | HTMLElement[],
+    property: string,
+    value: string | number
+  ) {
+    this._value = "";
     this.elements = this.getElements(element);
 
     this.property = [];
-    this.lastProperty = '';
+    this.lastProperty = "";
     if (property) {
-      this.property = property.split('.');
+      this.property = property.split(".");
       this.lastProperty = this.property[this.property.length - 1];
       this.addPropertyToElement();
     }
@@ -24,29 +35,28 @@ export class Binding {
     // this.element.addEventListener('change', this, false);
     // input.value = observable();
     // observable.subscribe(function(){ input.value = observable(); });
-
   }
 
-  set value(value: string|number) {
+  set value(value: string | number) {
     this._value = value;
     this.updateDom();
   }
 
-  get value(): string|number {
+  get value(): string | number {
     return this._value;
   }
 
   private addPropertyToElement() {
     if (this.elements) {
-      for (let j = 0 ; j < this.elements.length ; j++) {
-        for (let i = 0 ; i < this.property.length - 1 ; i++) {
+      for (let j = 0; j < this.elements.length; j++) {
+        for (let i = 0; i < this.property.length - 1; i++) {
           this.elements[j] = this.elements[j][this.property[i]];
         }
       }
     }
   }
 
-  public update(value: string|number): void {
+  public update(value: string | number): void {
     this.value = value;
   }
 
@@ -58,11 +68,11 @@ export class Binding {
           element[this.lastProperty] = str;
           // console.log('property');
         } else {
-          if (element.hasAttribute('value')) {
+          if (element.hasAttribute("value")) {
             (element as HTMLInputElement).value = str;
             // console.log('value');
           } else {
-            let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/ig;
+            let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/gi;
             if (Is.string(this._value) && str.match(pattern)) {
               element.innerHTML = str;
               // console.log('innerHTML');
@@ -76,24 +86,24 @@ export class Binding {
     }
   }
 
-  private getElements(element: string | HTMLElements | HTMLElements[] ): HTMLElements[] | null {
-    let elements: HTMLElements[]|null = [];
+  private getElements(
+    element: string | HTMLElements | HTMLElements[]
+  ): HTMLElements[] | null {
+    let elements: HTMLElements[] | null = [];
     if (Is.array(element)) {
       for (const elt of element as HTMLElements[]) {
         if (Is.htmlElement(elt)) {
           elements.push(elt);
         }
       }
-    }
-    else if (Is.string(element)) {
+    } else if (Is.string(element)) {
       let htmlElement = Dom.findById(element as string);
       if (htmlElement) {
         elements.push(htmlElement);
       } else {
         elements = Dom.findByClass(element as string);
       }
-    }
-    else if (Is.htmlElement(element)) {
+    } else if (Is.htmlElement(element)) {
       elements.push(element as HTMLElements);
     }
     return elements;
@@ -109,5 +119,4 @@ export class Binding {
   //   this.value = value;
   //   this.element.value = value;
   // }
-
 }

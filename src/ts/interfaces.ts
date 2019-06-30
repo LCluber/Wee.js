@@ -1,5 +1,3 @@
-
 export interface HTMLParameters {
-  [key: string]: string
+  [key: string]: string;
 }
-
