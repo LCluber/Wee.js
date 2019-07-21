@@ -1,4 +1,4 @@
-import { Is } from "@lcluber/chjs";
+import { isString } from "@lcluber/chjs";
 import { HTMLParameters } from "./interfaces";
 
 export type HTMLElements =
@@ -133,7 +133,7 @@ export class Dom {
   private static checkElement(
     element: string | HTMLElements
   ): HTMLElements | null {
-    if (Is.string(element)) {
+    if (isString(element)) {
       return this.findById(<string>element);
     }
     return <HTMLElements>element;

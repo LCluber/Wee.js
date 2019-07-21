@@ -23,7 +23,7 @@
 * http://weejs.lcluber.com
 */
 
-import { Is } from '@lcluber/chjs';
+import { isArray, isHtmlElement, isString } from '@lcluber/chjs';
 
 class Dom {
     static scrollToBottom(HtmlElement) {
@@ -42,10 +42,10 @@ class Dom {
         return this.arrayFrom(document.getElementsByTagName(tagName));
     }
     static showElement(element) {
-        return this.styleElement(element, 'display', 'block');
+        return this.styleElement(element, "display", "block");
     }
     static hideElement(element) {
-        return this.styleElement(element, 'display', 'none');
+        return this.styleElement(element, "display", "none");
     }
     static styleElement(element, parameter, value) {
         let htmlelement = this.checkElement(element);
@@ -55,10 +55,10 @@ class Dom {
         return htmlelement;
     }
     static showOverflow() {
-        document.body.style.overflow = 'visible';
+        document.body.style.overflow = "visible";
     }
     static hideOverflow() {
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = "hidden";
     }
     static getInputValue(element) {
         let htmlelement = this.checkElement(element);
@@ -70,7 +70,7 @@ class Dom {
     static clearInputValue(element) {
         let htmlelement = this.checkElement(element);
         if (htmlelement) {
-            htmlelement.value = '';
+            htmlelement.value = "";
         }
         return htmlelement;
     }
@@ -87,7 +87,7 @@ class Dom {
             let newElement = document.createElement(childElementType);
             if (childElementAttributes) {
                 Object.keys(childElementAttributes).forEach(key => {
-                    if (key === 'textContent' || key === 'innerHTML') {
+                    if (key === "textContent" || key === "innerHTML") {
                         newElement[key] = childElementAttributes[key];
                     }
                     else {
@@ -95,7 +95,7 @@ class Dom {
                     }
                 });
             }
-            (parentHtmlElement).appendChild(newElement);
+            parentHtmlElement.appendChild(newElement);
             return newElement;
         }
         return null;
@@ -103,7 +103,7 @@ class Dom {
     static clearHTMLElement(element) {
         let htmlelement = this.checkElement(element);
         if (htmlelement) {
-            htmlelement.innerHTML = '';
+            htmlelement.innerHTML = "";
         }
         return htmlelement;
     }
@@ -115,7 +115,7 @@ class Dom {
         return elements;
     }
     static checkElement(element) {
-        if (Is.string(element)) {
+        if (isString(element)) {
             return this.findById(element);
         }
         return element;
@@ -124,12 +124,12 @@ class Dom {
 
 class Binding {
     constructor(element, property, value) {
-        this._value = '';
+        this._value = "";
         this.elements = this.getElements(element);
         this.property = [];
-        this.lastProperty = '';
+        this.lastProperty = "";
         if (property) {
-            this.property = property.split('.');
+            this.property = property.split(".");
             this.lastProperty = this.property[this.property.length - 1];
             this.addPropertyToElement();
         }
@@ -159,15 +159,20 @@ class Binding {
             let str = this._value;
             for (let element of this.elements) {
                 if (this.property.length) {
-                    element[this.lastProperty] = str;
+                    if (this.property.length > 1) {
+                        element[this.lastProperty] = str;
+                    }
+                    else {
+                        element.setAttribute(this.lastProperty, str);
+                    }
                 }
                 else {
-                    if (element.hasAttribute('value')) {
+                    if (element.hasAttribute("value")) {
                         element.value = str;
                     }
                     else {
-                        let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/ig;
-                        if (Is.string(this._value) && str.match(pattern)) {
+                        let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/gi;
+                        if (isString(this._value) && str.match(pattern)) {
                             element.innerHTML = str;
                         }
                         else {
@@ -180,14 +185,14 @@ class Binding {
     }
     getElements(element) {
         let elements = [];
-        if (Is.array(element)) {
+        if (isArray(element)) {
             for (const elt of element) {
-                if (Is.htmlElement(elt)) {
+                if (isHtmlElement(elt)) {
                     elements.push(elt);
                 }
             }
         }
-        else if (Is.string(element)) {
+        else if (isString(element)) {
             let htmlElement = Dom.findById(element);
             if (htmlElement) {
                 elements.push(htmlElement);
@@ -196,7 +201,7 @@ class Binding {
                 elements = Dom.findByClass(element);
             }
         }
-        else if (Is.htmlElement(element)) {
+        else if (isHtmlElement(element)) {
             elements.push(element);
         }
         return elements;
@@ -214,16 +219,16 @@ class String {
 
 class File {
     static removeTrailingSlash(path) {
-        return path.replace(/\/+$/, '');
+        return path.replace(/\/+$/, "");
     }
     static getName(path) {
-        return path.replace(/^.*[\\\/]/, '');
+        return path.replace(/^.*[\\\/]/, "");
     }
     static getExtension(path) {
-        return path.split('.').pop();
+        return path.split(".").pop();
     }
     static getDirectory(path) {
-        return path.replace(/[^\\\/]*$/, '');
+        return path.replace(/[^\\\/]*$/, "");
     }
     static checkExtension(extension, validExtensions) {
         for (let validExtension of validExtensions) {

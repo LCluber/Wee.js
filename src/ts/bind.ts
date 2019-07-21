@@ -1,4 +1,4 @@
-import { Is } from "@lcluber/chjs";
+import { isString, isArray, isHtmlElement } from "@lcluber/chjs";
 import { Dom, HTMLElements } from "./dom";
 
 export class Binding {
@@ -65,20 +65,20 @@ export class Binding {
       let str = this._value as string;
       for (let element of this.elements) {
         if (this.property.length) {
-          element[this.lastProperty] = str;
-          // console.log('property');
+          if (this.property.length > 1) {
+            element[this.lastProperty] = str;
+          } else {
+            element.setAttribute(this.lastProperty, str);
+          }
         } else {
           if (element.hasAttribute("value")) {
             (element as HTMLInputElement).value = str;
-            // console.log('value');
           } else {
             let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/gi;
-            if (Is.string(this._value) && str.match(pattern)) {
+            if (isString(this._value) && str.match(pattern)) {
               element.innerHTML = str;
-              // console.log('innerHTML');
             } else {
               element.textContent = str;
-              // console.log('textContent');
             }
           }
         }
@@ -90,20 +90,20 @@ export class Binding {
     element: string | HTMLElements | HTMLElements[]
   ): HTMLElements[] | null {
     let elements: HTMLElements[] | null = [];
-    if (Is.array(element)) {
+    if (isArray(element)) {
       for (const elt of element as HTMLElements[]) {
-        if (Is.htmlElement(elt)) {
+        if (isHtmlElement(elt)) {
           elements.push(elt);
         }
       }
-    } else if (Is.string(element)) {
+    } else if (isString(element)) {
       let htmlElement = Dom.findById(element as string);
       if (htmlElement) {
         elements.push(htmlElement);
       } else {
         elements = Dom.findByClass(element as string);
       }
-    } else if (Is.htmlElement(element)) {
+    } else if (isHtmlElement(element)) {
       elements.push(element as HTMLElements);
     }
     return elements;

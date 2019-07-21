@@ -26,88 +26,33 @@
 var Wee = (function (exports) {
   'use strict';
 
-  /** MIT License
-  * 
-  * Copyright (c) 2018 Ludovic CLUBER 
-  * 
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the "Software"), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  *
-  * http://chjs.lcluber.com
+  /* MIT License
+
+  Copyright (c) 2009 Ludovic CLUBER
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+  https://github.com/LCluber/Ch.js
   */
-  var Is =
-  /*#__PURE__*/
-  function () {
-    function Is() {}
+  function isArray(array) {
+    return array !== null && array.constructor === Array;
+  }
 
-    Is.json = function json(str) {
-      if (!this.string(str)) {
-        return false;
-      }
+  function isString(string) {
+    return typeof string === "string";
+  }
 
-      try {
-        JSON.parse(str);
-      } catch (e) {
-        return false;
-      }
+  function isHtmlElement(htmlElement) {
+    if (htmlElement) {
+      return typeof HTMLElement === "object" ? htmlElement instanceof HTMLElement : htmlElement && typeof htmlElement === "object" && htmlElement !== null && htmlElement.nodeType === 1 && typeof htmlElement.nodeName === "string";
+    }
 
-      return true;
-    };
-
-    Is.function = function _function(func) {
-      var getType = {};
-      return func && getType.toString.call(func) === '[object Function]';
-    };
-
-    Is.object = function object(_object) {
-      return _object !== null && typeof _object === 'object';
-    };
-
-    Is.array = function array(_array) {
-      return _array !== null && _array.constructor === Array;
-    };
-
-    Is.ascii = function ascii(code, extended) {
-      return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(code);
-    };
-
-    Is.integer = function integer(number) {
-      return number === parseInt(number, 10);
-    };
-
-    Is.float = function float(number) {
-      return Number(number) === number && number % 1 !== 0;
-    };
-
-    Is.string = function string(_string) {
-      return typeof _string === 'string';
-    };
-
-    Is.htmlElement = function htmlElement(_htmlElement) {
-      return typeof HTMLElement === "object" ? _htmlElement instanceof HTMLElement : _htmlElement && typeof _htmlElement === "object" && _htmlElement !== null && _htmlElement.nodeType === 1 && typeof _htmlElement.nodeName === "string";
-    };
-
-    Is.node = function node(_node) {
-      return typeof Node === "object" ? _node instanceof Node : _node && typeof _node === "object" && typeof _node.nodeType === "number" && typeof _node.nodeName === "string";
-    };
-
-    return Is;
-  }();
+    return false;
+  }
 
   var Dom =
   /*#__PURE__*/
@@ -135,11 +80,11 @@ var Wee = (function (exports) {
     };
 
     Dom.showElement = function showElement(element) {
-      return this.styleElement(element, 'display', 'block');
+      return this.styleElement(element, "display", "block");
     };
 
     Dom.hideElement = function hideElement(element) {
-      return this.styleElement(element, 'display', 'none');
+      return this.styleElement(element, "display", "none");
     };
 
     Dom.styleElement = function styleElement(element, parameter, value) {
@@ -153,11 +98,11 @@ var Wee = (function (exports) {
     };
 
     Dom.showOverflow = function showOverflow() {
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = "visible";
     };
 
     Dom.hideOverflow = function hideOverflow() {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     };
 
     Dom.getInputValue = function getInputValue(element) {
@@ -174,7 +119,7 @@ var Wee = (function (exports) {
       var htmlelement = this.checkElement(element);
 
       if (htmlelement) {
-        htmlelement.value = '';
+        htmlelement.value = "";
       }
 
       return htmlelement;
@@ -198,7 +143,7 @@ var Wee = (function (exports) {
 
         if (childElementAttributes) {
           Object.keys(childElementAttributes).forEach(function (key) {
-            if (key === 'textContent' || key === 'innerHTML') {
+            if (key === "textContent" || key === "innerHTML") {
               newElement[key] = childElementAttributes[key];
             } else {
               newElement.setAttribute(key, childElementAttributes[key]);
@@ -217,7 +162,7 @@ var Wee = (function (exports) {
       var htmlelement = this.checkElement(element);
 
       if (htmlelement) {
-        htmlelement.innerHTML = '';
+        htmlelement.innerHTML = "";
       }
 
       return htmlelement;
@@ -234,7 +179,7 @@ var Wee = (function (exports) {
     };
 
     Dom.checkElement = function checkElement(element) {
-      if (Is.string(element)) {
+      if (isString(element)) {
         return this.findById(element);
       }
 
@@ -264,13 +209,13 @@ var Wee = (function (exports) {
   /*#__PURE__*/
   function () {
     function Binding(element, property, value) {
-      this._value = '';
+      this._value = "";
       this.elements = this.getElements(element);
       this.property = [];
-      this.lastProperty = '';
+      this.lastProperty = "";
 
       if (property) {
-        this.property = property.split('.');
+        this.property = property.split(".");
         this.lastProperty = this.property[this.property.length - 1];
         this.addPropertyToElement();
       }
@@ -313,14 +258,18 @@ var Wee = (function (exports) {
           var element = _ref;
 
           if (this.property.length) {
-            element[this.lastProperty] = str;
+            if (this.property.length > 1) {
+              element[this.lastProperty] = str;
+            } else {
+              element.setAttribute(this.lastProperty, str);
+            }
           } else {
-            if (element.hasAttribute('value')) {
+            if (element.hasAttribute("value")) {
               element.value = str;
             } else {
-              var pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/ig;
+              var pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/gi;
 
-              if (Is.string(this._value) && str.match(pattern)) {
+              if (isString(this._value) && str.match(pattern)) {
                 element.innerHTML = str;
               } else {
                 element.textContent = str;
@@ -334,7 +283,7 @@ var Wee = (function (exports) {
     _proto.getElements = function getElements(element) {
       var elements = [];
 
-      if (Is.array(element)) {
+      if (isArray(element)) {
         for (var _iterator2 = element, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
           var _ref2;
 
@@ -349,11 +298,11 @@ var Wee = (function (exports) {
 
           var elt = _ref2;
 
-          if (Is.htmlElement(elt)) {
+          if (isHtmlElement(elt)) {
             elements.push(elt);
           }
         }
-      } else if (Is.string(element)) {
+      } else if (isString(element)) {
         var htmlElement = Dom.findById(element);
 
         if (htmlElement) {
@@ -361,7 +310,7 @@ var Wee = (function (exports) {
         } else {
           elements = Dom.findByClass(element);
         }
-      } else if (Is.htmlElement(element)) {
+      } else if (isHtmlElement(element)) {
         elements.push(element);
       }
 
@@ -404,19 +353,19 @@ var Wee = (function (exports) {
     function File() {}
 
     File.removeTrailingSlash = function removeTrailingSlash(path) {
-      return path.replace(/\/+$/, '');
+      return path.replace(/\/+$/, "");
     };
 
     File.getName = function getName(path) {
-      return path.replace(/^.*[\\\/]/, '');
+      return path.replace(/^.*[\\\/]/, "");
     };
 
     File.getExtension = function getExtension(path) {
-      return path.split('.').pop();
+      return path.split(".").pop();
     };
 
     File.getDirectory = function getDirectory(path) {
-      return path.replace(/[^\\\/]*$/, '');
+      return path.replace(/[^\\\/]*$/, "");
     };
 
     File.checkExtension = function checkExtension(extension, validExtensions) {
