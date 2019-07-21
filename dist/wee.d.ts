@@ -36,7 +36,7 @@ export declare class Binding {
     private updateDom;
     private getElements;
 }
-import { HTMLParameters } from "./interfaces";
+
 export declare type HTMLElements = HTMLElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLProgressElement | HTMLCanvasElement | HTMLIFrameElement;
 export declare class Dom {
     static scrollToBottom(HtmlElement: HTMLElements): void;
@@ -73,7 +73,7 @@ export declare class String {
     static ucfirst(string: string): string;
     static toASCII(code: string): number;
 }
-export { Dom } from "./dom";
-export { Binding } from "./bind";
-export { String } from "./string";
-export { File } from "./file";
+
+
+
+
