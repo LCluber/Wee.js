@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/LCluber/Wee.js/compare/v0.3.0...v0.3.1) (2019-07-22)
+
+
+### Bug Fixes
+
+* **binding:** when property parameter length = 1 ([6a01aa7](https://github.com/LCluber/Wee.js/commit/6a01aa7))
+
 ## Version 0.3.0 (June 30th 2019)
 
 - Removed sound, image and file loaders
