@@ -1,6 +1,6 @@
 ## Synopsis
 
-[Wee.js](http://weejs.lcluber.com) is an open source utility library written in TypeScript.
+**[Wee.js](https://github.com/LCluber/Ch.js)** is an open source Binding and DOM handling library written in Typescript.
 
 ## Motivation
 
@@ -8,33 +8,53 @@ The main purpose of this library is to provide the usual basic tools for strings
 
 ## Installation
 
+### npm
+
 ```bash
-$ npm install @lcluber/weejs
+$ npm i @lcluber/chjs
 ```
-Or download it **[here](http://weejs.lcluber.com/#download)**.
+
+### Yarn
+
+```bash
+$ yarn add @lcluber/chjs
+```
 
 ## Usage
+
+```html
+<input id="signupEmailMsg" \ value="" />
+<select id="shaders"></select>
+```
 
 ### ES6
 
 ```javascript
-import { Dom } from '@lcluber/weejs';
+import { Dom, Binding } from "@lcluber/weejs";
 
+// populate select tag with two options using addHTMLElement method
 let shaders = {
-  test1 : 'test1',
-  test2 : 'test2'
+  test1: "test1",
+  test2: "test2"
 };
 let select = Dom.findById("shaders");
-for(var property in shaders ) {
-  if(shaders.hasOwnProperty(property)) {
-    Dom.addHTMLElement( select,
-                        'option',
-                        { textContent:property,
-                          value:property
-                        });
+for (var property in shaders) {
+  if (shaders.hasOwnProperty(property)) {
+    Dom.addHTMLElement(select, "option", {
+      textContent: property,
+      value: property
+    });
   }
 }
 
+// Bind input style
+var signupEmailMsg = new Binding(
+  "signupEmailMsg",
+  "style.visibility",
+  "hidden"
+);
+// Then update it.
+signupEmailMsg.update("visible");
 ```
 
 ### ES5
@@ -44,27 +64,35 @@ for(var property in shaders ) {
 ```
 
 ```javascript
+// populate select tag with two options using addHTMLElement method
 var shaders = {
-  test1 : 'test1',
-  test2 : 'test2'
+  test1: "test1",
+  test2: "test2"
 };
 var select = Wee.Dom.findById("shaders");
-for(var property in shaders ) {
-  if(shaders.hasOwnProperty(property)) {
-    Wee.Dom.addHTMLElement( select,
-                            'option',
-                            { textContent:property,
-                              value:property
-                            });
+for (var property in shaders) {
+  if (shaders.hasOwnProperty(property)) {
+    Wee.Dom.addHTMLElement(select, "option", {
+      textContent: property,
+      value: property
+    });
   }
 }
+
+// Bind input style
+var signupEmailMsg = new Wee.Binding(
+  "signupEmailMsg",
+  "style.visibility",
+  "hidden"
+);
+
+// Then update it.
+signupEmailMsg.update("visible");
 ```
 
-## Demo
-
-See a basic example **[here](http://weejs.lcluber.com/#example)**.
-
 ## API Reference
+
+### DOM handling
 
 ```javascript
 
@@ -100,9 +128,18 @@ static Dom.focusOn(element: string | HTMLElements): HTMLElements | null {}
 
 ```
 
-## Tests
+### Binding
 
-No tests to run yet
+```javascript
+
+new Binding(
+  element: string | HTMLElement | HTMLElement[],
+  property: string,
+  value: string | number
+);
+Binding.update(value: string | number): void {}
+
+```
 
 ## Contributors
 
@@ -111,24 +148,4 @@ To contribute you can clone the project on **[GitHub](https://github.com/LCluber
 
 ## License
 
-MIT License
-
-Copyright (c) 2018 Ludovic CLUBER
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+**[MIT](https://github.com/LCluber/Wee.js/blob/master/LICENSE.md)**
