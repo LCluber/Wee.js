@@ -62,7 +62,7 @@ export class Binding {
 
   private updateDom(): void {
     if (this.elements) {
-      let str = this._value as string;
+      const str = this._value as string;
       for (let element of this.elements) {
         if (this.property.length) {
           if (this.property.length > 1) {
@@ -74,7 +74,7 @@ export class Binding {
           if (element.hasAttribute("value")) {
             (element as HTMLInputElement).value = str;
           } else {
-            let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/gi;
+            const pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/gi;
             if (isString(this._value) && str.match(pattern)) {
               element.innerHTML = str;
             } else {

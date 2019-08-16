@@ -20,7 +20,7 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 *
-* http://weejs.lcluber.com
+* https://github.com/LCluber/Wee.js
 */
 
 var Wee = (function (exports) {
@@ -52,6 +52,87 @@ var Wee = (function (exports) {
     }
 
     return false;
+  }
+
+  function isHtmlEventAttribute(htmlEventAttribute) {
+    switch (htmlEventAttribute) {
+      case "onafterprint":
+      case "onbeforeprint":
+      case "onbeforeunload":
+      case "onerror":
+      case "onhashchange":
+      case "onload":
+      case "onmessage":
+      case "onoffline":
+      case "ononline":
+      case "onpagehide":
+      case "onpageshow":
+      case "onpopstate":
+      case "onresize":
+      case "onstorage":
+      case "onunload":
+      case "onblur":
+      case "onchange":
+      case "oncontextmenu":
+      case "onfocus":
+      case "oninput":
+      case "oninvalid":
+      case "onreset":
+      case "onsearch":
+      case "onselect":
+      case "onsubmit":
+      case "onkeydown":
+      case "onkeypress":
+      case "onkeyup":
+      case "onclick":
+      case "ondblclick":
+      case "onmousedown":
+      case "onmousemove":
+      case "onmouseout":
+      case "onmouseover":
+      case "onmouseup":
+      case "onmousewheel":
+      case "onwheel":
+      case "ondrag":
+      case "ondragend":
+      case "ondragenter":
+      case "ondragleave":
+      case "ondragover":
+      case "ondragstart":
+      case "ondrop":
+      case "onscroll":
+      case "oncopy":
+      case "oncut":
+      case "onpaste":
+      case "onabort":
+      case "oncanplay":
+      case "oncanplaythrough":
+      case "oncuechange":
+      case "ondurationchange":
+      case "onemptied":
+      case "onended":
+      case "onerror":
+      case "onloadeddata":
+      case "onloadedmetadata":
+      case "onloadstart":
+      case "onpause":
+      case "onplay":
+      case "onplaying":
+      case "onprogress":
+      case "onratechange":
+      case "onseeked":
+      case "onseeking":
+      case "onstalled":
+      case "onsuspend":
+      case "ontimeupdate":
+      case "onvolumechange":
+      case "onwaiting":
+      case "ontoggle":
+        return true;
+
+      default:
+        return false;
+    }
   }
 
   var Dom =
@@ -143,7 +224,7 @@ var Wee = (function (exports) {
 
         if (childElementAttributes) {
           Object.keys(childElementAttributes).forEach(function (key) {
-            if (key === "textContent" || key === "innerHTML") {
+            if (key === "textContent" || key === "innerHTML" || isHtmlEventAttribute(key)) {
               newElement[key] = childElementAttributes[key];
             } else {
               newElement.setAttribute(key, childElementAttributes[key]);

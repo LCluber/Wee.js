@@ -13,7 +13,6 @@ module.exports = function(grunt) {
 
   var srcDir = "src/";
   var compiledSrcDir = srcDir + "ts/build/";
-  var compiledES5Dir = compiledSrcDir + "es5/";
   var compiledES6Dir = compiledSrcDir + "es6/";
   var distDir = "dist/";
 
@@ -40,9 +39,7 @@ module.exports = function(grunt) {
     "* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n" +
     "* SOFTWARE.\n" +
     "*\n" +
-    "* http://" +
-    projectNameLC +
-    "js.lcluber.com\n" +
+    "* https://github.com/LCluber/Wee.js\n" +
     "*/\n";
 
   grunt.option("stack", true);
@@ -51,7 +48,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON("package.json"),
     clean: {
       lib: {
-        src: [distDir + "*", compiledES5Dir + "*", compiledES6Dir + "*"]
+        src: [distDir + "*", compiledES6Dir + "*"]
       }
     },
     ts: {
@@ -80,7 +77,7 @@ module.exports = function(grunt) {
             // //   //exclude: './node_modules/**'
             // })
           ],
-          external: ["@lcluber/aiasjs", "@lcluber/mouettejs"]
+          external: ["@lcluber/chjs", "@lcluber/mouettejs"]
         },
         files: [
           {
@@ -188,12 +185,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-concat");
-  grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-strip-code");
   grunt.loadNpmTasks("grunt-ts");
   grunt.loadNpmTasks("grunt-rollup");
-  grunt.loadNpmTasks("grunt-typedoc");
-  grunt.loadNpmTasks("grunt-sass");
 
   grunt.registerTask("lib", "build the library in the dist/ folder", [
     // 'tslint:lib',

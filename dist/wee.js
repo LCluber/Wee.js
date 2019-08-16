@@ -20,10 +20,10 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 *
-* http://weejs.lcluber.com
+* https://github.com/LCluber/Wee.js
 */
 
-import { isArray, isHtmlElement, isString } from '@lcluber/chjs';
+import { isArray, isHtmlElement, isHtmlEventAttribute, isString } from '@lcluber/chjs';
 
 class Dom {
     static scrollToBottom(HtmlElement) {
@@ -48,7 +48,7 @@ class Dom {
         return this.styleElement(element, "display", "none");
     }
     static styleElement(element, parameter, value) {
-        let htmlelement = this.checkElement(element);
+        const htmlelement = this.checkElement(element);
         if (htmlelement) {
             htmlelement.style[parameter] = value;
         }
@@ -61,33 +61,33 @@ class Dom {
         document.body.style.overflow = "hidden";
     }
     static getInputValue(element) {
-        let htmlelement = this.checkElement(element);
+        const htmlelement = this.checkElement(element);
         if (htmlelement) {
             return htmlelement.value;
         }
         return null;
     }
     static clearInputValue(element) {
-        let htmlelement = this.checkElement(element);
+        const htmlelement = this.checkElement(element);
         if (htmlelement) {
             htmlelement.value = "";
         }
         return htmlelement;
     }
     static focusOn(element) {
-        let htmlelement = this.checkElement(element);
+        const htmlelement = this.checkElement(element);
         if (htmlelement) {
             htmlelement.focus();
         }
         return htmlelement;
     }
     static addHTMLElement(parentElement, childElementType, childElementAttributes) {
-        let parentHtmlElement = this.checkElement(parentElement);
+        const parentHtmlElement = this.checkElement(parentElement);
         if (parentHtmlElement) {
             let newElement = document.createElement(childElementType);
             if (childElementAttributes) {
                 Object.keys(childElementAttributes).forEach(key => {
-                    if (key === "textContent" || key === "innerHTML") {
+                    if (key === "textContent" || key === "innerHTML" || isHtmlEventAttribute(key)) {
                         newElement[key] = childElementAttributes[key];
                     }
                     else {
@@ -101,7 +101,7 @@ class Dom {
         return null;
     }
     static clearHTMLElement(element) {
-        let htmlelement = this.checkElement(element);
+        const htmlelement = this.checkElement(element);
         if (htmlelement) {
             htmlelement.innerHTML = "";
         }
@@ -156,7 +156,7 @@ class Binding {
     }
     updateDom() {
         if (this.elements) {
-            let str = this._value;
+            const str = this._value;
             for (let element of this.elements) {
                 if (this.property.length) {
                     if (this.property.length > 1) {
@@ -171,7 +171,7 @@ class Binding {
                         element.value = str;
                     }
                     else {
-                        let pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/gi;
+                        const pattern = /<\s*.*[^>]*>(.*?)<\s*.*\s*>/gi;
                         if (isString(this._value) && str.match(pattern)) {
                             element.innerHTML = str;
                         }

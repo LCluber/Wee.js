@@ -1,4 +1,4 @@
-import { isString } from "@lcluber/chjs";
+import { isString, isHtmlEventAttribute } from "@lcluber/chjs";
 import { HTMLParameters } from "./interfaces";
 
 export type HTMLElements =
@@ -48,7 +48,7 @@ export class Dom {
     parameter: string | number,
     value: string
   ): HTMLElements | null {
-    let htmlelement = this.checkElement(element);
+    const htmlelement = this.checkElement(element);
     if (htmlelement) {
       htmlelement.style[<number>parameter] = value;
     }
@@ -64,7 +64,7 @@ export class Dom {
   }
 
   public static getInputValue(element: string | HTMLElement): string | null {
-    let htmlelement = this.checkElement(element);
+    const htmlelement = this.checkElement(element);
     if (htmlelement) {
       return (<HTMLInputElement>htmlelement).value;
     }
@@ -74,7 +74,7 @@ export class Dom {
   public static clearInputValue(
     element: string | HTMLElement
   ): HTMLElement | null {
-    let htmlelement = this.checkElement(element);
+    const htmlelement = this.checkElement(element);
     if (htmlelement) {
       (<HTMLInputElement>htmlelement).value = "";
     }
@@ -82,7 +82,7 @@ export class Dom {
   }
 
   public static focusOn(element: string | HTMLElements): HTMLElements | null {
-    let htmlelement = this.checkElement(element);
+    const htmlelement = this.checkElement(element);
     if (htmlelement) {
       htmlelement.focus();
     }
@@ -94,12 +94,16 @@ export class Dom {
     childElementType: string,
     childElementAttributes?: HTMLParameters
   ): HTMLElements | null {
-    let parentHtmlElement = this.checkElement(parentElement);
+    const parentHtmlElement = this.checkElement(parentElement);
     if (parentHtmlElement) {
       let newElement = document.createElement(childElementType);
       if (childElementAttributes) {
         Object.keys(childElementAttributes).forEach(key => {
-          if (key === "textContent" || key === "innerHTML") {
+          if (
+            key === "textContent" ||
+            key === "innerHTML" ||
+            isHtmlEventAttribute(key)
+          ) {
             newElement[key] = childElementAttributes[key];
           } else {
             newElement.setAttribute(key, childElementAttributes[key]);
@@ -115,7 +119,7 @@ export class Dom {
   public static clearHTMLElement(
     element: string | HTMLElement
   ): HTMLElement | null {
-    let htmlelement = this.checkElement(element);
+    const htmlelement = this.checkElement(element);
     if (htmlelement) {
       htmlelement.innerHTML = "";
     }

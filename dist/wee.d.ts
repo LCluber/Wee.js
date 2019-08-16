@@ -20,7 +20,7 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 *
-* http://weejs.lcluber.com
+* https://github.com/LCluber/Wee.js
 */
 export declare class Binding {
     private _value;
