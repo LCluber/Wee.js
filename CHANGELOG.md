@@ -1,3 +1,10 @@
+## [0.3.2](https://github.com/LCluber/Wee.js/compare/v0.3.1...v0.3.2) (2019-08-16)
+
+
+### Bug Fixes
+
+* **dependencies:** updated dependencies ([3b25029](https://github.com/LCluber/Wee.js/commit/3b25029))
+
 ## [0.3.1](https://github.com/LCluber/Wee.js/compare/v0.3.0...v0.3.1) (2019-07-22)
 
 
