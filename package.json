@@ -1,6 +1,6 @@
 {
   "name": "@lcluber/weejs",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "Binding and DOM handling library written in Typescript",
   "keywords": [],
   "homepage": "http://weejs.lcluber.com",

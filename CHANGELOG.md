@@ -1,3 +1,15 @@
+# [1.0.0](https://github.com/LCluber/Wee.js/compare/v0.3.2...v1.0.0) (2019-08-17)
+
+
+### Features
+
+* **string:** dropped string and file classes ([02f28b1](https://github.com/LCluber/Wee.js/commit/02f28b1))
+
+
+### BREAKING CHANGES
+
+* **string:** dropped string and file classes
+
 ## [0.3.2](https://github.com/LCluber/Wee.js/compare/v0.3.1...v0.3.2) (2019-08-16)
 
 
