@@ -412,73 +412,8 @@ var Wee = (function (exports) {
     return Binding;
   }();
 
-  var String$1 =
-  /*#__PURE__*/
-  function () {
-    function String() {}
-
-    String.ucfirst = function ucfirst(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    };
-
-    String.toASCII = function toASCII(code) {
-      return code.charCodeAt(0);
-    };
-
-    return String;
-  }();
-
-  var File =
-  /*#__PURE__*/
-  function () {
-    function File() {}
-
-    File.removeTrailingSlash = function removeTrailingSlash(path) {
-      return path.replace(/\/+$/, "");
-    };
-
-    File.getName = function getName(path) {
-      return path.replace(/^.*[\\\/]/, "");
-    };
-
-    File.getExtension = function getExtension(path) {
-      return path.split(".").pop();
-    };
-
-    File.getDirectory = function getDirectory(path) {
-      return path.replace(/[^\\\/]*$/, "");
-    };
-
-    File.checkExtension = function checkExtension(extension, validExtensions) {
-      for (var _iterator = validExtensions, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-        var _ref;
-
-        if (_isArray) {
-          if (_i >= _iterator.length) break;
-          _ref = _iterator[_i++];
-        } else {
-          _i = _iterator.next();
-          if (_i.done) break;
-          _ref = _i.value;
-        }
-
-        var validExtension = _ref;
-
-        if (extension === validExtension) {
-          return true;
-        }
-      }
-
-      return false;
-    };
-
-    return File;
-  }();
-
   exports.Dom = Dom;
   exports.Binding = Binding;
-  exports.String = String$1;
-  exports.File = File;
 
   return exports;
 

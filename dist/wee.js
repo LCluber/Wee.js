@@ -87,7 +87,9 @@ class Dom {
             let newElement = document.createElement(childElementType);
             if (childElementAttributes) {
                 Object.keys(childElementAttributes).forEach(key => {
-                    if (key === "textContent" || key === "innerHTML" || isHtmlEventAttribute(key)) {
+                    if (key === "textContent" ||
+                        key === "innerHTML" ||
+                        isHtmlEventAttribute(key)) {
                         newElement[key] = childElementAttributes[key];
                     }
                     else {
@@ -208,36 +210,4 @@ class Binding {
     }
 }
 
-class String {
-    static ucfirst(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-    static toASCII(code) {
-        return code.charCodeAt(0);
-    }
-}
-
-class File {
-    static removeTrailingSlash(path) {
-        return path.replace(/\/+$/, "");
-    }
-    static getName(path) {
-        return path.replace(/^.*[\\\/]/, "");
-    }
-    static getExtension(path) {
-        return path.split(".").pop();
-    }
-    static getDirectory(path) {
-        return path.replace(/[^\\\/]*$/, "");
-    }
-    static checkExtension(extension, validExtensions) {
-        for (let validExtension of validExtensions) {
-            if (extension === validExtension) {
-                return true;
-            }
-        }
-        return false;
-    }
-}
-
-export { Dom, Binding, String, File };
+export { Dom, Binding };
