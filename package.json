@@ -49,8 +49,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@lcluber/chjs": "2.6.2",
-    "@lcluber/mouettejs": "2.1.0"
+    "@lcluber/chjs": "2.10.0"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",
