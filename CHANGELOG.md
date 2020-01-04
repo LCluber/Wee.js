@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/LCluber/Wee.js/compare/v1.0.0...v1.0.1) (2020-01-04)
+
+
+### Bug Fixes
+
+* **dependencies:** update chjs dependency ([4d8e92c](https://github.com/LCluber/Wee.js/commit/4d8e92cc9152cbf4db6f3a37fc0cf505e9fbdc4f))
+
 # [1.0.0](https://github.com/LCluber/Wee.js/compare/v0.3.2...v1.0.0) (2019-08-17)
 
 
