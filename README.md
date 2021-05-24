@@ -1,6 +1,6 @@
 ## Synopsis
 
-**[Wee.js](https://github.com/LCluber/Ch.js)** is an open source Binding and DOM handling library written in Typescript.
+**[Wee.js](https://github.com/LCluber/Wee.js)** is an open source Binding and DOM handling library written in Typescript.
 
 ## Motivation
 
@@ -11,13 +11,13 @@ The main purpose of this library is to provide the usual basic tools for strings
 ### npm
 
 ```bash
-$ npm i @lcluber/chjs
+$ npm i @lcluber/weejs
 ```
 
 ### Yarn
 
 ```bash
-$ yarn add @lcluber/chjs
+$ yarn add @lcluber/weejs
 ```
 
 ## Usage
